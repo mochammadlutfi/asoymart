@@ -1,0 +1,13 @@
+{
+    "name": "Wilayah",
+    "alias": "wilayah",
+    "description": "",
+    "keywords": [],
+    "order": 0,
+    "providers": [
+        "Modules\\Wilayah\\Providers\\WilayahServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

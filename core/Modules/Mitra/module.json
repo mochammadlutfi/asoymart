@@ -1,0 +1,13 @@
+{
+    "name": "Mitra",
+    "alias": "mitra",
+    "description": "",
+    "keywords": [],
+    "order": 0,
+    "providers": [
+        "Modules\\Mitra\\Providers\\MitraServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}
