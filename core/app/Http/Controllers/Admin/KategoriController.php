@@ -39,7 +39,7 @@ class KategoriController extends Controller
             ->make(true);
         }
 
-        return view('admin.kategori');
+        return view('admin.produk.kategori');
     }
 
     public function simpan(Request $request)

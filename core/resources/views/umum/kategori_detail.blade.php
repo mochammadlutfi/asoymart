@@ -14,7 +14,7 @@
                         @if($produk->kategori->parent->parent)
                         <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1"><a href="../shop/shop.html">{{ $produk->kategori->parent->parent->nama }}</a></li>
                         @endif
-                        @if($produk->kategori->parent->parent)
+                        @if($produk->kategori->parent)
                         <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1"><a href="../shop/shop.html">{{ $produk->kategori->parent->nama }}</a></li>
                         @endif
                         <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1 active" aria-current="page">{{ $produk->kategori->nama }}</li>

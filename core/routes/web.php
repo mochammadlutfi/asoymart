@@ -32,16 +32,18 @@ Route::namespace('Umum')->group(function(){
         // Route::get('email/resend','VerificationController@resend')->name('verification.resend');
     });
 
-
-
     Route::name('user.')->group(function(){
         Route::get('user/profil','UserController@profil')->name('profil');
         Route::get('/ordering','UserController@profil')->name('pesanan');
     });
 
-
+    Route::group(['prefix' => 'kategori'], function () {
+        Route::post('/sub_kategori_json', 'KategoriController@sub_kategori_json')->name('kategori.sub_kategori_json');
+    });
+    Route::get('{seller}', 'SellerController@index')->name('seller');
     Route::get('{bisnis}/{produk}', 'ProdukController@detail')->name('produk.detail');
 });
+
 
 // Auth::routes([ 'verify' => true ]);
 

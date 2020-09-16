@@ -8,7 +8,7 @@ class ProdukVariasi extends Model
 {
     protected $table = 'produk_variasi';
     protected $fillable = [
-        'nama', 'sku', 'harga', 'stok', 'produk_id',
+        'variant', 'sku', 'harga', 'stok', 'produk_id',
     ];
 
     public function produk()
@@ -16,13 +16,6 @@ class ProdukVariasi extends Model
         return $this->hasOne('App\Models\Produk', 'id', 'produk_id');
     }
 
-    public function satuan()
-    {
-        return $this->belongsTo('App\Models\Satuan', 'satuan_id');
-    }
 
-    public function detail()
-    {
-        return $this->hasOne('App\Models\VariasiDetail', 'variasi_id');
-    }
+
 }

@@ -3,6 +3,7 @@ use App\Models\VariasiDetail;
 use App\Models\Daerah;
 use Carbon\Carbon;
 use Session as Session;
+use Storage as Storage;
 if (!function_exists('getStokPerVariasi')) {
 
     /**
@@ -22,6 +23,54 @@ if (!function_exists('getStokPerVariasi')) {
         }else{
             return 0;
         }
+    }
+}
+
+if (!function_exists('get_produk_img')) {
+
+    /**
+     * Mengambil Stok Terkini Berdasarkan Variasi Produk
+     *
+     * @param
+     * $variasi_id = ID Variasi
+     * @return
+     * Jumlah Stok Variasi
+     */
+    function get_produk_img($img_path)
+    {
+        $isExists = Storage::disk('umum')->exists($img_path);
+        if(!$isExists)
+        {
+            return asset('assets/img/placeholder/product.png');
+        }else{
+            return asset('uploads/'.$img_path);
+        }
+
+    }
+}
+if (!function_exists('get_variant')) {
+
+    /**
+     * Mengambil Stok Terkini Berdasarkan Variasi Produk
+     *
+     * @param
+     * $variant = Nilai Variasi
+     * @return
+     * Jumlah Stok Variasi
+     */
+    function get_variant($variant, $var = 1)
+    {
+        if(strpos($variant, '-') !== false ) {
+            list($var1, $var2) = explode('-', $variant);
+            if($var == 2)
+            {
+                return $var2;
+            }else{
+                return $var1;
+            }
+       }else{
+        return $variant;
+       }
     }
 }
 
@@ -110,7 +159,7 @@ if (!function_exists('uf_date')) {
         $mysql_format = 'Y-m-d';
         if ($time) {
             $date_format = $date_format . ' H:i';
-            
+
             $mysql_format = 'Y-m-d H:i:s';
         }
 

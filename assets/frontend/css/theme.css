@@ -35111,12 +35111,12 @@ blockquote:not(.blockquote) p {
 }
 
 .prodcut-price {
-  font-size: 1.00012rem;
+  font-size: 1rem;
 }
 
 @media (min-width: 992px) {
   .prodcut-price {
-    font-size: 1.25038rem;
+    font-size: 1rem;
   }
 }
 

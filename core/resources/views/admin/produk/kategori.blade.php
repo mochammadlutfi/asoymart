@@ -117,5 +117,5 @@
 @push('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.10/jstree.min.js"></script>
-<script src="{{ asset('assets/modules/produk/js/kategori.js') }}"></script>
+<script src="{{ asset('assets/js/admin/produk/kategori.js') }}"></script>
 @endpush

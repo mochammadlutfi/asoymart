@@ -6,9 +6,9 @@
         </td>
         <td>
             @if($d->foto == '')
-            <img src="{{ asset('assets/img/placeholder/product.png') }}" width="40px">
+                <img src="{{ asset('assets/img/placeholder/product.png') }}" width="40px">
             @else
-            <img src="{{ asset($d->foto) }}" width="40px">
+                <img src="{{ asset($d->foto) }}" width="40px">
             @endif
         </td>
         <td class="font-w600">{{ $d->nama }}</td>

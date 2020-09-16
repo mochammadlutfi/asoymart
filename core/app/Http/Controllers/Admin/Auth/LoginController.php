@@ -44,7 +44,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest:mitra')->except('logout');
+        $this->middleware('guest:admin')->except('logout');
     }
 
     /**
@@ -55,9 +55,9 @@ class LoginController extends Controller
     public function showLoginForm()
     {
         return view('admin.auth.login',[
-            'title' => 'Mitra Login',
-            'loginRoute' => 'mitra.login',
-            'forgotPasswordRoute' => 'mitra.password.request',
+            'title' => 'Admin Login',
+            'loginRoute' => 'admin.login',
+            'forgotPasswordRoute' => 'admin.password.request',
         ]);
     }
 
@@ -81,11 +81,12 @@ class LoginController extends Controller
         }
 
         //attempt login.
-        if(Auth::guard('mitra')->attempt($request->only('email','password'),$request->filled('remember'))){
+        if(Auth::guard('admin')->attempt($request->only('email','password'),$request->filled('remember'))){
             //Authenticated, redirect to the intended route
             //if available else admin dashboard.
             return redirect()
-                ->intended(route('mitra.beranda'));
+                ->intended(route('admin.beranda'))
+                ->with('status','You are Logged in as Admin!');
         }
 
         //keep track of login attempts from the user.
@@ -102,11 +103,10 @@ class LoginController extends Controller
      */
     public function logout()
     {
-        Auth::guard('mitra')->logout();
-        Session::flush();
+        Auth::guard('admin')->logout();
         return redirect()
-            ->route('mitra.login')
-            ->with('status','Mitra has been logged out!');
+            ->route('admin.login')
+            ->with('status','Admin has been logged out!');
     }
 
     /**
@@ -119,13 +119,13 @@ class LoginController extends Controller
     {
         //validation rules.
         $rules = [
-            'email'    => 'required|email|exists:mitra|min:5|max:191',
+            'email'    => 'required|email|exists:admins|min:5|max:191',
             'password' => 'required|string|min:4|max:255',
         ];
 
         //custom validation error messages.
         $messages = [
-            'email.exists' => 'Tidak Ditemukan Email',
+            'email.exists' => 'These credentials do not match our records.',
         ];
 
         //validate the request.
@@ -153,3 +153,4 @@ class LoginController extends Controller
         return 'email';
     }
 }
+

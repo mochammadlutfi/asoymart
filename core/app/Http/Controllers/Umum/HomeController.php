@@ -8,15 +8,6 @@ use App\Models\Produk;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
     /**
      * Show the application dashboard.
@@ -26,7 +17,6 @@ class HomeController extends Controller
     public function index()
     {
         $terbaru = Produk::latest()->get();
-
         return view('umum.home', compact('terbaru'));
     }
 }

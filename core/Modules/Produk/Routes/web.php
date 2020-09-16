@@ -25,8 +25,5 @@
 
 // });
 
-// Route::group(['prefix' => 'kategori'], function () {
-//     Route::post('/sub_kategori_json', 'KategoriController@sub_kategori_json')->name('kategori.sub_kategori_json');
-// });
 
 

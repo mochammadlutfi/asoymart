@@ -2,6 +2,11 @@
 
 @section('styles')
 <link rel="stylesheet" href="{{ asset('assets/js/plugins/select2/css/select2.min.css') }}">
+<style>
+    #list-produk_filter {
+        display: none;
+    }
+</style>
 @endsection
 
 
@@ -14,21 +19,7 @@
     <div class="block">
         <div class="block-content bg-body-light">
             <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="field-kategori">Kategori</label>
-                        <select class="form-control" id="field-kategori" name="kategori" placeholder="Pilih Kategori"  style="width: 100%"></select>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="field-merk">Merk</label>
-                        <select class="form-control" id="field-merk" name="merk" placeholder="Pilih Merk" style="width: 100%"></select>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="form-group">
                         <label for="field-keyword">Pencarian</label>
                         <div class="input-group">
@@ -44,36 +35,25 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="col-md-7 pt-30" id="produk_nav">
-                            <span></span>
-                        </div>
-                        <div class="col-md-5 pt-25">
-                            <button type="button" class="btn btn-alt-secondary float-right" id="nextProduk">
-                                <i class="fa fa-chevron-right fa-fw"></i>
-                            </button>
-                            <button type="button" class="btn btn-alt-secondary float-left" id="prevProduk">
-                                <i class="fa fa-chevron-left fa-fw"></i>
-                            </button>
-                        </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="field-kategori">Kategori</label>
+                        <select class="form-control" id="field-kategori" name="kategori" placeholder="Pilih Kategori"  style="width: 100%"></select>
                     </div>
                 </div>
             </div>
         </div>
         <div class="block-content pb-15">
-            <input type="hidden" id="current_page" value="1">
-            <table class="js-table-sections table table-borderless table-striped font-size-sm" id="list-produk">
+            <table class="table table-striped table-vcenter" id="list-produk">
                 <thead>
                     <tr>
-                        <th></th>
-                        <th class="font-weight-bold">INFO PRODUK</th>
+                        <th class="font-weight-bold" width="40%">INFO PRODUK</th>
                         <th class="font-weight-bold">STATISTIK</th>
                         <th class="font-weight-bold">HARGA</th>
                         <th class="font-weight-bold">STOK</th>
+                        <th></th>
                     </tr>
                 </thead>
-                {{-- @include('produk.include.data') --}}
             </table>
         </div>
     </div>
@@ -83,7 +63,7 @@
 <script>jQuery(function(){ Codebase.helpers('table-tools'); });</script>
 <script src="{{ asset('assets/js/plugins/select2/js/select2.full.min.js') }}"></script>
 <script src="{{ asset('assets/js/plugins/select2/js/i18n/id.js') }}"></script>
-<script src="{{ asset('assets/js/pages/produk.js') }}"></script>
+<script src="{{ asset('assets/js/mitra/produk/produk.js') }}"></script>
 <script>
 </script>
 @endpush

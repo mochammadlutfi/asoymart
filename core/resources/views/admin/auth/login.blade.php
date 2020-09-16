@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en" class="no-focus">
     <head>
-        @include('admin.meta')
+        @include('admin.layouts.meta')
         <!-- Stylesheets -->
 
         <!-- Fonts and Codebase framework -->

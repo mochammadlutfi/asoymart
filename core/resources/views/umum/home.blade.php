@@ -157,7 +157,7 @@
                                         <div class="product-item__body pb-xl-2">
                                             <div class="mb-2">
                                                 <a href="{{ route('produk.detail', ['bisnis' => $baru->bisnis->link_toko, 'produk' => $baru->slug]) }}" class="d-block text-center">
-                                                    <img class="img-fluid" src="{{ asset('uploads/'.$baru->fotoUtama()->path) }}" alt="Image Description">
+                                                    <img class="img-fluid" src="{{ get_produk_img($baru->fotoUtama()->path) }}" alt="Image Description">
                                                 </a>
                                             </div>
                                             <div class="px-2">
@@ -167,7 +167,9 @@
                                                     </h5>
                                                 <div class="flex-center-between mb-1">
                                                     <div class="prodcut-price">
-                                                        <div class="text-gray-100">$685,00</div>
+                                                        <div class="text-gray-100">
+                                                            {{ $baru->harga }}
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <span class="d-inline-flex align-items-center small font-size-14">

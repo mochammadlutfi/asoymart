@@ -28,6 +28,7 @@
 
         <!-- CSS Electro Template -->
         <link rel="stylesheet" href="{{ asset('assets/frontend/css/theme.css') }}">
+        @yield('styles')
     </head>
 
     <body>

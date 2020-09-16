@@ -21,7 +21,6 @@
 <div class="content">
     <form id="form-produk" onsubmit="return false;">
         <input type="hidden" name="total_variasi" id="total_variasi" value="1">
-        <input type="hidden" name="is_variasi" id="is_variasi" value="0">
         <div class="content-heading pt-0 mb-3">
             Tambah Produk Baru
             <button type="submit" class="btn btn-primary float-right mr-5">
@@ -76,9 +75,10 @@
                         </div>
                     </div>
                     <div class="block-content pb-15">
-                        <input type="hidden" id="var2_status" value="0"/>
+                        <input type="hidden" name="is_variasi" id="is_variasi" value="0">
+                        <input type="hidden" id="var2_status" name="var2_status" value="0"/>
                         <div class="form-group row non-variasi">
-                            <label class="col-lg-3 col-form-label" for="field-harga">Harga Satuan</label>
+                            <label class="col-lg-3 col-form-label" for="field-harga">Harga Produk</label>
                             <div class="col-lg-7">
                                 <div class="input-group">
                                     <div class="input-group-prepend">

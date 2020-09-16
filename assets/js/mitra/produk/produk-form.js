@@ -11,11 +11,8 @@ jQuery(document).ready(function () {
     var el = document.getElementById('resizer');
     var croppie = null;
 
-    $(document).ready(function(){
-        $('#subcategory_list').hide();
-        $('#subsubcategory_list').hide();
-    });
-
+    $('#subcategory_list').hide();
+    $('#subsubcategory_list').hide();
     $(document).on('click', '#btn-add-variasi', function () {
         $(this).addClass('hide');
         $('#btn-hapus-variasi').removeClass('hide');
@@ -28,12 +25,14 @@ jQuery(document).ready(function () {
                         <label class="col-lg-2 col-form-label" for="field-var1_nama">Nama</label>
                         <div class="col-lg-10">
                             <input type="text" class="form-control variasi-1_nama" id="field-var1_nama" name="var1_nama" placeholder="Masukkan Nama Variasi, contoh: Warna, dll.">
+                            <div class="text-danger font-size-sm" id="error-var1_nama"></div>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-lg-2 col-form-label" for="field-var1_pilihan">Pilihan</label>
                         <div class="col-lg-10">
-                            <input type="text" class="" id="field-var1_pilihan" name="var1_pilihan" placeholder="Masukkan Pilihan Variasi, contoh: Hijau, dll.">
+                            <input type="text" class="form-control" id="field-var1_pilihan" name="var1_pilihan" placeholder="Masukkan Pilihan Variasi, contoh: Hijau, dll.">
+                            <div class="text-danger font-size-sm" id="error-var1_pilihan"></div>
                         </div>
                     </div>
                 </div>
@@ -48,15 +47,17 @@ jQuery(document).ready(function () {
                         <i class="si si-trash mr-3"></i> Hapus Variasi 2
                     </button>
                     <div class="form-group row var2-form hide">
-                        <label class="col-lg-2 col-form-label" for="field-var1_nama">Nama</label>
+                        <label class="col-lg-2 col-form-label" for="field-var2_nama">Nama</label>
                         <div class="col-lg-10">
-                            <input type="text" class="form-control var2-nama" id="field-var1_nama" name="var1_nama" placeholder="Masukkan Nama Variasi, contoh: Warna, dll.">
+                            <input type="text" class="form-control var2-nama" id="field-var2_nama" name="var2_nama" placeholder="Masukkan Nama Variasi, contoh: Ukuran, dll.">
+                            <div class="text-danger font-size-sm" id="error-var2_nama"></div>
                         </div>
                     </div>
                     <div class="form-group row var2-form hide">
                         <label class="col-lg-2 col-form-label" for="field-var2_pilihan">Pilihan</label>
                         <div class="col-lg-10">
                             <input type="text" class="" id="field-var2_pilihan" name="var2_pilihan" placeholder="Masukkan Pilihan Variasi, contoh: Hijau, dll.">
+                            <div class="text-danger font-size-sm" id="error-var2_pilihan"></div>
                         </div>
                     </div>
                 </div>
@@ -81,15 +82,12 @@ jQuery(document).ready(function () {
             </div>`
         );
         $('.non-variasi').not(":last").addClass('hide');
+
         $('#field-var1_pilihan').tagsinput({
             tagClass: 'badge badge-primary',
             maxTags: 20
         });
 
-        $(".variasi-1_nama").on("keyup", function() {
-            $('th.tb-variasi-1_nama').html($(this).val());
-        });
-    
         $('#field-var1_pilihan').tagsinput({
             tagClass: 'badge badge-primary',
             maxTags: 20
@@ -100,37 +98,9 @@ jQuery(document).ready(function () {
         });
     
         $('#field-var1_pilihan').on('beforeItemRemove', function(event) {
-            inc_variasi -= 1;
             $('#tbl_variasi tbody').find('tr').each(function(){
                 $(this).find('td input[value="'+ event.item + '"]').eq(0).closest('tr').remove();
             });
-            if(inc_variasi === 0)
-            {
-                $('#tbl_variasi tbody').append(
-                    `<tr data-id="0">
-                        <td>
-                            Pilihan
-                            <input type="hidden" class="form-control" name="variasi[`+ inc_variasi +`][pil1]" value="Pilihan">
-                        </td>
-                        <td>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        Rp
-                                    </span>
-                                </div>
-                                <input type="number" class="form-control" id="field-harga" name="harga" placeholder="Masukan Harga">
-                            </div>
-                        </td>
-                        <td>
-                            <input type="number" class="form-control" id="field-harga" name="harga" min="1">
-                        </td>
-                        <td>
-                            <input type="text" class="form-control" id="field-harga" name="harga" min="1">
-                        </td>
-                    </tr>`
-                );
-            }
         });
 
         $(document).on('click', '#btn-add-var2', function () {
@@ -157,6 +127,9 @@ jQuery(document).ready(function () {
             });
         
             $('#field-var2_pilihan').on('beforeItemRemove', function(event) {
+                $('#tbl_variasi tbody').find('tr').each(function(){
+                    $(this).find('td input[value="'+ event.item + '"]').eq(0).closest('tr').remove();
+                });
             });
         });
 

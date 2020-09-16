@@ -32,6 +32,7 @@ Route::prefix('mitra')->name('mitra.')->namespace('Mitra')->group(function() {
         Route::get('/hapus/{id}','ProdukController@hapus')->name('produk.hapus');
         Route::get('/json','ProdukController@json')->name('produk.json');
         Route::post('/add_variasi','VariasiController@add_variasi')->name('variasi_update');
+        Route::post('/get_variasi','VariasiController@get_variasi')->name('variasi_get');
     });
 
     Route::group(['prefix' => 'penjualan'], function () {

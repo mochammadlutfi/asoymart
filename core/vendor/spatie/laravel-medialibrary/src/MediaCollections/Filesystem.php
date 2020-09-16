@@ -2,6 +2,7 @@
 
 namespace Spatie\MediaLibrary\MediaCollections;
 
+use Exception;
 use Illuminate\Contracts\Filesystem\Factory;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -161,7 +162,7 @@ class Filesystem
         $targetFileStream = fopen($targetFile, 'a');
 
         while (! feof($stream)) {
-            $chunk = fread($stream, 1024);
+            $chunk = fgets($stream, 1024);
             fwrite($targetFileStream, $chunk);
         }
 
@@ -182,7 +183,11 @@ class Filesystem
 
         collect([$mediaDirectory, $conversionsDirectory, $responsiveImagesDirectory])
             ->each(function (string $directory) use ($media) {
-                $this->filesystem->disk($media->conversions_disk)->deleteDirectory($directory);
+                try {
+                    $this->filesystem->disk($media->conversions_disk)->deleteDirectory($directory);
+                } catch (Exception $exception) {
+                    report($exception);
+                }
             });
     }
 
