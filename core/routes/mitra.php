@@ -39,6 +39,7 @@ Route::prefix('mitra')->name('mitra.')->namespace('Mitra')->group(function() {
         Route::get('/alamat','PengaturanController@alamat')->name('pengaturan.alamat');
         Route::get('/rekening','PengaturanController@rekening')->name('pengaturan.rekening');
         Route::post('/rekening/simpan','PengaturanController@simpan')->name('pengaturan.rekening.simpan');
+        Route::get('/rekening/utama/{id}','PengaturanController@utama')->name('pengaturan.rekening.utama');
         Route::get('/rekening/ubah','PengaturanController@rekening')->name('pengaturan.rekening.ubah');
     });
 

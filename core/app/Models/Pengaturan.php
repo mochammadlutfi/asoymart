@@ -9,7 +9,7 @@ class Pengaturan extends Model
     protected $table = 'bank_account';
 
     protected $fillable = [
-        'users_id', 'bank_account_name', 'account_number', 'name',
+        'users_id', 'bank_account_name', 'account_number', 'name', 'is_prime',
     ];
 
     // public function users()

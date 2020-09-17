@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <div class="block-content pb-15">
-                    <table class="table table-borderless">
+                    <table class="table table-borderless" id="rek-tab">
                         <thead>
                             <tr>
                                 <th>Nama Alamat</th>
@@ -35,15 +35,17 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @csrf
                             @foreach ($datas as $data)
                                 <tr>
                                     <td>{{ $data['bank_account_name'] }}</th>
                                     <td>{{ $data['account_number'] }}</th>
                                     <td>
-                                        @if ($data['is_prime'] == '1')
-                                            <button type="button" class="btn btn-primary" disabled> <i class="fa fa-check"></i> Utama</button>
+                                        @if ($data['is_prime'] <> 1)
+                                        <button data-id = {{ $data['id'] }} data-link={{ route('mitra.pengaturan.rekening.utama', ['id' => $data['id']]) }} type="button" id="set-utama" class="btn btn-primary">Set Utama</button>
                                         @else
-                                            <button type="button" class="btn btn-primary">Set Utama</button>
+
+                                            <button type="button" class="btn btn-primary" disabled> <i class="fa fa-check"></i> Utama</button>
                                         @endif
 
                                         <a href="#" class="btn btn-primary" role="button" aria-pressed="true">Edit</a>
@@ -124,8 +126,56 @@
                 backdrop: 'static',
                 keyboard: false
             })
+            $('.is-invalid').removeClass('is-invalid');
         });
         jQuery(document).ready(function () {
+            $('#rek-tab').on('click', '#set-utama', function(e){
+                e.preventDefault();
+                const id = $(this).data('id');
+                link = $(this).data('link');
+                // console.log(id);
+                success_message = "No Rekening Utama Berhasil Diubah";
+                fail_message = "No Rekening Utama Gagal Diubah";
+                // console.log(link);
+                $.ajax({
+                    url: link,
+                    type: "get",
+                    data:{id:id},
+                    dataType: "JSON",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        console.log(response);
+                        if (response.fail == false) {
+                            swal.fire({
+                                title: "Berhasil",
+                                text: success_message,
+                                timer: 3000,
+                                buttons: false,
+                                icon: 'success'
+                            });
+                            window.setTimeout(function () {
+                                location.reload();
+                            }, 1500);
+                        } else {
+                            swal.fire({
+                                title: "Gagal",
+                                text: fail_message,
+                                timer: 3000,
+                                buttons: false,
+                                icon: 'fail'
+                            });
+                            window.setTimeout(function () {
+                                location.reload();
+                            }, 1500);
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert('Error adding / update data');
+                    }
+                });
+            });
             $("#form-rekening").submit(function (e) {
                 e.preventDefault();
                 var formData = new FormData($('#form-rekening')[0]);

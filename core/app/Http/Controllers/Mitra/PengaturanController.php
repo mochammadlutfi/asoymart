@@ -33,6 +33,28 @@ class PengaturanController extends Controller
         return view('mitra.pengaturan.rekening', compact('datas'));
     }
 
+    public function utama(Request $request)
+    {
+
+        $users_id = Auth::guard('web')->user()->id;
+        // $data = Pengaturan::find($users_id);
+        $data = Pengaturan::where('users_id',$users_id)->update([
+            'is_prime' => '0',
+        ]);
+        if($data)
+        {
+            $id = $request->id;
+            $data = Pengaturan::find($id);
+            $data->is_prime = '1';
+            if($data->save())
+            {
+                return response()->json([
+                    'fail' => false,
+                ]);
+            }
+        }
+    }
+
     public function simpan(Request $request)
     {
 
