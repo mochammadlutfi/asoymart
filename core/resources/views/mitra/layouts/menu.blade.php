@@ -45,6 +45,6 @@
         </ul>
     </li>
     <li>
-        <a class="{{ Request::is('mitra/pengaturan') ? 'active' : null }}" href="#"><i class="fa fa-cogs"></i>Pengaturan</span></a>
+        <a class="{{ Request::is('mitra/pengaturan') ? 'active' : null }}" href="{{ route('mitra.pengaturan') }}""><i class="fa fa-cogs"></i>Pengaturan</span></a>
     </li>
 </ul>

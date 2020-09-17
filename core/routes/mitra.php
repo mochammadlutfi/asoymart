@@ -34,6 +34,14 @@ Route::prefix('mitra')->name('mitra.')->namespace('Mitra')->group(function() {
         Route::post('/add_variasi','VariasiController@add_variasi')->name('variasi_update');
     });
 
+    Route::group(['prefix' => 'pengaturan'], function () {
+        Route::get('/','PengaturanController@index')->name('pengaturan');
+        Route::get('/alamat','PengaturanController@alamat')->name('pengaturan.alamat');
+        Route::get('/rekening','PengaturanController@rekening')->name('pengaturan.rekening');
+        Route::post('/rekening/simpan','PengaturanController@simpan')->name('pengaturan.rekening.simpan');
+        Route::get('/rekening/ubah','PengaturanController@rekening')->name('pengaturan.rekening.ubah');
+    });
+
     Route::group(['prefix' => 'penjualan'], function () {
         Route::get('/','PenjualanController@index')->name('penjualan');
     });

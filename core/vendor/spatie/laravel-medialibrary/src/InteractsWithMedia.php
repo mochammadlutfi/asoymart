@@ -44,7 +44,7 @@ trait InteractsWithMedia
             }
 
             if (in_array(SoftDeletes::class, class_uses_recursive($model))) {
-                if (! $model->forceDeleting) {
+                if (!$model->forceDeleting) {
                     return;
                 }
             }
@@ -122,11 +122,11 @@ trait InteractsWithMedia
      */
     public function addMediaFromUrl(string $url, ...$allowedMimeTypes): FileAdder
     {
-        if (! Str::startsWith($url, ['http://', 'https://'])) {
+        if (!Str::startsWith($url, ['http://', 'https://'])) {
             throw InvalidUrl::doesNotStartWithProtocol($url);
         }
 
-        if (! $stream = @fopen($url, 'r')) {
+        if (!$stream = @fopen($url, 'r')) {
             throw UnreachableUrl::create($url);
         }
 
@@ -136,7 +136,7 @@ trait InteractsWithMedia
         $this->guardAgainstInvalidMimeType($temporaryFile, $allowedMimeTypes);
 
         $filename = basename(parse_url($url, PHP_URL_PATH));
-        $filename = str_replace('%20', ' ', $filename);
+        $filename = urldecode($filename);
 
         if ($filename === '') {
             $filename = 'file';
@@ -144,7 +144,7 @@ trait InteractsWithMedia
 
         $mediaExtension = explode('/', mime_content_type($temporaryFile));
 
-        if (! Str::contains($filename, '.')) {
+        if (!Str::contains($filename, '.')) {
             $filename = "{$filename}.{$mediaExtension[1]}";
         }
 
@@ -152,6 +152,27 @@ trait InteractsWithMedia
             ->create($this, $temporaryFile)
             ->usingName(pathinfo($filename, PATHINFO_FILENAME))
             ->usingFileName($filename);
+    }
+
+
+    /**
+     * Add a file to the media library that contains the given string.
+     *
+     * @param string string
+     *
+     * @return \Spatie\MediaLibrary\MediaCollections\FileAdder
+     */
+    public function addMediaFromString(string $text): FileAdder
+    {
+        $tmpFile = tempnam(sys_get_temp_dir(), 'media-library');
+
+        file_put_contents($tmpFile, $text);
+
+        $file = app(FileAdderFactory::class)
+            ->create($this, $tmpFile)
+            ->usingFileName('text.txt');
+
+        return $file;
     }
 
     /**
@@ -245,7 +266,7 @@ trait InteractsWithMedia
     {
         $media = $this->getFirstMedia($collectionName);
 
-        if (! $media) {
+        if (!$media) {
             return $this->getFallbackMediaUrl($collectionName) ?: '';
         }
 
@@ -265,11 +286,18 @@ trait InteractsWithMedia
     ): string {
         $media = $this->getFirstMedia($collectionName);
 
-        if (! $media) {
+        if (!$media) {
             return $this->getFallbackMediaUrl($collectionName) ?: '';
         }
 
         return $media->getTemporaryUrl($expiration, $conversionName);
+    }
+
+    public function getRegisteredMediaCollections(): Collection
+    {
+        $this->registerMediaCollections();
+
+        return collect($this->mediaCollections);
     }
 
     public function getMediaCollection(string $collectionName = 'default'): ?MediaCollection
@@ -299,7 +327,7 @@ trait InteractsWithMedia
     {
         $media = $this->getFirstMedia($collectionName);
 
-        if (! $media) {
+        if (!$media) {
             return $this->getFallbackMediaPath($collectionName) ?: '';
         }
 
@@ -425,7 +453,7 @@ trait InteractsWithMedia
 
         $media = $this->media->find($mediaId);
 
-        if (! $media) {
+        if (!$media) {
             throw MediaCannotBeDeleted::doesNotBelongToModel($mediaId, $this);
         }
 
@@ -506,7 +534,7 @@ trait InteractsWithMedia
 
         $validation = Validator::make(
             ['file' => new File($file)],
-            ['file' => 'mimetypes:'.implode(',', $allowedMimeTypes)]
+            ['file' => 'mimetypes:' . implode(',', $allowedMimeTypes)]
         );
 
         if ($validation->fails()) {

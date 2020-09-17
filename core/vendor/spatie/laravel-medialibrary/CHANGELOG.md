@@ -2,13 +2,69 @@
 
 All notable changes to `laravel-medialibrary` will be documented in this file
 
+## 8.7.1 - 2020-09-08
+
+- add support for Laravel 8
+
+## 8.7.0 - 2020-09-04
+
+- add `toMediaLibrary`
+
+## 8.6.0 - 2020-08-25
+
+- add `useZipOptions`
+
+## 8.5.2 - 2020-08-25
+
+- fix for custom zip path (#2016)
+
+## 8.5.1 - 2020-08-24
+
+- keep sizes 1px if width is 0px (#1993)
+
+## 8.5.0 - 2020-08-06
+
+- add method to get registered media collections (#1976)
+
+## 8.4.1 - 2020-08-03
+
+- add `addMediaFromString`
+
+## 8.4.0 - 2020-08-03
+
+- add `addFromString`
+
+## 8.3.3 - 2020-06-30
+
+- fix responsive image urls when conversions are stored on different disk. (#1944)
+
+## 8.3.2 - 2020-06-22
+
+- report an error when it can't delete a directory (#1938)
+
+## 8.3.1 - 2020-06-22
+
+- improve handling of file names with special characters (#1937)
+
+## 8.3.0 - 2020-06-11
+
+- added `Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection`
+
+## 8.2.9 - 2020-06-08
+
+- changed `freads` to `fgets`  as per issue #812 (#1909)
+
+## 8.2.8 - 2020-05-16
+
+- when generating responsive images the quallity option of the original will be used (#1881)
+
 ## 8.2.7 - 2020-05-12
 
 - Unset loaded 'media' relation during updateMedia() (#1878)
 
 ## 8.2.6 - 2020-05-10
 
-- Revert slash because of Vapor errors (#1869)
+- revert slash because of Vapor errors (#1869)
 
 ## 8.2.5 - 2020-05-07
 
@@ -86,7 +142,6 @@ To learn how to upgrade, take a look in UPGRADING.md
 ## 7.19.3 - 2020-03-09
 
 - fix responsive images extension (#1752)
-- use native file copy (#1758)
 
 ## 7.19.2 - 2020-03-04
 
