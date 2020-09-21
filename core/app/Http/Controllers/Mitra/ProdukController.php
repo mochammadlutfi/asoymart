@@ -37,7 +37,7 @@ class ProdukController extends Controller
                 return '<div class="media">
                 <a class="thumbnail pull-left" href="#"> <img class="media-object" src="'.get_produk_img($row->fotoUtama()->path).'" style="width:45px"> </a>
                 <div class="media-body ml-3">
-                    <div class="font-size-h6 font-w700 mb-0"><a href="#">'.ucwords($row->nama).'</a></div>
+                    <div class="font-size-h6 font-w700 mb-0"><a href="'.route('produk.detail', ['bisnis' => $row->bisnis->link_toko, 'produk' => $row->slug]).'" target="_blank">'.ucwords($row->nama).'</a></div>
                     <span class="text-primary">'.$row->kategori->nama.'</span>
                 </div>
             </div>';
@@ -239,6 +239,7 @@ class ProdukController extends Controller
 
     public function update(Request $request)
     {
+        // dd($request->all());
         $rules = [
             'nama' => 'required',
             'deskripsi' => 'required|min:100|max:3000',
@@ -307,32 +308,41 @@ class ProdukController extends Controller
         }else{
             DB::beginTransaction();
             try{
+
                 $produk = Produk::find($request->produk_id);
                 $produk->nama = $request->nama;
                 $produk->kategori_id = $request->kategori;
                 $produk->deskripsi = $request->deskripsi;
                 $produk->has_variasi = $request->is_variasi;
                 $produk->var2_status = $request->var2_status;
+                $produk->berat = $request->berat;
+                $produk->berat_satuan = $request->berat_satuan;
+                $produk->panjang = $request->panjang;
+                $produk->lebar = $request->lebar;
+                $produk->tinggi = $request->tinggi;
+                // $produk->is_preorder = $request->is_preorder;
+                // $produk->preorder_waktu = $request->preorder_waktu;
+                // $produk->preorder_val = $request->preorder_value;
                 $produk->save();
 
-                foreach ($request->foto as $foto) {
-                    if(!empty($foto))
-                    {
-                        $folderPath = 'mitra/'.$bisnis_id."/produk/".$produk->id."/";
-                        $imageName = $folderPath . uniqid() . '.jpg';
-                        list($baseType, $image) = explode(';', $foto);
-                        list(, $image) = explode(',', $image);
-                        $image = base64_decode($image);
-                        $p = Storage::disk('umum')->put($imageName, $image);
-                        $foto = new ProdukFoto;
-                        $foto->produk_id = $produk->id;
-                        $foto->path = $imageName;
-                        if($i == 0){
-                            $foto->is_utama = 1;
-                        }
-                        $foto->save();
-                    }
-                }
+                // foreach ($request->foto as $foto) {
+                //     if(!empty($foto))
+                //     {
+                //         $folderPath = 'mitra/'.$bisnis_id."/produk/".$produk->id."/";
+                //         $imageName = $folderPath . uniqid() . '.jpg';
+                //         list($baseType, $image) = explode(';', $foto);
+                //         list(, $image) = explode(',', $image);
+                //         $image = base64_decode($image);
+                //         $p = Storage::disk('umum')->put($imageName, $image);
+                //         $foto = new ProdukFoto;
+                //         $foto->produk_id = $produk->id;
+                //         $foto->path = $imageName;
+                //         if($i == 0){
+                //             $foto->is_utama = 1;
+                //         }
+                //         $foto->save();
+                //     }
+                // }
 
                 if($request->is_variasi === '0')
                 {
@@ -357,23 +367,45 @@ class ProdukController extends Controller
                     }
                     $produk->save();
 
+                    if($request->hapus_variasi)
+                    {
+                        $hv = ProdukVariasi::destroy($request->hapus_variasi);
+
+                    }
+
                     foreach ($request->variasi as $d) {
+                        if(isset($d['id']))
+                        {
+                            $variasi = ProdukVariasi::find($d['id']);
+                        }else{
+                            $variasi = new ProdukVariasi();
+                        }
                         if($request->var2_status === '1')
                         {
                             $variant = $d['pil1'].'-'.$d['pil2'];
                         }else{
                             $variant = $d['pil1'];
                         }
-                        $variasiData = array(
-                            'produk_id' => $produk->id,
-                            'variant' => $variant,
-                            'sku' => $d['sku'],
-                            'harga' => $d['harga'],
-                            'stok' => $d['stok'],
-                            'sku' => $d['sku'],
-                        );
-                        $variasi = ProdukVariasi::create($variasiData);
+                        // $variasi = ProdukVariasi::firstOrNew(['id' => $d['id'], 'produk_id' => $produk->id])->first();
+
+                        $variasi->produk_id = $produk->id;
+                        $variasi->variant = $variant;
+                        $variasi->sku = $d['sku'];
+                        $variasi->harga = $d['harga'];
+                        $variasi->stok = $d['stok'];
+                        $variasi->save();
+                        // $variasiData = array(
+                        //     'produk_id' => $produk->id,
+                        //     'variant' => $variant,
+                        //     'sku' => $d['sku'],
+                        //     'harga' => $d['harga'],
+                        //     'stok' => $d['stok'],
+                        //     'sku' => $d['sku'],
+                        // );
+                        // $variasi = ProdukVariasi::create($variasiData);
                     }
+
+                    // dd($i);
                 }
             }catch(\QueryException $e){
                 DB::rollback();

@@ -29,7 +29,7 @@ jQuery(document).ready(function () {
         ]
     });
 
-    $('#search_box').keyup(function () {
+    $('#cari_produk').keyup(function () {
         oTable.search($(this).val()).draw();
     });
 });

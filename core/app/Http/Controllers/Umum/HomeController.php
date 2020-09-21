@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Umum;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Produk;
+use App\Models\Bisnis;
 
 class HomeController extends Controller
 {
@@ -17,6 +18,8 @@ class HomeController extends Controller
     public function index()
     {
         $terbaru = Produk::latest()->get();
-        return view('umum.home', compact('terbaru'));
+
+        $toko = Bisnis::latest()->get();
+        return view('umum.home', compact('terbaru', 'toko'));
     }
 }

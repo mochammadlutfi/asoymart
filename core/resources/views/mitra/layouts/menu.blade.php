@@ -14,7 +14,7 @@
         </ul>
     </li>
     <li>
-        <a class="{{ Request::is('mitra/penjualan', 'mitra/penjualan/*') ? 'active' : null }}" href="#"><i class="si si-bag"></i>Penjualan</span></a>
+        <a class="{{ Request::is('mitra/penjualan', 'mitra/penjualan/*') ? 'active' : null }}" href="{{ route('mitra.order') }}?status=terbaru"><i class="si si-bag"></i>Penjualan</span></a>
     </li>
     <li>
         <a class="{{ Request::is('mitra/chat', 'mitra/chat/*') ? 'active' : null }}" href="{{ route('mitra.beranda') }}"><i class="si si-bubble"></i>Chat</span></a>

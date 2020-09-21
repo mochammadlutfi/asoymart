@@ -24,19 +24,6 @@
         <link rel="stylesheet" id="css-theme" href="{{ asset('assets/css/themes/earth.css') }}">
         <!-- END Stylesheets -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
-
-        <!-- Currency setting -->
-        <input type="hidden" id="p_code" value="IDR">
-        <input type="hidden" id="p_symbol" value="Rp">
-        <input type="hidden" id="p_thousand" value=".">
-        <input type="hidden" id="p_decimal" value=",">
-        <input type="hidden" id="__code" value="IDR">
-        <input type="hidden" id="__symbol" value="Rp">
-        <input type="hidden" id="__thousand" value=".">
-        <input type="hidden" id="__decimal" value=",">
-        <input type="hidden" id="__symbol_placement" value="before">
-        <input type="hidden" id="__precision" value="0">
-        <input type="hidden" id="__quantity_precision" value="0">
     </head>
     <body>
 

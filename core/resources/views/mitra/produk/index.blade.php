@@ -19,25 +19,20 @@
     <div class="block">
         <div class="block-content bg-body-light">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="form-group">
-                        <label for="field-keyword">Pencarian</label>
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">
                                     <i class="si si-magnifier"></i>
                                 </span>
                             </div>
-                            <input type="text" id="field-keyword" class="form-control" placeholder="Cari Produk">
-                            <span class="input-group-append">
-                                <div class="input-group-text bg-transparent"><i class="fa fa-times"></i></div>
-                            </span>
+                            <input type="text" id="cari_produk" class="form-control" placeholder="Cari Nama Produk">
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="form-group">
-                        <label for="field-kategori">Kategori</label>
                         <select class="form-control" id="field-kategori" name="kategori" placeholder="Pilih Kategori"  style="width: 100%"></select>
                     </div>
                 </div>

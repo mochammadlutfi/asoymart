@@ -24,26 +24,59 @@
                                         <label class="form-label" for="field-nama">Nama Lengkap
                                             <span class="text-danger">*</span>
                                         </label>
-                                        <input type="text" class="form-control" name="nama" id="field-nama" placeholder="Masukan Nama Lengkap" value="">
+                                        <input type="text" class="form-control" name="nama" id="field-nama" placeholder="Masukan Nama Lengkap" value="{{ auth()->guard('web')->user()->nama }}">
                                         <div class="invalid-feedback" id="error-nama"></div>
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label" for="field-email">Alamat Email
                                             <span class="text-danger">*</span>
                                         </label>
-                                        <input type="text" class="form-control" name="email" id="field-email" placeholder="Masukan Alamat Email" value="">
+                                        <input type="text" class="form-control" name="email" id="field-email" placeholder="Masukan Alamat Email" value="{{ auth()->guard('web')->user()->email }}">
                                         <div class="invalid-feedback" id="error-email"></div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="form-label" for="field-password">Password
+                                        <label class="form-label" for="field-phone">No. Handphone
                                             <span class="text-danger">*</span>
                                         </label>
-                                        <input type="password" class="form-control" name="password" id="field-password" placeholder="Masukan Password" value="">
-                                        <div class="invalid-feedback" id="error-password"></div>
+                                        <input type="phone" class="form-control" name="phone" id="field-phone" placeholder="Masukan No. Handphone" value="">
+                                        <div class="invalid-feedback" id="error-phone"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="field-tgl">Tanggal Lahir
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <select class="form-control" id="field-tgl" name="tgl">
+                                                    <option value="">Tanggal</option>
+                                                    @for($hari=1; $hari <=31; $hari++)
+                                                    <option value="{{ $hari }}">{{ $hari }}</option>
+                                                    @endfor
+                                                </select>
+                                            </div>
+                                            <div class="col-4">
+                                                <select class="form-control" name="tgl">
+                                                    <option value="">Bulan</option>
+                                                    @php $bulan = array('Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'); @endphp
+                                                    @for($bln=1; $bln <=12; $bln++)
+                                                    <option value="{{ $bln }}">{{ $bulan[$bln-1] }}</option>
+                                                    @endfor
+                                                </select>
+                                            </div>
+                                            <div class="col-4">
+                                                <select class="form-control" name="tgl">
+                                                    <option value="">Tahun</option>
+                                                    @for($i = date('Y'); $i >= date('Y', strtotime('-100 years')); $i--)
+                                                     <option value="{{ $i }}">{{ $i }}</option>
+                                                    @endfor
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="invalid-feedback" id="error-phone"></div>
                                     </div>
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-primary btn-block">
-                                            Daftar Sekarang
+                                            Simpan
                                         </button>
                                     </div>
                                 </div>

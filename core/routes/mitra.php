@@ -36,7 +36,7 @@ Route::prefix('mitra')->name('mitra.')->namespace('Mitra')->group(function() {
     });
 
     Route::group(['prefix' => 'penjualan'], function () {
-        Route::get('/','PenjualanController@index')->name('penjualan');
+        Route::get('/','PenjualanController@index')->name('order');
     });
 
 });

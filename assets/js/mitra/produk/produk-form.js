@@ -236,15 +236,17 @@ jQuery(document).ready(function () {
                 $('.is-invalid').removeClass('is-invalid');
                 if (response.fail == false) { 
                     Swal.fire({
-                        title: "Berhasil",
-                        text: "Kategori Baru Berhasil Ditambahkan",
-                        timer: 3000,
+                        title: `Berhasil!`,
                         showConfirmButton: false,
-                        icon: 'success'
+                        icon: 'success',
+                        html: `Produk Baru Berhasil Disimpan!
+                            <br><br>
+                            <a href="`+ laroute.route('mitra.produk') +`" class="btn btn-keluar btn-alt-danger"><i class="si si-close mr-1"></i>Keluar</a> 
+                            <a href="`+ laroute.route('mitra.produk.tambah') +`" class="btn btn-tambah_baru btn-alt-primary"><i class="si si-plus mr-1"></i>Tambah Produk Lain</a>`,
+                        showCancelButton: false,
+                        showConfirmButton: false,
+                        allowOutsideClick: false,
                     });
-                    window.setTimeout(function () {
-                        location.reload();
-                    }, 1500);
                 } else {
                     Swal.close();
                     for (control in response.errors) {

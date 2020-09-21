@@ -50,7 +50,7 @@
                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label" for="field-deskripsi">Deskripsi Produk</label>
                             <div class="col-lg-9">
-                                <textarea class="form-control" name="deskripsi" id="field-deskripsi" cols="30" rows="10" placeholder="Masukan Deskripsi Produk"></textarea>
+                                <textarea class="form-control" name="deskripsi" id="field-deskripsi" cols="30" rows="10" placeholder="Masukan Deskripsi Produk">{{ $produk->deskripsi }}</textarea>
                                 <div class="invalid-feedback font-size-sm" id="error-deskripsi">Invalid feedback</div>
                             </div>
                         </div>
@@ -61,7 +61,7 @@
                                 <input type="hidden" name="category_id" id="category_id" value="" required>
                                 <input type="hidden" name="subcategory_id" id="subcategory_id" value="" required>
                                 <input type="hidden" name="subsubcategory_id" id="subsubcategory_id" value="">
-                                <input type="hidden" name="kategori" id="kategori_id" value="">
+                                <input type="hidden" name="kategori" id="kategori_id" value="{{ $produk->kategori_id }}">
                                 <div class="text-danger font-size-sm" id="error-kategori"></div>
                             </div>
                         </div>
@@ -224,7 +224,7 @@
                                             <div class="col-12">
                                                 <div class="btn btn-primary btn-block btn-sm mt-3">
                                                     <input type="file" class="file-upload" data-id="{{$i}}" accept="image/*">
-                                                    <input type="hidden" id="foto-{{$i}}" name="foto[{{ $i }}]" value="">
+                                                    <input type="hidden" id="foto-{{$i}}" name="foto[{{ $i }}]" value="{{ $foto[$i] }}">
                                                     <i class="si si-plus mr-1"></i>Pilih Foto
                                                     @if($i == 0)
                                                     Utama
@@ -266,12 +266,12 @@
                             <div class="col-lg-9">
                                 <div class="row">
                                     <div class="col-8">
-                                        <input type="number" class="form-control" id="field-berat" name="berat" placeholder="Masukan Berat Produk">
+                                        <input type="number" class="form-control" id="field-berat" name="berat" placeholder="Masukan Berat Produk" value="{{ $produk->berat }}">
                                     </div>
                                     <div class="col-4">
                                         <select class="form-control" name="berat_satuan">
-                                            <option>Gram (g)</option>
-                                            <option>Kilogram (Kg)</option>
+                                            <option @if($produk->berat_satuan == 'Gram (g)') selected="selected" @endif value="Gram (g)">Gram (g)</option>
+                                            <option @if($produk->berat_satuan == 'Kilogram (Kg)') selected="selected" @endif value="Kilogram (Kg)">Kilogram (Kg)</option>
                                         </select>
                                     </div>
                                 </div>
@@ -281,7 +281,7 @@
                             <label class="col-lg-3 col-form-label" for="field-lebar">Ukuran Paket</label>
                             <div class="col-lg-3">
                                 <div class="input-group">
-                                    <input type="number" class="form-control" id="field-lebar" name="lebar" placeholder="Lebar">
+                                    <input type="number" class="form-control" id="field-lebar" name="lebar" placeholder="Lebar" value="{{ $produk->lebar }}">
                                     <div class="input-group-append">
                                         <span class="input-group-text">
                                             cm
@@ -291,7 +291,7 @@
                             </div>
                             <div class="col-lg-3">
                                 <div class="input-group">
-                                    <input type="number" class="form-control" id="field-panjang" name="panjang" placeholder="Panjang">
+                                    <input type="number" class="form-control" id="field-panjang" name="panjang" placeholder="Panjang" value="{{ $produk->panjang }}">
                                     <div class="input-group-append">
                                         <span class="input-group-text">
                                             cm
@@ -301,27 +301,11 @@
                             </div>
                             <div class="col-lg-3">
                                 <div class="input-group">
-                                    <input type="number" class="form-control" id="field-tinggi" name="tinggi" placeholder="Tinggi">
+                                    <input type="number" class="form-control" id="field-tinggi" name="tinggi" placeholder="Tinggi" value="{{ $produk->tinggi }}">
                                     <div class="input-group-append">
                                         <span class="input-group-text">
                                             cm
                                         </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label" for="field-harga">Preorder</label>
-                            <div class="col-lg-9">
-                                <div class="row">
-                                    <div class="col-8">
-                                        <input type="email" class="form-control" id="example-input2-group1" name="example-input2-group1" placeholder="Masukan Berat">
-                                    </div>
-                                    <div class="col-4">
-                                        <select class="form-control" name="berat_satuan">
-                                            <option>Gram (g)</option>
-                                            <option>Kilogram (Kg)</option>
-                                        </select>
                                     </div>
                                 </div>
                             </div>

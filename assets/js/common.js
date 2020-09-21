@@ -1,7 +1,30 @@
 //This file contains all common functionality for the application
 
-$(document).ready(function() {
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+$(document).ready(function(){
 
+    $("#cartTopHover").mouseenter(function(){
+        $.ajax({
+            url: laroute.route('cart.top_data'),
+            type: "POST",
+            dataType: "JSON",
+            success: function(response) {
+                $('#cartDropDown').html(response.html);
+            },
+            error: function(httpObj, textStatus, errorThrown) {
+                if(httpObj.status==401)
+                alert('Login Error');
+            }
+        });
+    });
+
+});
+
+$(document).ready(function() {
     //Set global currency to be used in the application
     __currency_symbol = 'Rp';
     __currency_thousand_separator = '.';
@@ -12,8 +35,6 @@ $(document).ready(function() {
     __p_currency_symbol = 'Rp';
     __p_currency_thousand_separator = '.';
     __p_currency_decimal_separator = ',';
-
-    __currency_convert_recursively($(document), 2);
 
     //Input number
     $(document).on('click', '.input-number .quantity-up, .input-number .quantity-down', function() {
@@ -40,23 +61,9 @@ $(document).ready(function() {
             if (typeof min != 'undefined' && qty - step < min) {
                 return false;
             }
-
             __write_number(input, qty - step);
             input.change();
         }
-    });
-
-    $('div.pos-tab-menu>div.list-group>a').click(function(e) {
-        e.preventDefault();
-        $(this)
-            .siblings('a.active')
-            .removeClass('active');
-        $(this).addClass('active');
-        var index = $(this).index();
-        $('div.pos-tab>div.pos-tab-content').removeClass('active');
-        $('div.pos-tab>div.pos-tab-content')
-            .eq(index)
-            .addClass('active');
     });
 });
 

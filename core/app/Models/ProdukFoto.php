@@ -15,4 +15,6 @@ class ProdukFoto extends Model
     {
         return $this->belongsTo('Modules\Produk\Entities\Produk');
     }
+
+
 }

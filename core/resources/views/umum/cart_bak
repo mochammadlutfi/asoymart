@@ -1,0 +1,82 @@
+<div class="cart-product product box">
+                            <div class="product as-columns b-mobile">
+                                <div class="as-column b-narrow">
+                                    <div class="as-columns b-mobile">
+                                        <div class="as-column b-narrow b-flex">
+                                            <div class="checkbox product__check">
+                                                <input id="INL-60035-00669-00003##false#PP-3046516##" type="checkbox">
+                                                <label for="INL-60035-00669-00003##false#PP-3046516##">&nbsp;</label>
+                                            </div>
+                                        </div>
+                                        <div class="as-column b-narrow product__thumb">
+                                            <a href="" class="">
+                                                <img src="{{ get_produk_img($p->produk->fotoUtama()->path) }}" data-src=""
+                                                    alt="" class="img-fluid lazyImage" data-loaded="true">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <!---->
+                                </div>
+                                <div class="as-column">
+                                    <div class="as-columns">
+                                        <div class="as-column b-5">
+                                            <a href="#" class="text-black">
+                                                <div class="product__name">
+                                                    <div class="ellipsis-oneline">
+                                                        {{ $p->produk->nama }}
+                                                    </div>
+                                                </div>
+                                                <div class="product__attribute"></div>
+                                                <!---->
+                                            </a>
+                                        </div>
+                                        <div class="product__price as-column b-3">
+                                            <div class="product__price--after">{{ $p->harga }}</div>
+                                        </div>
+                                        <div class="as-column b-4">
+                                            <div class="as-columns b-mobile product__action">
+                                                <!---->
+                                                <div class="as-column b-narrow">
+                                                    <div class="product-quantity d-flex align-items-center">
+                                                        <div class="input-group input-group--style-2 pr-3 input-number"
+                                                            style="width: 160px;">
+                                                            <span class="input-group-btn">
+                                                                <button class="btn btn-primary btn-sm mr-1 quantity-down"
+                                                                    type="button" data-type="minus">
+                                                                    <i class="fa fa-minus"></i>
+                                                                </button>
+                                                            </span>
+                                                            <input type="text" name="quantity"
+                                                                class="form-control input-number text-center" placeholder="1"
+                                                                value="1" min="1" max="10">
+                                                            <span class="input-group-btn">
+                                                                <button class="btn btn-primary btn-sm ml-1 quantity-up"
+                                                                    type="button" data-type="plus">
+                                                                    <i class="fa fa-plus"></i>
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!---->
+                                        </div>
+                                        <div class="product__wd-wrapper as-column b-narrow">
+                                            <div class="product__wd">
+                                                <div class="wishlist">
+                                                    <div class="wishlist__block">
+                                                        <div class="product__wishlist has-icon pointer-wishlist">
+                                                            <i class="icon icon-wishlist"></i>
+                                                            <span>Tambah ke wishlist</span></div>
+                                                    </div>
+                                                </div>
+                                                <div class="product__delete has-icon">
+                                                    <i class="icon icon-delete"></i>
+                                                    <span>Hapus</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>

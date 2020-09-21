@@ -16,6 +16,9 @@ class ProdukVariasi extends Model
         return $this->hasOne('App\Models\Produk', 'id', 'produk_id');
     }
 
-
+    // public function setHargaAttribute($value)
+    // {
+    //     return "Rp" .number_format($value,0,',','.');
+    // }
 
 }

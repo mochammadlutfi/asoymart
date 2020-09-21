@@ -3,10 +3,45 @@
     <div class="pt-8 pb-4 bg-gray-13">
         <div class="container mt-1">
             <div class="row">
+                <div class="col-lg-7">
+                    <div class="row">
+                        <div class="col-12 col-md mb-4 mb-md-0">
+                            <h6 class="mb-3 font-weight-bold">Bantuan</h6>
+                            <!-- List Group -->
+                            <ul class="list-group list-group-flush list-group-borderless mb-0 list-group-transparent">
+                                <li><a class="list-group-item list-group-item-action" href="#">Pembayaran</a></li>
+                                <li><a class="list-group-item list-group-item-action" href="#">Pengiriman</a></li>
+                                <li><a class="list-group-item list-group-item-action" href="#">Status Pesanan</a></li>
+                                <li><a class="list-group-item list-group-item-action" href="#">Pengembalian Produk</a></li>
+                                <li><a class="list-group-item list-group-item-action" href="#">Cara Berbelanja</a></li>
+                                <li><a class="list-group-item list-group-item-action" href="#">Hubungi Kami</a></li>
+                            </ul>
+                            <!-- End List Group -->
+                        </div>
+                        <div class="col-12 col-md mb-4 mb-md-0">
+                            <h6 class="mb-3 font-weight-bold">Jelajahi Asoy Mart</h6>
+                            <!-- List Group -->
+                            <ul class="list-group list-group-flush list-group-borderless mb-0 list-group-transparent">
+                                <li><a class="list-group-item list-group-item-action" href="">Tentang Asoymart</a></li>
+                                <li><a class="list-group-item list-group-item-action" href="">Blog Asoymart</a></li>
+                                <li><a class="list-group-item list-group-item-action" href="">Kebijakan Asoymart</a></li>
+                                <li><a class="list-group-item list-group-item-action" href="">Kebijakan Privasi</a></li>
+                                <li><a class="list-group-item list-group-item-action" href="">Mitra Asoy</a></li>
+                                <li><a class="list-group-item list-group-item-action" href="">Kontak Media Asoy</a></li>
+                            </ul>
+                            <!-- End List Group -->
+                        </div>
+
+                        <div class="col-12 col-md mb-4 mb-md-0">
+                            <h6 class="mb-3 font-weight-bold">Pembayaran</h6>
+
+                        </div>
+                    </div>
+                </div>
                 <div class="col-lg-5">
                     <div class="mb-6">
                         <a href="#" class="d-inline-block">
-                            <img src="{{ asset('assets/media/logo/logo.png') }}"/>
+                            <img class="img-fluid" src="{{ asset('assets/media/logo/logo.png') }}"/>
                         </a>
                     </div>
                     <div class="mb-4">
@@ -51,51 +86,6 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-7">
-                    <div class="row">
-                        <div class="col-12 col-md mb-4 mb-md-0">
-                            <h6 class="mb-3 font-weight-bold">Find it Fast</h6>
-                            <!-- List Group -->
-                            <ul class="list-group list-group-flush list-group-borderless mb-0 list-group-transparent">
-                                <li><a class="list-group-item list-group-item-action" href="../shop/product-categories-5-column-sidebar.html">Laptops & Computers</a></li>
-                                <li><a class="list-group-item list-group-item-action" href="../shop/product-categories-5-column-sidebar.html">Cameras & Photography</a></li>
-                                <li><a class="list-group-item list-group-item-action" href="../shop/product-categories-5-column-sidebar.html">Smart Phones & Tablets</a></li>
-                                <li><a class="list-group-item list-group-item-action" href="../shop/product-categories-5-column-sidebar.html">Video Games & Consoles</a></li>
-                                <li><a class="list-group-item list-group-item-action" href="../shop/product-categories-5-column-sidebar.html">TV & Audio</a></li>
-                                <li><a class="list-group-item list-group-item-action" href="../shop/product-categories-5-column-sidebar.html">Gadgets</a></li>
-                                <li><a class="list-group-item list-group-item-action" href="../shop/product-categories-5-column-sidebar.html">Car Electronic & GPS</a></li>
-                            </ul>
-                            <!-- End List Group -->
-                        </div>
-
-                        <div class="col-12 col-md mb-4 mb-md-0">
-                            <!-- List Group -->
-                            <ul class="list-group list-group-flush list-group-borderless mb-0 list-group-transparent mt-md-6">
-                                <li><a class="list-group-item list-group-item-action" href="../shop/product-categories-5-column-sidebar.html">Printers & Ink</a></li>
-                                <li><a class="list-group-item list-group-item-action" href="../shop/product-categories-5-column-sidebar.html">Software</a></li>
-                                <li><a class="list-group-item list-group-item-action" href="../shop/product-categories-5-column-sidebar.html">Office Supplies</a></li>
-                                <li><a class="list-group-item list-group-item-action" href="../shop/product-categories-5-column-sidebar.html">Computer Components</a></li>
-                                <li><a class="list-group-item list-group-item-action" href="../shop/product-categories-5-column-sidebar.html">Accesories</a></li>
-                            </ul>
-                            <!-- End List Group -->
-                        </div>
-
-                        <div class="col-12 col-md mb-4 mb-md-0">
-                            <h6 class="mb-3 font-weight-bold">Customer Care</h6>
-                            <!-- List Group -->
-                            <ul class="list-group list-group-flush list-group-borderless mb-0 list-group-transparent">
-                                <li><a class="list-group-item list-group-item-action" href="../shop/my-account.html">My Account</a></li>
-                                <li><a class="list-group-item list-group-item-action" href="../shop/track-your-order.html">Order Tracking</a></li>
-                                <li><a class="list-group-item list-group-item-action" href="../shop/wishlist.html">Wish List</a></li>
-                                <li><a class="list-group-item list-group-item-action" href="../home/terms-and-conditions.html">Customer Service</a></li>
-                                <li><a class="list-group-item list-group-item-action" href="../home/terms-and-conditions.html">Returns / Exchange</a></li>
-                                <li><a class="list-group-item list-group-item-action" href="../home/faq.html">FAQs</a></li>
-                                <li><a class="list-group-item list-group-item-action" href="../home/terms-and-conditions.html">Product Support</a></li>
-                            </ul>
-                            <!-- End List Group -->
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -104,23 +94,8 @@
     <div class="bg-gray-14 py-2">
         <div class="container">
             <div class="flex-center-between d-block d-md-flex">
-                <div class="mb-3 mb-md-0">© <a href="#" class="font-weight-bold text-gray-90">Electro</a> - All rights Reserved</div>
+                <div class="mb-3 mb-md-0">© <a href="#" class="font-weight-bold text-gray-90">AsoyMart</a> - All rights Reserved</div>
                 <div class="text-md-right">
-                    <span class="d-inline-block bg-white border rounded p-1">
-                        <img class="max-width-5" src="../../assets/img/100X60/img1.jpg" alt="Image Description">
-                    </span>
-                    <span class="d-inline-block bg-white border rounded p-1">
-                        <img class="max-width-5" src="../../assets/img/100X60/img2.jpg" alt="Image Description">
-                    </span>
-                    <span class="d-inline-block bg-white border rounded p-1">
-                        <img class="max-width-5" src="../../assets/img/100X60/img3.jpg" alt="Image Description">
-                    </span>
-                    <span class="d-inline-block bg-white border rounded p-1">
-                        <img class="max-width-5" src="../../assets/img/100X60/img4.jpg" alt="Image Description">
-                    </span>
-                    <span class="d-inline-block bg-white border rounded p-1">
-                        <img class="max-width-5" src="../../assets/img/100X60/img5.jpg" alt="Image Description">
-                    </span>
                 </div>
             </div>
         </div>

@@ -41,40 +41,26 @@ $(document).ready(function () {
         });
     });
 
-    $(document).on('click', '#btn-add-var2', function () {
-        var2_status.val(1);
-        $(this).addClass('hide');
-        $('.var2-form').removeClass('hide');
-        $('.var2-nama').removeClass('hide');
+    $var2 = $('#field-var2_pilihan');
+    $var2.tagsinput({
+        tagClass: 'badge badge-primary',
+        maxTags: 20
+    });
 
+    $($var2).on('itemAdded', function (event) {
+        update_variasi();
+    });
+
+    $($var2).on('itemRemoved', function (event) {
+        var tag = event.item;
         $('#tbl_variasi tbody').find('tr').each(function () {
-            $(this).find('td').eq(0).after('<td>Pilihan</td>');
+            $(this).find('td input[value="' + tag + '"]').eq(1).closest('tr').remove();
+            if($('#field-var2_pilihan').tagsinput('items').length == 0)
+            {
+                $(this).find('td').eq(1).remove();
+            }
         });
-
-        $(document).on('keyup', '.var2-nama', function () {
-            $('th.var2-nama').html($(this).val());
-        });
-
-        $('#field-var2_pilihan').tagsinput({
-            tagClass: 'badge badge-primary',
-            maxTags: 20
-        });
-
-        $('#field-var2_pilihan').on('itemAdded', function (event) {
-            update_variasi();
-        });
-
-        $('#field-var2_pilihan').on('itemRemoved', function (event) {
-            var tag = event.item;
-            $('#tbl_variasi tbody').find('tr').each(function () {
-                $(this).find('td input[value="' + tag + '"]').eq(1).closest('tr').remove();
-                if($('#field-var2_pilihan').tagsinput('items').length == 0)
-                {
-                    $(this).find('td').eq(1).remove();
-                }
-            });
-            update_variasi();
-        });
+        update_variasi();
     });
 
     $(document).on('click', '#btn-hapus-var2', function () {
@@ -318,15 +304,17 @@ $(document).ready(function () {
                 $('.is-invalid').removeClass('is-invalid');
                 if (response.fail == false) {
                     Swal.fire({
-                        title: "Berhasil",
-                        text: "Kategori Baru Berhasil Ditambahkan",
-                        timer: 3000,
+                        title: `Berhasil!`,
                         showConfirmButton: false,
-                        icon: 'success'
+                        icon: 'success',
+                        html: `Produk Baru Berhasil Disimpan!
+                            <br><br>
+                            <a href="`+ laroute.route('mitra.produk') +`" class="btn btn-keluar btn-alt-danger"><i class="si si-close mr-1"></i>Keluar</a> 
+                            <a href="`+ laroute.route('mitra.produk.tambah') +`" class="btn btn-tambah_baru btn-alt-primary"><i class="si si-plus mr-1"></i>Tambah Produk Lain</a>`,
+                        showCancelButton: false,
+                        showConfirmButton: false,
+                        allowOutsideClick: false,
                     });
-                    window.setTimeout(function () {
-                        location.reload();
-                    }, 1500);
                 } else {
                     Swal.close();
                     for (control in response.errors) {
@@ -340,6 +328,41 @@ $(document).ready(function () {
                 alert('Error adding / update data');
             }
         });
+    });
+});
+$(document).on('click', '#btn-add-var2', function () {
+    var2_status.val(1);
+    $(this).addClass('hide');
+    $('.var2-form').removeClass('hide');
+    $('.var2-nama').removeClass('hide');
+
+    $('#tbl_variasi tbody').find('tr').each(function () {
+        $(this).find('td').eq(0).after('<td>Pilihan</td>');
+    });
+
+    $(document).on('keyup', '.var2-nama', function () {
+        $('th.var2-nama').html($(this).val());
+    });
+
+    $('#field-var2_pilihan').tagsinput({
+        tagClass: 'badge badge-primary',
+        maxTags: 20
+    });
+
+    $('#field-var2_pilihan').on('itemAdded', function (event) {
+        update_variasi();
+    });
+
+    $('#field-var2_pilihan').on('itemRemoved', function (event) {
+        var tag = event.item;
+        $('#tbl_variasi tbody').find('tr').each(function () {
+            $(this).find('td input[value="' + tag + '"]').eq(1).closest('tr').remove();
+            if($('#field-var2_pilihan').tagsinput('items').length == 0)
+            {
+                $(this).find('td').eq(1).remove();
+            }
+        });
+        update_variasi();
     });
 });
 

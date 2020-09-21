@@ -32,14 +32,37 @@ Route::namespace('Umum')->group(function(){
         // Route::get('email/resend','VerificationController@resend')->name('verification.resend');
     });
 
-    Route::name('user.')->group(function(){
-        Route::get('user/profil','UserController@profil')->name('profil');
-        Route::get('/ordering','UserController@profil')->name('pesanan');
+    Route::name('user.')->prefix('user')->group(function () {
+        Route::get('/profil','UserController@profil')->name('profil');
+        Route::get('/pembayaran','UserController@pembayaran')->name('pembayaran');
+        Route::get('/ordering','UserController@pesanan')->name('pesanan');
+
+        Route::group(['prefix' => 'alamat'], function () {
+            Route::get('/','AlamatController@index')->name('alamat');
+            Route::post('/simpan', 'AlamatController@simpan')->name('alamat.simpan');
+            Route::get('/edit/{id}', 'AlamatController@edit')->name('alamat.edit');
+            Route::post('/update', 'AlamatController@update')->name('alamat.update');
+            Route::get('/hapus/{id}', 'AlamatController@hapus')->name('alamat.hapus');
+        });
     });
 
+    Route::group(['prefix' => 'cart'], function () {
+        Route::get('/', 'CartController@index')->name('cart');
+        Route::post('/nav-cart-items', 'CartController@updateNavCart')->name('cart.nav_cart');
+        Route::post('/show-cart-modal', 'CartController@showCartModal')->name('cart.showCartModal');
+        Route::post('/addtocart', 'CartController@addToCart')->name('cart.addToCart');
+        Route::post('/removeFromCart', 'CartController@removeFromCart')->name('cart.removeFromCart');
+        Route::post('/updateQuantity', 'CartController@updateQuantity')->name('cart.updateQuantity');
+        Route::post('/checkout', 'CartController@checkout')->name('cart.checkout');
+    });
+
+    Route::post('/variant_price', 'ProdukController@variant_price')->name('variant_price');
+
+    Route::post('/top-data', 'KategoriController@cartTop_data')->name('cart.top_data');
     Route::group(['prefix' => 'kategori'], function () {
         Route::post('/sub_kategori_json', 'KategoriController@sub_kategori_json')->name('kategori.sub_kategori_json');
     });
+
     Route::get('{seller}', 'SellerController@index')->name('seller');
     Route::get('{bisnis}/{produk}', 'ProdukController@detail')->name('produk.detail');
 });

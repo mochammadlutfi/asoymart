@@ -27,7 +27,15 @@ class PenjualanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(){
+    public function index(Request $request){
+
+        // dd($request->status);
+        // $status = $request->status;
+        if ($request->ajax()) {
+            $bisnis_id = auth()->user()->bisnis->id;
+            $status = $request->status;
+            dd($request->all());
+        }
         return view('mitra.penjualan.index');
     }
 }

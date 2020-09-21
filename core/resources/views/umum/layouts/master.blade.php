@@ -11,6 +11,7 @@
         <!-- Favicon -->
         <link rel="shortcut icon" href="../../favicon.png">
 
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <!-- Google Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap" rel="stylesheet">
 
@@ -644,6 +645,7 @@
         <script src="{{ asset('assets/frontend/vendor/fancybox/jquery.fancybox.min.js') }}"></script>
         <script src="{{ asset('assets/frontend/vendor/slick-carousel/slick/slick.js') }}"></script>
         <script src="{{ asset('assets/frontend/vendor/bootstrap-select/dist/js/bootstrap-select.min.js') }}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/accounting.js/0.4.1/accounting.min.js"></script>
 
         <!-- JS Electro -->
         <script src="{{ asset('assets/frontend/js/hs.core.js') }}"></script>
@@ -664,6 +666,8 @@
 
         <!-- JS Plugins Init. -->
         <script src="{{ asset('assets/modules/page/js/home.js') }}"></script>
+        <script src="{{ asset('assets/js/common.js') }}"></script>
+        <script src="{{ asset('assets/js/functions.js') }}"></script>
         @stack('scripts')
     </body>
 </html>

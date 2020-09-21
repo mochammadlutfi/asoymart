@@ -59,7 +59,7 @@ function __tab_key_up(e) {
     }
 }
 
-function __currency_trans_from_en(
+function __convert_currency(
     input,
     show_symbol = true,
     use_page_currency = false,

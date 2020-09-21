@@ -28,4 +28,16 @@ class UserController extends Controller
 
         return view('umum.user.profil');
     }
+
+    public function pesanan()
+    {
+
+        return view('umum.user.pesanan');
+    }
+
+    public function pembayaran()
+    {
+
+        return view('umum.user.pembayaran');
+    }
 }

@@ -4,6 +4,7 @@ use App\Models\Daerah;
 use Carbon\Carbon;
 use Session as Session;
 use Storage as Storage;
+use App\Models\Kategori;
 if (!function_exists('getStokPerVariasi')) {
 
     /**
@@ -74,27 +75,22 @@ if (!function_exists('get_variant')) {
     }
 }
 
-// if (!function_exists('getCart')) {
+if (!function_exists('kategori_menu')) {
 
-//     /**
-//      * Mengambil Stok Terkini Berdasarkan Variasi Produk
-//      *
-//      * @param
-//      * $variasi_id = ID Variasi
-//      * @return
-//      * Jumlah Stok Variasi
-//      */
-//     function getCart($tipe)
-//     {
-//         if($tipe == 'pembelian')
-//         {
-//             $cart = \Cart::session(auth()->guard('mitra')->user()->id.'-pembelian')->getContent();
-//         }else{
-//             $cart = \Cart::session(auth()->guard('mitra')->user()->id.'-penjualan')->getContent();
-//         }
-//         return $cart->sort();
-//     }
-// }
+    /**
+     * Mengambil Stok Terkini Berdasarkan Variasi Produk
+     *
+     * @param
+     * $variasi_id = ID Variasi
+     * @return
+     * Jumlah Stok Variasi
+     */
+    function kategori_menu()
+    {
+        $kategori = Kategori::where('parent_id', null)->orderBy('nama', 'ASC')->get();
+        return $kategori;
+    }
+}
 
 if (!function_exists('getCartCount')) {
 
