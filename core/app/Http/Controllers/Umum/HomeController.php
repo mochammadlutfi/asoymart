@@ -19,7 +19,7 @@ class HomeController extends Controller
     {
         $terbaru = Produk::latest()->get();
 
-        $toko = Bisnis::latest()->get();
-        return view('umum.home', compact('terbaru', 'toko'));
+
+        return view('umum.home', compact('terbaru'));
     }
 }

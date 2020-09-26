@@ -1,12 +1,10 @@
 <?php
 
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
 /* --------------------- Common/User Routes START -------------------------------- */
 // Route::get('/coba', function () {
 // });
 Route::namespace('Umum')->group(function(){
-    Route::get('/', 'HomeController@index');
+    Route::get('/', 'HomeController@index')->name('home');
     Route::namespace('Auth')->group(function(){
 
         //Login Routes
@@ -31,7 +29,6 @@ Route::namespace('Umum')->group(function(){
         // Route::get('email/verify/{id}','VerificationController@verify')->name('verification.verify');
         // Route::get('email/resend','VerificationController@resend')->name('verification.resend');
     });
-
     Route::name('user.')->prefix('user')->group(function () {
         Route::get('/profil','UserController@profil')->name('profil');
         Route::get('/pembayaran','UserController@pembayaran')->name('pembayaran');
@@ -51,7 +48,7 @@ Route::namespace('Umum')->group(function(){
         Route::post('/nav-cart-items', 'CartController@updateNavCart')->name('cart.nav_cart');
         Route::post('/show-cart-modal', 'CartController@showCartModal')->name('cart.showCartModal');
         Route::post('/addtocart', 'CartController@addToCart')->name('cart.addToCart');
-        Route::post('/removeFromCart', 'CartController@removeFromCart')->name('cart.removeFromCart');
+        Route::post('/hapus', 'CartController@hapus')->name('cart.hapus');
         Route::post('/updateQuantity', 'CartController@updateQuantity')->name('cart.updateQuantity');
         Route::post('/checkout', 'CartController@checkout')->name('cart.checkout');
     });
@@ -59,11 +56,17 @@ Route::namespace('Umum')->group(function(){
     Route::post('/variant_price', 'ProdukController@variant_price')->name('variant_price');
 
     Route::post('/top-data', 'KategoriController@cartTop_data')->name('cart.top_data');
-    Route::group(['prefix' => 'kategori'], function () {
+    Route::group(['prefix' => 'c'], function () {
+        Route::get('/{kategori}', 'KategoriController@index')->name('kategori.detail');
         Route::post('/sub_kategori_json', 'KategoriController@sub_kategori_json')->name('kategori.sub_kategori_json');
     });
 
-    Route::get('{seller}', 'SellerController@index')->name('seller');
+    Route::group(['prefix' => 'promo'], function (){
+        Route::get('/', 'PromoController@index')->name('promo');
+        Route::get('/{slug}', 'PromoController@detail')->name('promo.detail');
+    });
+
+    Route::get('/{seller}', 'SellerController@detail')->name('seller');
     Route::get('{bisnis}/{produk}', 'ProdukController@detail')->name('produk.detail');
 });
 

@@ -9581,12 +9581,6 @@ label {
   font-size: 0.928571429rem;
 }
 
-.form-control:disabled, .form-control[readonly] {
-  background-color: #ffffff;
-  border: none;
-  cursor: auto;
-}
-
 .btn {
   font-family: "Nunito Sans", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-weight: 600;

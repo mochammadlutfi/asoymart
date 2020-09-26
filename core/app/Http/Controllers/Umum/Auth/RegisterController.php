@@ -25,7 +25,7 @@ class RegisterController extends Controller
 
     public function index()
     {
-        return view('user::auth.register');
+        return view('umum.auth.register');
     }
 
     public function proses(Request $request)

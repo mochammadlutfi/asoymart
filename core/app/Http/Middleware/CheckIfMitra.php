@@ -21,7 +21,7 @@ class CheckIfMitra
     public function handle($request, Closure $next)
     {
         if (Auth::guard('web')->check()) {
-            if (auth()->user()->hasAnyRole('Mitra')) {
+            if (auth()->user()->hasRole('Mitra')) {
                 return redirect()->route('mitra.beranda');
             }
             return $next($request);

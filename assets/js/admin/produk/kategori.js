@@ -1,30 +1,6 @@
 jQuery(document).ready(function () {
     var croppie = null;
-    var el = document.getElementById('resizer');
-    var formData = new FormData();
-    $.base64ImageToBlob = function(str) {
-        // extract content type and base64 payload from original string
-        var pos = str.indexOf(';base64,');
-        var type = str.substring(5, pos);
-        var b64 = str.substr(pos + 8);
-
-        // decode base64
-        var imageContent = atob(b64);
-
-        // create an ArrayBuffer and a view (as unsigned 8-bit)
-        var buffer = new ArrayBuffer(imageContent.length);
-        var view = new Uint8Array(buffer);
-
-        // fill the view, using the decoded base64
-        for (var n = 0; n < imageContent.length; n++) {
-          view[n] = imageContent.charCodeAt(n);
-        }
-
-        // convert ArrayBuffer to Blob
-        var blob = new Blob([buffer], { type: type });
-
-        return blob;
-    }
+    load_tree();
 
     $.getImage = function(input, croppie) {
         if (input.files && input.files[0]) {
@@ -38,8 +14,9 @@ jQuery(document).ready(function () {
         }
     }
 
-    $("#file-upload").on("change", function(event) {
+    $("#uploadThumb").on("change", function(event) {
         $("#cropModal").modal();
+        el = document.getElementById('resizer');
         croppie = new Croppie(el, {
                 viewport: {
                     width: 350,
@@ -69,9 +46,9 @@ jQuery(document).ready(function () {
                 width: 700, height: 700 
             }
         }).then(function(base64) {
-                $("#cropModal").modal("hide");
-                $("#img_preview").attr("src", base64);
-            formData.append("icon", $.base64ImageToBlob(base64));
+            $("#cropModal").modal("hide");
+            $("#thumbPrev").attr("src", base64);
+            $("#thumbPrev").parent().find('input[name=thumbnail]').val(base64)
         });
     });
 
@@ -85,12 +62,9 @@ jQuery(document).ready(function () {
 
     $("#form-kategori").submit(function (e) {
         e.preventDefault();
-        var poData = jQuery(document.forms['form-kategori']).serializeArray();
-        for (var i=0; i<poData.length; i++)
-        {
-            formData.append(poData[i].name, poData[i].value);
-        }
-        if($('#metode').val() == 'update'){
+        var formData = new FormData($('#form-kategori')[0]);
+
+        if($('#metode').val() === 'update'){
             link = laroute.route('admin.kategori.update')
         }else{
             link = laroute.route('admin.kategori.simpan')
@@ -116,13 +90,11 @@ jQuery(document).ready(function () {
                     Swal.fire({
                         title: "Berhasil",
                         text: "Kategori Baru Berhasil Ditambahkan",
-                        timer: 3000,
+                        timer: 1500,
                         showConfirmButton: false,
                         icon: 'success'
                     });
-                    window.setTimeout(function () {
-                        location.reload();
-                    }, 1500);
+                    load_tree();
                 } else {
                     Swal.close();
                     for (control in response.errors) {
@@ -138,17 +110,10 @@ jQuery(document).ready(function () {
         });
     });
 
-    $('#kategori-tree').jstree({
-        'core' : {
-            'data' : {
-                "url" : laroute.route('admin.kategori.tree'),
-                "dataType" : "json"
-            }
-        }
-    });
-
     $('#kategori-tree').on("changed.jstree", function (e, data) {
         $(".add-sub-category").removeClass("disabled");
+        $('#form-kategori')[0].reset();
+        $('input[name="thumbnail"]').val('');
         kategori_id = data.instance.get_node(data.selected[0]).id;
         $('#field-parent_id').val(kategori_id);
         $.ajax({
@@ -162,7 +127,12 @@ jQuery(document).ready(function () {
                 $('[name="kategori_id"]').val(response.id);
                 $('[name="nama"]').val(response.nama);
                 $('#nama_kategori').val(response.nama);
-                $("#img_preview").attr("src", laroute.url(response.icon, ['']));
+                if(response.thumbnail !== null)
+                {
+                    $("#thumbPrev").attr("src", laroute.url(response.thumbnail, ['']));
+                }else{
+                    $("#thumbPrev").attr("src", laroute.url('assets/img/placeholder/product.png', ['']));
+                }
                 $('#metode').val('update');
                 if(response.is_active)
                 {
@@ -180,7 +150,7 @@ jQuery(document).ready(function () {
         parent_nama_kategori = $('#nama_kategori').val();
         $('#form-title').html('Tambah sub kategori ' + parent_nama_kategori);
         $('#field-nama').val('');
-        $("#img_preview").attr("src", laroute.url('assets/img/placeholder/product.png', ['']));
+        $("#thumbPrev").attr("src", laroute.url('assets/img/placeholder/product.png', ['']));
     });
 
     $("#hapus-kategori").on("click", function() {
@@ -235,5 +205,17 @@ jQuery(document).ready(function () {
                 } ,1500);
             }
         });
-    });
+    }); 
+    
 });
+function load_tree()
+{
+    $('#kategori-tree').jstree({
+        'core' : {
+            'data' : {
+                "url" : laroute.route('admin.kategori.tree'),
+                "dataType" : "json"
+            }
+        }
+    });
+}

@@ -14,6 +14,18 @@ $(document).ready(function () {
     $('#subcategory_list').hide();
     $('#subsubcategory_list').hide();
 
+    $('#field-deskripsi').summernote({
+        height: '250px',
+        toolbar: [
+            ['undo', ['undo',]],
+            ['redo', ['redo',]],
+            ['style', ['bold', 'italic', 'underline',]],
+            ['font', ['strikethrough',]],
+            ['fontsize', ['fontsize']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+        ]
+    });
 
     $(".variasi-1_nama").on("keyup", function () {
         $('#tbl_variasi th.tb-variasi-1_nama').html($(this).val());
@@ -268,6 +280,8 @@ $(document).ready(function () {
             $("#cropModal").modal("hide");
             $("#previewImg-" + id).attr("src", base64);
             $("#foto-" + id).val(base64);
+            $("#btn-foto-"+id).addClass("hide");
+            $("#btn-hapus-"+id).removeClass("hide");
         });
     });
 
@@ -329,7 +343,21 @@ $(document).ready(function () {
             }
         });
     });
+
+    $(".btn-foto_hapus").on("click", function () {
+        foto_id = $(this).data('id');
+        foto_val = $(this).data('val');
+        if(foto_val)
+        {
+            $('#produk_id').after('<input type="hidden" name="foto_hapus[]" value="'+foto_val+'" />')
+        }
+        
+        $("#previewImg-" + foto_id).attr("src", laroute.url('assets/img/placeholder/product.png', ['']));
+        $("#btn-foto-"+foto_id).removeClass("hide");
+        $("#btn-hapus-"+foto_id).addClass("hide");
+    });
 });
+
 $(document).on('click', '#btn-add-var2', function () {
     var2_status.val(1);
     $(this).addClass('hide');

@@ -33,20 +33,39 @@
             </li>
         </ul>
     </li>
+    <li class="{{ Request::is('admin/promo/*') ? 'open' : null }}">
+        <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="fa fa-tags"></i><span class="sidebar-mini-hide">Promo</span></a>
+        <ul>
+            <li>
+                <a class="{{ Request::is('admin/promo/tambah') ? 'active' : null }}" href="{{ route('admin.promo.tambah') }}">Tambah Promo</a>
+            </li>
+            <li>
+                <a class="{{ Request::is('admin/promo') ? 'active' : null }}" href="{{ route('admin.promo') }}">Daftar Promo</a>
+            </li>
+        </ul>
+    </li>
+    <li class="{{ Request::is('admin/kupon/*') ? 'open' : null }}">
+        <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="fa fa-ticket-alt"></i><span class="sidebar-mini-hide">Kupon</span></a>
+        <ul>
+            <li>
+                <a class="{{ Request::is('admin/kupon/tambah') ? 'active' : null }}" href="{{ route('admin.kupon.tambah') }}">Tambah Kupon</a>
+            </li>
+            <li>
+                <a class="{{ Request::is('admin/kupon') ? 'active' : null }}" href="{{ route('admin.kupon') }}">Daftar Kupon</a>
+            </li>
+        </ul>
+    </li>
     <li>
         <a class="{{ Request::is('admin/pelanggan') ? 'active' : null }}" href="{{ route('admin.beranda') }}"><i class="si si-people"></i>Pelanggan</a>
     </li>
-    <li class="{{ Request::is('admin/pelanggan/*') ? 'open' : null }}">
-        <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-home"></i><span class="sidebar-mini-hide">Pelanggan</span></a>
+    <li class="{{ Request::is('admin/mitra/*') ? 'open' : null }}">
+        <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-home"></i><span class="sidebar-mini-hide">Mitra</span></a>
         <ul>
             <li>
-                <a class="{{ Request::is('admin/pelanggan') ? 'active' : null }}" href="{{ route('admin.mitra') }}">Kelola Pelanggan</a>
+                <a class="{{ Request::is('admin/mitra') ? 'active' : null }}" href="{{ route('admin.mitra') }}">Daftar Mitra</a>
             </li>
             <li>
                 <a class="{{ Request::is('admin/mitra/kategori') ? 'active' : null }}" href="{{ route('admin.Bisniskategori') }}">Penarikan Dana Mitra</a>
-            </li>
-            <li>
-                <a class="{{ Request::is('admin/mitra/kategori') ? 'active' : null }}" href="{{ route('admin.Bisniskategori') }}">Verifikasi Mitra</a>
             </li>
         </ul>
     </li>

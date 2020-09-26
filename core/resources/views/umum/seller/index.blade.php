@@ -7,15 +7,15 @@
 
 @section('content')
 <main id="content" role="main">
-    <div class="bg-gray-13 bg-md-transparent">
+    <div class="mb-3">
         <div class="container">
             <!-- Mitra Header -->
             <div class="mitra-header my-md-3">
                 <div class="row align-items-baseline">
-                    <div class="col-md-6 border-right">
+                    <div class="col-md-6">
                         <div class="d-flex">
                             <span class="mitra-logo">
-                                <img class="img-fluid" src="https://via.placeholder.com/300x300.png" alt="Demo Seller Shop">
+                                <img class="img-fluid" src="{{ get_toko_img($data->logo) }}" alt="Demo Seller Shop">
                             </span>
                             <div class="pl-4">
                                 <h3 class="strong-700 heading-4 mb-0 font-weight-bold">{{ $data->nama }}
@@ -288,40 +288,37 @@
                 <div class="mt-3">
                     <ul class="row list-unstyled products-group no-gutters">
                         @foreach($produk as $baru)
-                            <li class="col-6 col-md-4 col-wd-3 product-item">
-                                <div class="product-item__outer h-100 ">
-                                    <div class="product-item__inner shadow border">
-                                        <div class="product-item__body pb-xl-2">
-                                            <div class="mb-2">
-                                                <a href="{{ route('produk.detail', ['bisnis' => $baru->bisnis->link_toko, 'produk' => $baru->slug]) }}" class="d-block text-center">
-                                                    <img class="img-fluid" src="{{ get_produk_img($baru->fotoUtama()->path) }}" alt="Image Description">
-                                                </a>
-                                            </div>
-                                            <div class="px-2">
+                        <li class="col-6 col-md-3 col-lg-3 col-md-2gdot4 product-item product-item">
+                            <div class="product-item__outer h-100">
+                                <div class="product-item__inner">
+                                    <div class="product-item__body pb-2">
+                                        <a href="{{ route('produk.detail', ['bisnis' => $baru->bisnis->link_toko, 'produk' => $baru->slug]) }}" class="d-block text-center">
+                                            <img class="img-fluid" src="{{ get_produk_img($baru->fotoUtama) }}" alt="Image Description">
+                                        </a>
+                                        <div class="px-2 mt-2">
+                                            <a href="{{ route('produk.detail', ['bisnis' => $baru->bisnis->link_toko, 'produk' => $baru->slug]) }}">
                                                 <h5 class="mb-1 product-item__title">
-                                                    <a href="{{ route('produk.detail', ['bisnis' => $baru->bisnis->link_toko, 'produk' => $baru->slug]) }}" class="font-weight-bold">
-                                                        {{ $baru->nama }}</a>
-                                                    </h5>
-                                                <div class="flex-center-between mb-1">
-                                                    <div class="prodcut-price text-orange font-weight-semi-bold">
-                                                        {{ $baru->harga }}
-                                                    </div>
+                                                        {{ $baru->nama }}
+                                                </h5>
+                                                <div class="product-price flex-center-between mb-1">
+                                                    {{ $baru->harga }}
                                                 </div>
-                                                <span class="d-inline-flex align-items-center small font-size-14">
-                                                    <div class="text-warning mr-2">
-                                                        <small class="fas fa-star"></small>
-                                                        <small class="fas fa-star"></small>
-                                                        <small class="fas fa-star"></small>
-                                                        <small class="fas fa-star"></small>
-                                                        <small class="far fa-star text-muted"></small>
-                                                    </div>
-                                                    <span class="text-secondary">(40)</span>
-                                                </span>
-                                            </div>
+                                            </a>
+                                            <span class="d-inline-flex align-items-center small font-size-14">
+                                                <div class="text-warning mr-2">
+                                                    <small class="fas fa-star"></small>
+                                                    <small class="fas fa-star"></small>
+                                                    <small class="fas fa-star"></small>
+                                                    <small class="fas fa-star"></small>
+                                                    <small class="far fa-star text-muted"></small>
+                                                </div>
+                                                <span class="text-secondary">(40)</span>
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
-                            </li>
+                            </div>
+                        </li>
                         @endforeach
                     </ul>
                 </div>

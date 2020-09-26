@@ -1,7 +1,7 @@
 @extends('mitra.layouts.master')
 
 @section('styles')
-<link rel="stylesheet" href="{{ asset('assets/js/plugins/select2/css/select2.min.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/js/plugins/summernote/summernote-bs4.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/js/plugins/bootstrap-taginput/tagsinput.css') }}">
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.min.css">
 <style type="text/css">
@@ -125,12 +125,12 @@
                                 <div class="row">
                                     @for($i=0; $i <= 4; $i++)
                                     <div class="col">
-                                        <div class="preview_img border h-75">
+                                        <div class="preview_img border">
                                             <img id="previewImg-{{$i}}" src="{{ asset('assets/img/placeholder/product.png') }}" width="100%" height="100%"/>
                                         </div>
                                         <div class="row">
                                             <div class="col-12">
-                                                <div class="btn btn-primary btn-block btn-sm mt-3">
+                                                <div class="btn btn-primary btn-block btn-sm mt-3" >
                                                     <input type="file" class="file-upload" data-id="{{$i}}" accept="image/*">
                                                     <input type="hidden" id="foto-{{$i}}" name="foto[{{ $i }}]" value="">
                                                     <i class="si si-plus mr-1"></i>Pilih Foto
@@ -139,18 +139,6 @@
                                                     @else
                                                     {{ $i }}
                                                     @endif
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <div class="btn btn-danger btn-block btn-sm mt-3">
-                                                    <i class="si si-plus mr-1"></i> Ubah
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="btn btn-danger btn-block btn-sm mt-3">
-                                                    <i class="si si-plus mr-1"></i>Hapus
                                                 </div>
                                             </div>
                                         </div>
@@ -214,22 +202,6 @@
                                         <span class="input-group-text">
                                             cm
                                         </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label" for="field-harga">Preorder</label>
-                            <div class="col-lg-9">
-                                <div class="row">
-                                    <div class="col-8">
-                                        <input type="email" class="form-control" id="example-input2-group1" name="example-input2-group1" placeholder="Masukan Berat">
-                                    </div>
-                                    <div class="col-4">
-                                        <select class="form-control" name="berat_satuan">
-                                            <option>Gram (g)</option>
-                                            <option>Kilogram (Kg)</option>
-                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -352,5 +324,6 @@
 <script src="{{ asset('assets/js/plugins/select2/js/i18n/id.js') }}"></script>
 <script src="{{ asset('assets/js/plugins/bootstrap-taginput/tagsinput.js') }}"></script>
 <script src="{{ asset('assets/js/plugins/jquery-rowspanizer/jquery.rowspanizer.min.js') }}"></script>
+<script src="{{ asset('assets/js/plugins/summernote/summernote-bs4.min.js') }}"></script>
 <script src="{{ asset('assets/js/mitra/produk/produk-form.js') }}"></script>
 @endpush

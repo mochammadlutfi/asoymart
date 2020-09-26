@@ -56,11 +56,13 @@ class LoginController extends Controller
         $input = $request->all();
 
         $rules = [
+            'email' => 'required|string',
             'password' => 'required|string'
         ];
 
         $pesan = [
-            'password.required' => 'Password Baru Wajib Diisi!',
+            'email.required' => 'Alamat Email Wajib Diisi!',
+            'password.required' => 'Password Wajib Diisi!',
         ];
         $validator = Validator::make($request->all(), $rules, $pesan);
         if ($validator->fails()){

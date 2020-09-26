@@ -42,6 +42,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function bisnis()
     {
-        return $this->hasOne('Modules\Mitra\Entities\Bisnis');
+        return $this->hasOne('App\Models\Bisnis');
     }
 }

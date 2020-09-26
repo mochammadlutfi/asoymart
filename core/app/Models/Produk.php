@@ -5,13 +5,24 @@ namespace App\Models;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Illuminate\Database\Eloquent\Model;
+use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
 
 class Produk extends Model
 {
+    use Uuid;
     use HasSlug;
+
     protected $table = 'produk';
+    protected $primaryKey = 'id';
+    protected $keyType = 'string';
+    public $incrementing = false;
+
     protected $fillable = [
         'nama', 'slug', 'kategori_id', 'has_variasi', 'bisnis_id', 'var1_nama', 'var2_nama', 'var1_value', 'var2_value'
+    ];
+
+    protected $appends = [
+        'fotoUtama'
     ];
 
     public function kategori()
@@ -61,17 +72,18 @@ class Produk extends Model
         }
     }
 
-    // public function getVar2PilihanAttribute($value)
-    // {
-    //     return implode(",", json_decode($value));
-    // }
-
     public function foto() {
-        return $this->hasMany('App\Models\ProdukFoto');
+        return $this->hasMany('App\Models\ProdukFoto', 'produk_id', 'id');
     }
 
-    public function fotoUtama() {
-        return $this->hasMany('App\Models\ProdukFoto')->where('is_utama', 1)->first();
+    public function getFotoUtamaAttribute() {
+        $get = $this->hasMany('App\Models\ProdukFoto', 'produk_id', 'id')->where('is_utama', 1)->first();
+        if($get)
+        {
+            return $get->path;
+        }else{
+            return null;
+        }
     }
 
     public function getSlugOptions() : SlugOptions

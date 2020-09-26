@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\ProdukVariasi;
 use App\Models\Cart;
+use App\Models\Alamat;
 use Illuminate\Support\Facades\DB;
 class CartController extends Controller
 {
@@ -16,22 +17,27 @@ class CartController extends Controller
 
     public function index(Request $request)
     {
-        $cart = Cart::where('user_id', auth()->guard('web')->user()->id)->with('bisnis:id,nama')->orderBy('updated_at', 'DESC')->get();
-        // dd($cart->toArray());
-        $cart = $cart->groupBy(function ($bisnis) {
-            return $bisnis->bisnis_id.'-'.$bisnis->bisnis->nama;
-        })->all();
-        return view('umum.cart.index', compact('cart'));
+        if ($request->ajax()) {
+            $cart = Cart::where('user_id', auth()->guard('web')->user()->id)->with('bisnis:id,nama')->orderBy('updated_at', 'DESC')->get();
+            $cart = $cart->groupBy(function ($bisnis) {
+                return $bisnis->bisnis_id.'-'.$bisnis->bisnis->nama;
+            })->all();
+            return response()->json([
+                'fail' => false,
+                'html' => view('umum.cart.include.data-cart', compact('cart'))->render(),
+            ]);
+        }
+        return view('umum.cart.index');
     }
 
     public function checkout(Request $request)
     {
-        // dd($request->all());
         $cart = Cart::whereIn('id', $request->c_id)->with('bisnis:id,nama')->orderBy('updated_at', 'DESC')->get();
         $cart = $cart->groupBy(function ($bisnis) {
             return $bisnis->bisnis_id.'-'.$bisnis->bisnis->nama;
         })->all();
-        return view('umum.cart.checkout', compact('cart'));
+        $alamat = Alamat::where('user_id', auth()->guard('web')->user()->id)->where('is_utama', 1)->first();
+        return view('umum.cart.checkout', compact('cart', 'alamat'));
     }
 
     public function addToCart(Request $request)
@@ -45,21 +51,33 @@ class CartController extends Controller
                 $produk = ProdukVariasi::where('variant', $variant)->where('produk_id', $request->id)->first();
             }else{
                 $produk = ProdukVariasi::where('produk_id', $request->id)->first();
-                // $cart = array(
-                //     'produk_id' => $produk->produk_id,
-                //     'user_id' => $user,
-                //     'qty' => $request->quantity,
-                //     'harga' => $produk->harga,
-                //     'variasi_id' => $produk->id,
-                //     'bisnis_id' => $produk->produk->bisnis_id
-                // );
             }
-
-            $cart = Cart::updateOrCreate(
-                ['user_id' => $user, 'produk_id' => $produk->produk_id, 'variasi_id' => $produk->id],
-                ['qty' => $request->quantity, 'harga' => $produk->harga, 'bisnis_id' => $produk->produk->bisnis_id]
+            $cart = Cart::where('user_id', $user)->where('produk_id', $produk->produk_id)->where('variasi_id', $produk->id)->first();
+            if(empty($cart))
+            {
+                $cart = new Cart();
+                $cart->user_id = $user;
+                $cart->produk_id = $produk->produk_id;
+                $cart->variasi_id = $produk->id;
+                $cart->harga = $produk->harga;
+                $cart->bisnis_id = $produk->produk->bisnis_id;
+                $cart->qty = 0;
+            }
+            $cart->qty += $request->quantity;
+            $cart->save();
+            // $cart = Cart::updateOrCreate(
+            //     ['user_id' => $user, 'produk_id' => $produk->produk_id, 'variasi_id' => $produk->id],
+            //     ['harga' => $produk->harga, 'bisnis_id' => $produk->produk->bisnis_id]
+            // );
+            // dd($cart);
+            $resp = array(
+                'id' => $cart->id,
+                'produk_nama' => $cart->produk_nama,
+                'produk_img' => get_produk_img($produk->produk->fotoUtama),
+                'produk_price' => $cart->harga_frm.' x ('. $request->quantity.') barang',
+                'produk_subtotal' => "Rp" .number_format($cart->harga * $request->quantity,0,',','.'),
+                'incr' => $cart->qty,
             );
-
         }catch(\QueryException $e){
             DB::rollback();
             return response()->json([
@@ -70,13 +88,12 @@ class CartController extends Controller
         DB::commit();
         return response()->json([
             'fail' => false,
-            'total' => $request->quantity,
+            'data' => $resp,
         ]);
     }
 
     public function updateQuantity(Request $request)
     {
-        // dd($request->all());
         DB::beginTransaction();
         try{
             $cart = Cart::find($request->cart_id);
@@ -96,4 +113,22 @@ class CartController extends Controller
         ]);
     }
 
+    public function hapus(Request $request) {
+        // dd($request->all());
+        DB::beginTransaction();
+        try{
+            Cart::destroy($request->c_id);
+        }catch(\QueryException $e){
+            DB::rollback();
+            return response()->json([
+                'fail' => true,
+                'pesan' => 'Error Database',
+                'log' => $e,
+            ]);
+        }
+        DB::commit();
+        return response()->json([
+            'fail' => false,
+        ]);
+    }
 }

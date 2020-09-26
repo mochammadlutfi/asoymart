@@ -7,6 +7,7 @@ use Illuminate\Routing\Controller;
 use App\Models\Produk;
 use App\Models\ProdukVariasi;
 use App\Models\ProdukFoto;
+use App\Models\Kategori;
 
 class ProdukController extends Controller
 {
@@ -22,11 +23,9 @@ class ProdukController extends Controller
         return view('umum.produk_detail', compact('produk', 'Produkfoto'));
     }
 
-    public function kategori($kategori, $produk)
+    public function kategori($kategori)
     {
-        $produk = Produk::where('slug', $produk)->first();
-        $Produkfoto = ProdukFoto::where('produk_id', $produk->id)->get();
-        return view('umum.produk_detail', compact('produk', 'Produkfoto'));
+
     }
 
     public function variant_price(Request $request)

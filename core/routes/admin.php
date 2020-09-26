@@ -49,6 +49,24 @@ Route::prefix('/admin')->name('admin.')->namespace('Admin')->group(function(){
         });
     });
 
+    Route::group(['prefix' => 'promo'], function () {
+        Route::get('/','PromoController@index')->name('promo');
+        Route::get('/tambah','PromoController@tambah')->name('promo.tambah');
+        Route::post('/simpan','PromoController@simpan')->name('promo.simpan');
+        Route::get('/edit/{id}','PromoController@edit')->name('promo.edit');
+        Route::post('/update','PromoController@update')->name('promo.update');
+        Route::get('/hapus/{id}','PromoController@hapus')->name('promo.hapus');
+    });
+
+    Route::group(['prefix' => 'kupon'], function () {
+        Route::get('/','KuponController@index')->name('kupon');
+        Route::get('/tambah','KuponController@tambah')->name('kupon.tambah');
+        Route::post('/simpan','KuponController@simpan')->name('kupon.simpan');
+        Route::get('/edit/{id}','KuponController@edit')->name('kupon.edit');
+        Route::post('/update','KuponController@update')->name('kupon.update');
+        Route::get('/hapus/{id}','KuponController@hapus')->name('kupon.hapus');
+    });
+
     Route::group(['prefix' => 'kategori'], function () {
         Route::get('/','KategoriController@index')->name('kategori');
         Route::post('/json','KategoriController@json')->name('kategori.json');
@@ -58,8 +76,6 @@ Route::prefix('/admin')->name('admin.')->namespace('Admin')->group(function(){
         Route::post('/update','KategoriController@update')->name('kategori.update');
         Route::get('/hapus/{id}','KategoriController@hapus')->name('kategori.hapus');
     });
-
-
 
 });
 

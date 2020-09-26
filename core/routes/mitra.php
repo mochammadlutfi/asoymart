@@ -10,16 +10,15 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::middleware(['CheckIfMitra'])->prefix('mitra')->name('mitra.')->namespace('Mitra\Auth')->group(function(){
+    Route::get('/', 'PendaftaranController@index')->name('daftar');
+    Route::post('/daftar-1', 'PendaftaranController@step1')->name('daftarStep1');
+    Route::post('/daftar-2', 'PendaftaranController@step2')->name('daftarStep2');
+    Route::post('/daftar/cek-username', 'PendaftaranController@postCheckUsername')->name('postCheckUsername');
+    Route::post('/daftar/cek-email', 'PendaftaranController@postCheckEmail')->name('postCheckEmail');
+});
 
 Route::prefix('mitra')->name('mitra.')->namespace('Mitra')->group(function() {
-    Route::middleware(['CheckIfMitra'])->group(function () {
-        Route::get('/', 'PendaftaranController@getRegister')->name('daftar');
-        Route::post('/daftar-1', 'PendaftaranController@step1')->name('daftarStep1');
-        Route::post('/daftar-2', 'PendaftaranController@step2')->name('daftarStep2');
-        Route::post('/daftar/cek-username', 'PendaftaranController@postCheckUsername')->name('postCheckUsername');
-        Route::post('/daftar/cek-email', 'PendaftaranController@postCheckEmail')->name('postCheckEmail');
-    });
-
     Route::get('/beranda','BerandaController@index')->name('beranda');
     Route::get('/getTotal','BerandaController@getTotal')->name('beranda.getTotal');
 
@@ -39,4 +38,17 @@ Route::prefix('mitra')->name('mitra.')->namespace('Mitra')->group(function() {
         Route::get('/','PenjualanController@index')->name('order');
     });
 
+
+    Route::group(['prefix' => 'toko'], function () {
+        Route::get('/','TokoController@index')->name('toko.profil');
+        Route::post('/update','TokoController@update')->name('toko.update');
+
+        Route::group(['prefix' => 'etalase'], function () {
+            Route::get('/','EtalaseTokoController@index')->name('etalase');
+            Route::post('/simpan', 'EtalaseTokoController@simpan')->name('etalase.simpan');
+            Route::get('/edit/{id}', 'EtalaseTokoController@edit')->name('etalase.edit');
+            Route::post('/update', 'EtalaseTokoController@update')->name('etalase.update');
+            Route::get('/hapus/{id}', 'EtalaseTokoController@hapus')->name('etalase.hapus');
+        });
+    });
 });

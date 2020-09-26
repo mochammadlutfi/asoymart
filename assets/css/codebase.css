@@ -214,8 +214,9 @@ button {
 }
 
 button:focus {
-    outline: 1px dotted;
-    outline: 5px auto -webkit-focus-ring-color
+    /* outline: 1px dotted;
+    outline: 5px auto -webkit-focus-ring-color */
+    outline: none;
 }
 
 button,
@@ -13468,6 +13469,10 @@ button.bg-gray-lighter:hover {
     background-color: rgba(0, 0, 0, .25)!important
 }
 
+.bg-black-op-50 {
+    background-color: rgba(0, 0, 0, .50)!important
+}
+
 .bg-black-op-75 {
     background-color: rgba(0, 0, 0, .75)!important
 }
@@ -24545,3 +24550,4 @@ select.is-valid + .select2-container .select2-selection--single {
     font-size: 14px;
     opacity: 0.8;
 }
+

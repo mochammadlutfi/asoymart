@@ -1,7 +1,7 @@
 @extends('mitra.layouts.master')
 
 @section('styles')
-<link rel="stylesheet" href="{{ asset('assets/js/plugins/select2/css/select2.min.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/js/plugins/summernote/summernote-bs4.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/js/plugins/bootstrap-taginput/tagsinput.css') }}">
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.min.css">
 <style type="text/css">
@@ -50,7 +50,7 @@
                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label" for="field-deskripsi">Deskripsi Produk</label>
                             <div class="col-lg-9">
-                                <textarea class="form-control" name="deskripsi" id="field-deskripsi" cols="30" rows="10" placeholder="Masukan Deskripsi Produk">{{ $produk->deskripsi }}</textarea>
+                                <textarea class="form-control" name="deskripsi" id="field-deskripsi" cols="30" rows="10" placeholder="Masukan Deskripsi Produk"><?= $produk->deskripsi; ?></textarea>
                                 <div class="invalid-feedback font-size-sm" id="error-deskripsi">Invalid feedback</div>
                             </div>
                         </div>
@@ -79,6 +79,9 @@
                     <div class="block-content pb-15">
                         <input type="hidden" name="is_variasi" id="is_variasi" value="{{ $produk->has_variasi }}">
                         <input type="hidden" id="var2_status" name="var2_status" value="{{ $produk->var2_status }}"/>
+                        @if($produk->has_variasi === 0)
+                        <input type="hidden" name="variasi_id" value="{{ $produk->produk_variasi[0]['id'] }}"/>
+                        @endif
                         <div class="form-group row non-variasi @if($produk->has_variasi === 1) hide @endif">
                             <label class="col-lg-3 col-form-label" for="field-harga">Harga Produk</label>
                             <div class="col-lg-7">
@@ -211,39 +214,26 @@
                             <strong>3. Foto Produk</strong>
                         </div>
                     </div>
-                    <div class="block-content pb-15">
+                    <div class="block-content">
                         <div class="form-group row">
                             <div class="col-lg-12">
                                 <div class="row">
                                     @for($i=0; $i <= 4; $i++)
                                     <div class="col">
-                                        <div class="preview_img border h-75">
-                                            <img id="previewImg-{{ $i }}" src="{{ get_produk_img($foto[$i]) }}" width="100%" height="100%"/>
+                                        <div class="preview_img border">
+                                            <img id="previewImg-{{ $i }}" class="img-fluid" src="{{ get_produk_img($foto[$i]['path']) }}"/>
                                         </div>
-                                        <div class="row">
+                                        <div class="row mt-3">
                                             <div class="col-12">
-                                                <div class="btn btn-primary btn-block btn-sm mt-3">
-                                                    <input type="file" class="file-upload" data-id="{{$i}}" accept="image/*">
-                                                    <input type="hidden" id="foto-{{$i}}" name="foto[{{ $i }}]" value="{{ $foto[$i] }}">
-                                                    <i class="si si-plus mr-1"></i>Pilih Foto
-                                                    @if($i == 0)
-                                                    Utama
-                                                    @else
-                                                    {{ $i }}
-                                                    @endif
+                                                <div class="btn btn-primary btn-block btn-sm {{ $foto[$i]['path'] !== null ? "hide" : '' }}" id="btn-foto-{{ $i }}">
+                                                    <input type="file" class="file-upload" data-id="{{ $i }}" accept="image/*">
+                                                    <input type="hidden" id="foto-{{$i}}" name="foto[{{ $i }}]" value="{{ $i == 0 && $foto[$i]['path'] !== null ? "ada" : ''  }}">
+                                                    <i class="si si-plus mr-1"></i>Pilih Foto {{ $i == 0 ? "Utama" : $i  }}
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <div class="btn btn-danger btn-block btn-sm mt-3">
-                                                    <i class="si si-plus mr-1"></i> Ubah
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="btn btn-danger btn-block btn-sm mt-3">
-                                                    <i class="si si-plus mr-1"></i>Hapus
-                                                </div>
+
+                                                <button type="button" class="btn btn-danger btn-block btn-sm mt-0 btn-foto_hapus {{ $foto[$i]['path'] === null ? "hide" : '' }}" data-val="{{ $foto[$i]['id'] }}" id="btn-hapus-{{ $i }}" data-id="{{ $i }}">
+                                                    <i class="fa fa-trash mr-1"></i> Hapus Foto {{ $i == 0 ? "Utama" : $i  }}
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -427,6 +417,7 @@
 <script src="{{ asset('assets/js/plugins/select2/js/select2.full.min.js') }}"></script>
 <script src="{{ asset('assets/js/plugins/select2/js/i18n/id.js') }}"></script>
 <script src="{{ asset('assets/js/plugins/bootstrap-taginput/tagsinput.js') }}"></script>
+<script src="{{ asset('assets/js/plugins/summernote/summernote-bs4.min.js') }}"></script>
 {{-- <script src="{{ asset('assets/js/plugins/jquery-rowspanizer/jquery.rowspanizer.min.js') }}"></script> --}}
 <script src="{{ asset('assets/js/mitra/produk/produk-edit.js') }}"></script>
 @endpush

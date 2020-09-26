@@ -1,6 +1,4 @@
 <?php
-use App\Models\VariasiDetail;
-use App\Models\Daerah;
 use Carbon\Carbon;
 use Session as Session;
 use Storage as Storage;

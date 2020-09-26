@@ -165,6 +165,19 @@ jQuery(document).ready(function () {
         }
     }
 
+    $('#field-deskripsi').summernote({
+        height: '250px',
+        toolbar: [
+            ['undo', ['undo',]],
+            ['redo', ['redo',]],
+            ['style', ['bold', 'italic', 'underline','clear']],
+            ['font', ['strikethrough',]],
+            ['fontsize', ['fontsize']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+        ]
+    });
+
     $("input.file-upload").on("change", function(event) {
         $("#cropModal").modal();
         $('#image_id').val($(this).data('id'));

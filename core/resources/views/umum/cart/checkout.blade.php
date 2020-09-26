@@ -40,24 +40,36 @@
                         <div class="card shadow border mb-3">
                             <div class="card-header">
                                 <span class="font-size-20 font-weight-bold">
-                                    <i class="fab fa-home"></i>Kirim ke mana?
+                                    <i class="fa fa-truck mr-1"></i>Kirim ke mana?
                                 </span>
                                 <button type="button" class="btn btn-outline-primary float-right btn-sm" data-toggle="modal" data-target="#modalAlamat">Pilih Alamat Lain</button>
                             </div>
                             <div class="card-body">
+                                @if($alamat)
                                 <div>
                                     <p class="mb-0">
-                                        <b class="nama-penerima">Mochammad Lutfi</b>
-                                        <span class="nama-alamat">(Alamat Kos)</span>
+                                        <b class="nama-penerima">{{ $alamat->penerima }}</b>
+                                        <span class="nama-alamat">{{ $alamat->nama }}</span>
                                         <span class="badge badge-success">Utama</span>
                                     </p>
                                     <div class="phone">
-                                        089656466525
+                                        {{ $alamat->phone }}
                                     </div>
                                     <div class="alamat-lengkap">
                                         Jl. Tubagus Ismail Dalam No. 29 RT 04 RW 07 (Kossan Bapa Ahmad/Danu)
                                     </div>
                                 </div>
+                                @else
+                                <div class="text-center">
+                                    <img class="empty-img" src="{{ asset('assets/img/placeholder/alamat.png') }}">
+                                    <div>
+                                        <h3 class="font-size-24 font-weight-bold mt-1">Alamat Pengiriman Belum Ditambahkan</h3>
+
+                                        <button type="button" class="btn btn-primary btn-lg" id="btn-add_alamat">
+                                            <i class="fa fa-plus mr-1"></i>Tambah Alamat</button>
+                                    </div>
+                                </div>
+                                @endif
                             </div>
                         </div>
                         <div class="cart-group">
@@ -65,6 +77,7 @@
                                 @foreach($cart as $seller => $produk)
                                 @php
                                     list($sel_id, $sel_nama) = explode('-', $seller);
+                                    $sub_total = 0;
                                 @endphp
                                 <div class="card shadow mb-2">
                                     <div class="card-body cart-store">
@@ -81,33 +94,54 @@
                                     </div>
                                     {{-- <div class="d-flex normal-cart">
                                     </div> --}}
-                                    <div class="cart-product pb-3">
+                                    <div class="cart-product">
                                         @foreach($produk as $p)
-                                        <div class="product card-body pb-0">
+                                        <div class="border-bottom border-width-2 card-body product py-1">
                                             <div class="row">
-                                                <div class="col-2 d-flex justify-content-center pr-0">
-                                                    <div class="b-narrow product__img">
-                                                        <img src="{{ get_produk_img($p->produk->fotoUtama()->path) }}" data-src=""
-                                                                alt="" class="img-fluid lazyImage" data-loaded="true">
+                                                <div class="col-md-1gdot7 mr-0 p-2 mr-0 p-2">
+                                                    <div class="product__img text-center">
+                                                        <img src="{{ get_produk_img($p->produk->fotoUtama()->path) }}" data-src="" alt="" class="img-fluid lazyImage" data-loaded="true">
                                                     </div>
                                                 </div>
-                                                <div class="col-10">
-                                                    <div class="product__name">
-                                                        <a href="">
-                                                            {{ $p->produk->nama }}
-                                                        </a>
+                                                <div class="col-6 p-2">
+                                                    <div class="font-weight-bold product__name py-2">
+                                                        {{ $p->produk->nama }}
                                                     </div>
                                                     <div class="product__price">
-                                                        <input type="hidden" class="cart_id" value="{{ $p->id }}">
-                                                        <input type="hidden" class="harga" value="{{ number_format($p->harga,0,',','') }}">
-                                                        <div class="product__price--after">
-                                                            Rp {{ number_format($p->harga,0,',','.') }}
-                                                        </div>
+                                                       {{ $p->harga_frm }} x {{ $p->qty }} barang
+                                                    </div>
+                                                    <div class="product__weight">
+                                                       {{ $p->produk->berat }} {{ $p->produk->berat_satuan }}
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="float-right font-size-20 font-weight-bold product__price py-5 text-orange">
+                                                        {{ $p->subTotal_frm }}
+                                                     </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @php
+                                            $sub_total += $p->sub_total;
+                                        @endphp
+                                        @endforeach
+                                        <div class="card-body py-2 border-top border-width-3">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <button type="button" class="btn btn-primary">Pilih Pengiriman</button>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="product__subtotal">
+                                                        <span class="float-left font-size-20 font-weight-bold text-grey">
+                                                            Subtotal
+                                                        </span>
+                                                        <span class="float-right font-size-24 font-weight-bold text-orange">
+                                                            Rp{{ number_format($sub_total,0,',','.') }}
+                                                        </span>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        @endforeach
                                     </div>
                                 </div>
                                 @endforeach
@@ -164,7 +198,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/accounting.js/0.4.1/accounting.min.js"></script>
 
         <!-- JS Plugins Init. -->
-        <script src="{{ asset('assets/modules/page/js/home.js') }}"></script>
         <script src="{{ asset('assets/js/common.js') }}"></script>
         <script src="{{ asset('assets/js/functions.js') }}"></script>
         @stack('scripts')

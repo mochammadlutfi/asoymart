@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Modules\Produk\Entities\Kategori;
+use App\Models\Kategori;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
@@ -44,7 +44,6 @@ class KategoriController extends Controller
 
     public function simpan(Request $request)
     {
-
         $rules = [
             'nama' => 'required',
         ];
@@ -62,18 +61,21 @@ class KategoriController extends Controller
         }else{
             DB::beginTransaction();
             try{
-                $data = new Kategori();
-                $data->nama = $request->nama;
-                $data->parent_id = $request->parent_id;
-                if($request->hasfile('icon'))
-                {
-                    $icon_file = $request->file('icon');
-                    $icon_path = 'kategori';
-                    $icon = Storage::disk('umum')->put($icon_path, $icon_file);
-                    $data->icon = 'uploads/'.$icon;
-                }
-                $data->is_active = $request->is_active;
-                $data->save();
+
+                    $data = new Kategori();
+                    $data->nama = $request->nama;
+                    $data->parent_id = $request->parent_id;
+                    if(!empty($request->thumbnail))
+                    {
+                        $thumbPath = 'c/thumbnail/';
+                        $thumbName = $thumbPath . uniqid() . '.jpg';
+                        $image_parts = explode(";base64,", $request->thumbnail);
+                        $thumb = base64_decode($image_parts[1]);
+                        $p = Storage::disk('umum')->put($thumbName, $thumb);
+                        $data->thumbnail = $thumbName;
+                    }
+                    $data->save();
+                Kategori::fixTree();
             }catch(\QueryException $e){
                 DB::rollback();
                 return response()->json([
@@ -90,7 +92,7 @@ class KategoriController extends Controller
 
     public function update(Request $request)
     {
-
+        // dd($request->all());
         $rules = [
             'nama' => 'required',
         ];
@@ -109,21 +111,22 @@ class KategoriController extends Controller
             DB::beginTransaction();
             try{
                 $data = Kategori::find($request->kategori_id);
-                if($request->hasfile('icon'))
+                if(!empty($request->thumbnail))
                 {
-                    $cek = Storage::disk('public')->exists($data->icon);
+                    $cek = Storage::disk('umum')->exists($data->thumbnail);
                     if($cek)
                     {
-                        Storage::disk('public')->delete($data->icon);
+                        Storage::disk('umum')->delete($data->thumbnail);
                     }
-                    $foto_file = $request->file('icon');
-                    $foto_path = 'kategori';
-                    $foto = Storage::disk('umum')->put($foto_path, $foto_file);
-                    $data->icon = 'uploads/'.$foto;
+                    $thumbPath = 'c/thumbnail/';
+                    $thumbName = $thumbPath . uniqid() . '.jpg';
+                    list($baseType, $thumb) = explode(';', $request->thumbnail);
+                    list(, $thumb) = explode(',', $thumb);
+                    $thumb = base64_decode($thumb);
+                    $p = Storage::disk('umum')->put($thumbName, $thumb);
+                    $data->thumbnail = $thumbName;
                 }
-
                 $data->nama = $request->nama;
-                $data->is_active = $request->is_active;
                 $data->save();
             }catch(\QueryException $e){
                 DB::rollback();
@@ -165,47 +168,18 @@ class KategoriController extends Controller
 
     public function tree(Request $request)
     {
-        $items = Kategori::select('id as id', 'nama as text', 'parent_id')->orderBy('nama', 'ASC')->get();
-        // $data = array();
-        // $items = array(
-        //     (object) array('id' => 42, 'parent_id' => 1, 'text' => 'satu'),
-        //     (object) array('id' => 43, 'parent_id' => 42, 'text' => '2'),
-        //     (object) array('id' => 1,  'parent_id' => 0, 'text' => '3'),
-        // );
-
+        $items = Kategori::select('id', 'nama as text', 'parent_id')->get();
         $children = array();
 
         foreach($items as $item)
             $children[$item->parent_id][] = $item;
 
-        foreach($items as $item) if (isset($children[$item->id]))
+        foreach($items as $item)
+            if (isset($children[$item->id]))
             $item->children = $children[$item->id];
 
-        $tree = $children[0];
+        $tree = reset($children);
 
-        // foreach($fetchData as $d)
-        // {
-        //     if(count($d->sub_kategori)){
-        //         $sub_menu = array();
-        //         foreach($d->sub_kategori as $sub)
-        //         {
-        //             $sub_menu[] = array(
-        //                 'id' => $sub->id,
-        //                 'text' => $sub->nama
-        //             );
-        //         }
-        //     }
-        //     $data[] = array(
-        //         'id' => $d->id,
-        //         'text' => $d->nama,
-        //         'children' => $sub_menu
-        //     );
-        // }
-        // $map = array(
-        //     0 => array('children' => array())
-        // );
-        // return $map[0]['subcategories'];
-        // $tree = $this->categoriesToTree($categories);
         return response()->json($tree);
     }
 

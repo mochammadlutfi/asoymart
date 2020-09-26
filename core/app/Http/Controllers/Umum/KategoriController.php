@@ -4,14 +4,26 @@ namespace App\Http\Controllers\Umum;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use App\Models\Kategori;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use Storage;
 use App\Models\Cart;
+use App\Models\Kategori;
+use App\Models\Produk;
 class KategoriController extends Controller
 {
+
+    public function index($slug)
+    {
+        $kategori = Kategori::where('parent_id', null)->where('slug', $slug)->first();
+        $id = Kategori::defaultOrder()->descendantsOf($kategori->id)->pluck('id')->toArray();
+        $kategori_data = Kategori::defaultOrder()->descendantsOf($kategori->id);
+
+        $produk = Produk::whereIn('kategori_id', $id)->orderBy('updated_at', 'DESC')->get();
+
+        return view('umum.kategori.utama', compact('kategori', 'produk', 'kategori_data'));
+    }
 
 
     public function sub_kategori_json(Request $request)
@@ -31,9 +43,10 @@ class KategoriController extends Controller
         }else{
             $data->status = false;
         }
+        // dd($data->cart->count());
         return response()->json([
             'fail' => false,
-            'html' => view('umum.cart.include.cart_data', compact('data'))->render(),
+            'html' => view('umum.cart.include.top_cart', compact('data'))->render(),
         ]);
     }
 }

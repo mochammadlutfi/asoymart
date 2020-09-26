@@ -22,9 +22,6 @@ class RedirectIfAuthenticated
             if($guard == "admin"){
                 //user was authenticated with admin guard.
                 return redirect()->route('admin.beranda');
-            } else if($guard == "mitra"){
-                //user was authenticated with admin guard.
-                return redirect()->route('mitra.beranda');
             } else {
                 //default guard.
                 return redirect('/');

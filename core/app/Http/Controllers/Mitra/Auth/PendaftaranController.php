@@ -2,39 +2,18 @@
 
 namespace App\Http\Controllers\Mitra\Auth;
 
-use App\Models\Mitra;
+use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
+use App\Models\Kelurahan;
 use App\Models\Bisnis;
 use App\Models\Outlet;
-use Carbon\Carbon;
-use DateTimeZone;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 use Spatie\Permission\Models\Permission;
-
 class PendaftaranController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | BusinessController
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new business/business as well as their
-    | validation and creation.
-    |
-    */
-
-    /**
-     * All Utils instance.
-     *
-     */
-    protected $businessUtil;
-    protected $restaurantUtil;
-    protected $moduleUtil;
-    protected $mailDrivers;
 
     /**
      * Constructor
@@ -42,22 +21,9 @@ class PendaftaranController extends Controller
      * @param ProductUtils $product
      * @return void
      */
-    public function __construct(
-        // BusinessUtil $businessUtil,
-        // RestaurantUtil $restaurantUtil,
-        // ModuleUtil $moduleUtil
-    )
+    public function __construct()
     {
-        // $this->businessUtil = $businessUtil;
-        // $this->moduleUtil = $moduleUtil;
-        $this->mailDrivers = [
-                'smtp' => 'SMTP',
-                // 'sendmail' => 'Sendmail',
-                // 'mailgun' => 'Mailgun',
-                // 'mandrill' => 'Mandrill',
-                // 'ses' => 'SES',
-                // 'sparkpost' => 'Sparkpost'
-            ];
+        // $this->middleware('auth');
     }
 
     /**
@@ -65,9 +31,9 @@ class PendaftaranController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getRegister()
+    public function index()
     {
-        return view('mitra.auth.register');
+        return view('mitra.auth.daftar');
     }
 
     /**
@@ -77,21 +43,22 @@ class PendaftaranController extends Controller
      */
     public function step1(Request $request)
     {
-        // dd($request->all());
         $rules = [
-            'bisnis_nama' => 'required',
-            'bisnis_kategori' => 'required',
-            'bisnis_daerah' => 'required',
+            'nama' => 'required',
+            'telepon' => 'required',
+            'link_toko' => 'required',
+            'alamat' => 'required',
+            'wilayah' => 'required',
             'pos' => 'required',
-            'bisnis_alamat' => 'required',
         ];
 
         $pesan = [
-            'bisnis_nama.required' => 'Nama Bisnis Wajib Diisi!',
-            'bisnis_kategori.required' => 'Kategori Bisnis Wajib Diisi!',
-            'bisnis_daerah.required' => 'Daerah Bisnis Wajib Diisi!',
-            'pos.required' => 'Kode POS Bisnis Wajib Diisi!',
-            'bisnis_alamat.required' => 'Alamat Bisnis Lengkap Wajib Diisi!',
+            'nama.required' => 'Nama Bisnis Wajib Diisi!',
+            'telepon.required' => 'No. Telepon Wajib Diisi!',
+            'link_toko.required' => 'Link/Tautan Bisnis Wajib Diisi!',
+            'wilayah.required' => 'Wilayah Daerah Wajib Diisi!',
+            'pos.required' => 'Kode POS Wajib Diisi!',
+            'alamat.required' => 'Alamat Lengkap Wajib Diisi!',
         ];
 
         $validator = Validator::make($request->all(), $rules, $pesan);
@@ -101,8 +68,17 @@ class PendaftaranController extends Controller
                 'errors' => $validator->errors()
             ]);
         }else{
+
+            $data = $request->only('nama', 'telepon', 'link_toko', 'pos');
+            $row = Kelurahan::find($request->wilayah);
+            $data['alamat'] = ucwords(strtolower($request->alamat)).', '. ucwords(strtolower($row->name)).', Kec. '.ucwords(strtolower($row->kecamatan->name));
+            $data['kabupaten'] = ucwords(strtolower($row->kecamatan->kota->name));
+            $data['provinsi'] = ucwords(strtolower($row->kecamatan->kota->name));
+
+        //     // dd($data);
             return response()->json([
                 'fail' => false,
+                'data' => $data,
             ]);
         }
     }
@@ -110,31 +86,21 @@ class PendaftaranController extends Controller
     public function step2(Request $request)
     {
         $rules = [
-            'bisnis_nama' => 'required',
-            'bisnis_kategori' => 'required',
-            'bisnis_daerah' => 'required',
-            // 'pos' => 'required',
-            'bisnis_alamat' => 'required',
-            'pemilik_nama' => 'required',
-            'pemilik_username' => 'required',
-            'pemilik_hp' => 'required',
-            'pemilik_email' => 'required',
-            'password' => 'required',
-            'knf_password' => 'required',
+            'nama' => 'required',
+            'telepon' => 'required',
+            'link_toko' => 'required',
+            'alamat' => 'required',
+            'wilayah' => 'required',
+            'pos' => 'required',
         ];
 
         $pesan = [
-            'bisnis_nama.required' => 'Nama Bisnis Wajib Diisi!',
-            'bisnis_kategori.required' => 'Kategori Bisnis Wajib Diisi!',
-            'bisnis_daerah.required' => 'Wilayah Bisnis Wajib Diisi!',
-            'pos.required' => 'Kode POS Bisnis Wajib Diisi!',
-            'bisnis_alamat.required' => 'Alamat Bisnis Lengkap Wajib Diisi!',
-            'pemilik_nama.required' => 'Nama Lengkap Wajib Diisi!',
-            'pemilik_username.required' => 'Username Wajib Diisi!',
-            'pemilik_email.required' => 'Alamat Email Wajib Diisi!',
-            'pemilik_hp.required' => 'No. Handphone Wajib Diisi!',
-            'password.required' => 'Password Wajib Diisi!',
-            'knf_password.required' => 'Konfirmasi Password Wajib Diisi!',
+            'nama.required' => 'Nama Bisnis Wajib Diisi!',
+            'telepon.required' => 'No. Telepon Wajib Diisi!',
+            'link_toko.required' => 'Link/Tautan Bisnis Wajib Diisi!',
+            'wilayah.required' => 'Wilayah Daerah Wajib Diisi!',
+            'pos.required' => 'Kode POS Wajib Diisi!',
+            'alamat.required' => 'Alamat Lengkap Wajib Diisi!',
         ];
 
         $validator = Validator::make($request->all(), $rules, $pesan);
@@ -144,40 +110,30 @@ class PendaftaranController extends Controller
                 'errors' => $validator->errors()
             ]);
         }else{
-            // dd($request->all());
             DB::beginTransaction();
             try{
-                $mitra = new Mitra;
-                $mitra->nama = $request->pemilik_nama;
-                $mitra->username = $request->pemilik_username;
-                $mitra->email = $request->pemilik_email;
-                $mitra->hp = $request->pemilik_email;
-                $mitra->password = Hash::make($request->password);
-                $mitra->daerah_id = $request->bisnis_daerah;
-                $mitra->alamat = $request->bisnis_alamat;
-                $mitra->save();
-
                 $bisnis = new Bisnis;
-                $bisnis->nama = $request->bisnis_nama;
-                $bisnis->kategori_id = $request->bisnis_kategori;
+                $bisnis->user_id = auth()->guard('web')->user()->id;
+                $bisnis->nama = $request->nama;
+                $bisnis->link_toko = $request->link_toko;
                 $bisnis->save();
 
                 $outlet = new Outlet;
-                $outlet->kontak_1 = $request->no_kontak;
-                $outlet->kontak_2 = $request->no_kontak_alt;
-                $outlet->daerah_id  = $request->bisnis_daerah;
                 $outlet->bisnis_id = $bisnis->id;
-                $outlet->alamat = $request->bisnis_alamat;
+                $outlet->is_utama = 1;
+                $outlet->kelurahan_id  = $request->wilayah;
+                $outlet->alamat = $request->alamat;
                 $outlet->kdpos = $request->pos;
                 $outlet->save();
 
-                $mitra->bisnis_id = $bisnis->id;
-                $mitra->save();
-            }catch(\Exception $e){
+                auth()->guard('web')->user()->assignRole('Mitra');
+
+            }catch(\QueryException $e){
                 DB::rollback();
                 return response()->json([
                     'fail' => true,
                     'pesan' => 'Error Menyimpan Data',
+                    'log' => $e,
                 ]);
             }
 

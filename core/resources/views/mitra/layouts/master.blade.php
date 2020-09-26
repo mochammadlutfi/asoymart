@@ -7,12 +7,12 @@
 
         <!-- Page JS Plugins CSS -->
 
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         {{-- <link rel="stylesheet" href="{{ asset('assets/backend/js/plugins/slick/slick.css') }}"> --}}
         <link rel="stylesheet" href="{{ asset('assets/js/plugins/datatables/dataTables.bootstrap4.css') }}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.min.css">
         {{-- <link rel="stylesheet" href="{{ asset('assets/js/plugins/sweetalert2/sweetalert2.min.css') }}"> --}}
 
-        @yield('styles')
         {{--  --}}
         <!-- Fonts and Codebase framework -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:300,400,400i,600,700">
@@ -23,7 +23,8 @@
         <script>window.Laravel = {!! json_encode(['csrfToken' => csrf_token(),]) !!};</script>
         <link rel="stylesheet" id="css-theme" href="{{ asset('assets/css/themes/earth.css') }}">
         <!-- END Stylesheets -->
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+
+        @yield('styles')
     </head>
     <body>
 

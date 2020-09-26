@@ -44,6 +44,20 @@
             </li>
         </ul>
     </li>
+    <li class="{{ Request::is('mitra/toko/*','mitra/toko') ? 'open' : null }}">
+        <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="fa fa-store"></i>Toko</span></a>
+        <ul>
+            <li>
+                <a class="{{ Request::is('mitra/toko/profil') ? 'active' : null }}" href="{{ route('mitra.toko.profil') }}">Profil Toko</a>
+            </li>
+            <li>
+                <a class="{{ Request::is('mitra/toko/etalase') ? 'active' : null }}" href="{{ route('mitra.etalase') }}">Etalase Toko</a>
+            </li>
+            {{-- <li>
+                <a class="{{ Request::is('mitra/toko/outlet') ? 'active' : null }}" href="{{ route('mitra.outlet') }}">Outlet Toko</a>
+            </li> --}}
+        </ul>
+    </li>
     <li>
         <a class="{{ Request::is('mitra/pengaturan') ? 'active' : null }}" href="#"><i class="fa fa-cogs"></i>Pengaturan</span></a>
     </li>

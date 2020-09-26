@@ -18,7 +18,7 @@ class Cart extends Model
     ];
 
 
-    protected $appends = ['harga_frm'];
+    protected $appends = ['produk_nama','harga_frm', 'subTotal_frm', 'sub_total'];
 
 
     public function produk()
@@ -39,6 +39,21 @@ class Cart extends Model
     public function getHargaFrmAttribute($value)
     {
         return "Rp" .number_format($this->attributes['harga'],0,',','.');
+    }
+
+    public function getSubTotalFrmAttribute($value)
+    {
+        return "Rp" .number_format($this->attributes['harga']*$this->attributes['qty'],0,',','.');
+    }
+
+    public function getSubTotalAttribute($value)
+    {
+        return number_format($this->attributes['harga']*$this->attributes['qty'],0,'','');
+    }
+
+    public function getProdukNamaAttribute($value)
+    {
+        return $this->produk->nama .' ('. $this->variant->variant.')';
     }
 
 }

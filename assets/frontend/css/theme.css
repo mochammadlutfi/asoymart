@@ -59,7 +59,7 @@
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
   --breakpoint-wd: 1480px;
-  --font-family-sans-serif: "Open Sans", Helvetica, Arial, sans-serif;
+  --font-family-sans-serif: 'Montserrat', "Open Sans", Helvetica, Arial, sans-serif;
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
@@ -70,7 +70,7 @@
 }
 
 html {
-  font-family: sans-serif;
+  font-family: 'Montserrat';
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -31903,102 +31903,102 @@ label.btn {
   Height
 ------------------------------------*/
 .height-40vh {
-  height: 40vh;
+  height: 40vh !important;
 }
 
 .height-60vh {
-  height: 60vh;
+  height: 60vh !important;
 }
 
 .height-100vh {
-  height: 100vh;
+  height: 100vh !important;
 }
 
 .height-4 {
-  height: .25rem;
+  height: .25rem !important;
 }
 
 .height-250 {
-  height: 15.625rem;
+  height: 15.625rem !important;
 }
 
 .height-380 {
-  height: 23.75rem;
+  height: 23.75rem !important;
 }
 
 .height-400 {
-  height: 25rem;
+  height: 25rem !important;
 }
 
 .height-450 {
-  height: 28.125rem;
+  height: 28.125rem !important;
 }
 
 .min-height-100vh {
-  min-height: 100vh;
+  min-height: 100vh !important;
 }
 
 .min-height-155 {
-  min-height: 9.6875rem;
+  min-height: 9.6875rem !important;
 }
 
 .min-height-300 {
-  min-height: 18.75rem;
+  min-height: 18.75rem !important;
 }
 
 .min-height-380 {
-  min-height: 23.75rem;
+  min-height: 23.75rem !important;
 }
 
 .min-height-450 {
-  min-height: 28.125rem;
+  min-height: 28.125rem !important;
 }
 
 .min-height-550 {
-  min-height: 34.375rem;
+  min-height: 34.375rem !important;
 }
 
 .min-height-600 {
-  min-height: 37.5rem;
+  min-height: 37.5rem !important;
 }
 
 .min-height-620 {
-  min-height: 38.75rem;
+  min-height: 38.75rem !important;
 }
 
 @media (min-width: 576px) {
   .height-sm-100vh {
-    height: 100vh;
+    height: 100vh !important;
   }
 }
 
 @media (min-width: 768px) {
   .height-md-60vh {
-    height: 60vh;
+    height: 60vh !important;
   }
   .height-md-100vh {
-    height: 100vh;
+    height: 100vh !important;
   }
   .min-height-md-100vh {
-    min-height: 100vh;
+    min-height: 100vh !important;
   }
 }
 
 @media (min-width: 992px) {
   .height-lg-100vh {
-    height: 100vh;
+    height: 100vh !important;
   }
   .min-height-lg-auto {
-    min-height: auto;
+    min-height: auto !important;
   }
   .min-height-lg-100vh {
-    min-height: 100vh;
+    min-height: 100vh !important;
   }
 }
 
 @media (min-width: 1200px) {
   .min-height-xl-100vh {
-    min-height: 100vh;
+    min-height: 100vh !important;
   }
 }
 
@@ -34056,10 +34056,15 @@ blockquote:not(.blockquote) p {
   min-width: 20%;
 }
 
+.product-item__body > a > img{
+  border-radius: 5px 5px 0 0;
+}
+
 .product-item__inner {
   position: relative;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 6px 0px;
   border-radius: 5px;
+  border: 1px solid #ececec;
   min-width: 100%;
   display: flex;
   flex-direction: column;
@@ -34078,15 +34083,17 @@ blockquote:not(.blockquote) p {
 }
 
 .product-item__title {
-  font-size: 0.74987rem;
-  line-height: 0.875rem;
-}
-
-@media (min-width: 992px) {
-  .product-item__title {
-    font-size: 1rem;
-    line-height: 1.125rem;
-  }
+  font-size: 0.86rem;
+  color: rgba(49, 53, 59, 0.96);
+  max-width: 100%;
+  max-height: 100%;
+  min-height:36px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 @media (min-width: 768px) {
@@ -35230,14 +35237,10 @@ blockquote:not(.blockquote) p {
   width: 100%;
 }
 
-.prodcut-price {
-  font-size: 1rem;
-}
-
-@media (min-width: 992px) {
-  .prodcut-price {
-    font-size: 1rem;
-  }
+.product-price {
+  font-size: 0.9rem;
+  color: rgb(250 89 29);
+  font-weight: 600;
 }
 
 /*------------------------------------
@@ -36131,21 +36134,6 @@ blockquote:not(.blockquote) p {
     border-bottom: 0 !important;
   }
 }
-
-.product-item {
-  border-bottom: 1px solid #eaeaea;
-}
-
-@media (min-width: 768px) {
-  .product-item {
-    border-width: 0;
-  }
-}
-
-.product-item:last-child, .product-item:nth-last-child(2) {
-  border-width: 0;
-}
-
 @media (min-width: 1200px) {
   .product-item::after {
     height: 80%;
@@ -37907,6 +37895,19 @@ blockquote:not(.blockquote) p {
   overflow: hidden;
 }
 
+.line-h-30 {
+  line-height: 30px;
+}
+
+ul.menu-main_top > li {
+  padding: 5px 7px;
+}
+
+ul.menu-main_top > li:hover{
+  background: #efefef;
+  border-radius: 8px;
+}
+
 /*------------------------------------
   9. User Area
 ------------------------------------*/
@@ -37967,4 +37968,93 @@ blockquote:not(.blockquote) p {
   width: 200px;
   height: 150px;
   object-fit: contain;
+}
+
+
+.kategori-header {
+  background-size: cover !important;
+  border-radius: 8px;
+  background-position: right center !important;
+  height: 200px;
+  position: relative;
+  display: table;
+  width: 100%;
+}
+/*------------------------------------
+  9. Produk Detail
+------------------------------------*/
+
+.checkbox-alphanumeric::after,
+.checkbox-alphanumeric::before {
+  content: '';
+  display: table;
+}
+
+.checkbox-alphanumeric::after {
+  clear: both;
+}
+
+.checkbox-alphanumeric input {
+  left: -9999px;
+  position: absolute;
+}
+
+.checkbox-alphanumeric label {
+  width: 2.25rem;
+  height: 2.25rem;
+  float: left;
+  padding: 0.375rem 0;
+  margin-right: 0.375rem;
+  display: block;
+  color: #818a91;
+  font-size: 0.875rem;
+  font-weight: 400;
+  text-align: center;
+  background: transparent;
+  text-transform: uppercase;
+  border: 1px solid #e6e6e6;
+  border-radius: 2px;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  transform: scale(0.95);
+}
+
+.checkbox-alphanumeric-circle label {
+  border-radius: 100%;
+}
+
+.checkbox-alphanumeric label > img {
+  max-width: 100%;
+}
+
+.checkbox-alphanumeric label:hover {
+  cursor: pointer;
+  border-color: #085d35;
+}
+
+.checkbox-alphanumeric input:checked ~ label {
+    transform: scale(1.1);
+    border-color: #085d35;
+    color: #07693b;
+    border: 2px solid;
+}
+
+.checkbox-alphanumeric--style-1 label {
+  width: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-radius: 2px;
+  padding-bottom: .5rem;
+  padding-top: .4rem;
+}
+
+.d-table.checkbox-alphanumeric--style-1 {
+  width: 100%;
+}
+
+.d-table.checkbox-alphanumeric--style-1 label {
+  width: 100%;
 }

@@ -158,7 +158,7 @@ jQuery(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\laragon\www\warungasoy\core\resources\js\pages\tables_datatables.js */"./resources/js/pages/tables_datatables.js");
+module.exports = __webpack_require__(/*! D:\laragon\www\asoymart\core\resources\js\pages\tables_datatables.js */"./resources/js/pages/tables_datatables.js");
 
 
 /***/ })

@@ -1,4 +1,4 @@
-<header id="header" class="u-header u-header-left-aligned-nav mb-3">
+<header id="header" class="mb-2 mb-md-3 u-header u-header-left-aligned-nav">
     <div class="u-header__section shadow-none">
         <!-- Topbar -->
         <div class="u-header-topbar bg-gray-1 border-0 py-2 d-none d-xl-block">
@@ -9,58 +9,7 @@
                     </div>
                     <div class="topbar-right ml-auto">
                         <ul class="list-inline mb-0">
-                            <li class="list-inline-item mr-0 u-header-topbar__nav-item u-header-topbar__nav-item-border">
-                                <a href="#" class="u-header-topbar__nav-link"><i class="ec ec-map-pointer mr-1"></i> Store Locator</a>
-                            </li>
-                            <li class="list-inline-item mr-0 u-header-topbar__nav-item u-header-topbar__nav-item-border">
-                                <a href="../shop/track-your-order.html" class="u-header-topbar__nav-link"><i class="ec ec-transport mr-1"></i> Track Your Order</a>
-                            </li>
-                            <li class="list-inline-item mr-0 u-header-topbar__nav-item u-header-topbar__nav-item-border u-header-topbar__nav-item-no-border u-header-topbar__nav-item-border-single">
-                                <div class="d-flex align-items-center">
-                                    <!-- Language -->
-                                    <div class="position-relative">
-                                        <a id="languageDropdownInvoker" class="dropdown-nav-link dropdown-toggle d-flex align-items-center u-header-topbar__nav-link font-weight-normal" href="javascript:;" role="button"
-                                            aria-controls="languageDropdown"
-                                            aria-haspopup="true"
-                                            aria-expanded="false"
-                                            data-unfold-event="hover"
-                                            data-unfold-target="#languageDropdown"
-                                            data-unfold-type="css-animation"
-                                            data-unfold-duration="300"
-                                            data-unfold-delay="300"
-                                            data-unfold-hide-on-scroll="true"
-                                            data-unfold-animation-in="slideInUp"
-                                            data-unfold-animation-out="fadeOut">
-                                            <span class="d-inline-block d-sm-none">US</span>
-                                            <span class="d-none d-sm-inline-flex align-items-center"><i class="ec ec-dollar mr-1"></i> Dollar (US)</span>
-                                        </a>
 
-                                        <div id="languageDropdown" class="dropdown-menu dropdown-unfold" aria-labelledby="languageDropdownInvoker">
-                                            <a class="dropdown-item active" href="#">English</a>
-                                            <a class="dropdown-item" href="#">Deutsch</a>
-                                            <a class="dropdown-item" href="#">Español‎</a>
-                                        </div>
-                                    </div>
-                                    <!-- End Language -->
-                                </div>
-                            </li>
-                            <li class="list-inline-item mr-0 u-header-topbar__nav-item u-header-topbar__nav-item-border">
-                                <!-- Account Sidebar Toggle Button -->
-                                <a id="sidebarNavToggler" href="javascript:;" role="button" class="u-header-topbar__nav-link"
-                                    aria-controls="sidebarContent"
-                                    aria-haspopup="true"
-                                    aria-expanded="false"
-                                    data-unfold-event="click"
-                                    data-unfold-hide-on-scroll="false"
-                                    data-unfold-target="#sidebarContent"
-                                    data-unfold-type="css-animation"
-                                    data-unfold-animation-in="fadeInRight"
-                                    data-unfold-animation-out="fadeOutRight"
-                                    data-unfold-duration="500">
-                                    <i class="ec ec-user mr-1"></i> Register <span class="text-gray-50">or</span> Sign in
-                                </a>
-                                <!-- End Account Sidebar Toggle Button -->
-                            </li>
                         </ul>
                     </div>
                 </div>
@@ -107,7 +56,7 @@
                             </div>
                             <!-- End Responsive Menu -->
 
-                            <!-- Basics Accordion -->
+                            <!-- Kategori -->
                             <div id="basicsAccordion" class="d-none d-xl-block">
                                 <!-- Card -->
                                 <div class="card border-0 py-3 position-static">
@@ -134,16 +83,13 @@
                                                             data-animation-in="slideInUp"
                                                             data-animation-out="fadeOut"
                                                             data-position="left">
-                                                            <a id="basicMegaMenu" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false">{{ $kategori->nama }}</a>
+                                                            <a id="basicMegaMenu" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="{{ route('kategori.detail', $kategori->slug) }}" aria-haspopup="true" aria-expanded="false">{{ $kategori->nama }}</a>
 
                                                             <!-- Nav Item - Mega Menu -->
-                                                            <div class="hs-mega-menu vmm-tfw u-header__sub-menu" aria-labelledby="basicMegaMenu">
-                                                                {{-- <div class="vmm-bg">
-                                                                    <img class="img-fluid" src="../../assets/img/500X400/img1.png" alt="Image Description">
-                                                                </div> --}}
-                                                                <div class="row u-header__mega-menu-wrapper">
+                                                            <div class="js-scrollbar hs-mega-menu vmm-tfw u-header__sub-menu border-width-2" aria-labelledby="basicMegaMenu">
+                                                                <div class="px-2 py-4 u-header__mega-menu-wrapper" data-setHeight="250px" style="column-count: 3">
                                                                     @foreach($kategori->sub_kategori as $sub_kat)
-                                                                    <div class="col mb-3 mb-sm-0">
+                                                                    <div class="mb-3 mb-sm-0">
                                                                         <a class="u-header__sub-menu-title" href="#">{{ $sub_kat->nama }}</a>
                                                                         <ul class="u-header__sub-menu-nav-group mb-3">
                                                                             @foreach($sub_kat->sub_kategori as $sub)
@@ -171,7 +117,7 @@
                     </div>
                     <!-- End Logo -->
                     <!-- Search Bar -->
-                    <div class="col d-none d-xl-block">
+                    <div class="col d-xl-block">
                         <form class="js-focus-state">
                             <label class="sr-only" for="searchproduct">Search</label>
                             <div class="input-group">
@@ -186,46 +132,21 @@
                     </div>
                     <!-- End Search Bar -->
                     <!-- Header Icons -->
-                    <div class="col-auto position-static">
+                    <div class="col-auto position-static px-0">
                         <div class="d-flex">
-                            <ul class="d-flex list-unstyled mb-0 mr-5">
+                            <ul class="menu-main_top d-flex list-unstyled mb-0 mr-5">
                                 <!-- Search -->
-                                <li class="col d-xl-none px-2 px-sm-3 position-static">
-                                    <a id="searchClassicInvoker" class="font-size-22 text-gray-90 text-lh-1 btn-text-secondary" href="javascript:;" role="button"
-                                        data-toggle="tooltip"
-                                        data-placement="top"
-                                        title="Search"
-                                        aria-controls="searchClassic"
-                                        aria-haspopup="true"
-                                        aria-expanded="false"
-                                        data-unfold-target="#searchClassic"
-                                        data-unfold-type="css-animation"
-                                        data-unfold-duration="300"
-                                        data-unfold-delay="300"
-                                        data-unfold-hide-on-scroll="true"
-                                        data-unfold-animation-in="slideInUp"
-                                        data-unfold-animation-out="fadeOut">
-                                        <span class="ec ec-search"></span>
+                                <li class="col mx-sm-2 d-xl-none">
+                                    <a class="text-gray-90 position-relative d-flex c-pointer" href="{{ route('cart') }}">
+                                        <i class="ec ec-shopping-bag font-size-32" style="line-height: 30px;"></i>
+                                        <span class="align-items-center bg-lg-down-black bg-primary border border-white d-flex font-size-12 font-weight-bold height-22 justify-content-center left-12 position-absolute rounded-circle text-white top-8 width-22">
+                                            {{ get_totalCart() }}
+                                        </span>
                                     </a>
-
-                                    <!-- Input -->
-                                    <div id="searchClassic" class="dropdown-menu dropdown-unfold dropdown-menu-right left-0 mx-2" aria-labelledby="searchClassicInvoker">
-                                        <form class="js-focus-state input-group px-3">
-                                            <input class="form-control" type="search" placeholder="Search Product">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-primary px-3" type="button"><i class="font-size-18 ec ec-search"></i></button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <!-- End Input -->
                                 </li>
                                 <!-- End Search -->
-                                <li class="col d-xl-none px-2 px-sm-3">
-                                    <a href="{{ route('login') }}" class="text-gray-90" data-toggle="tooltip" data-placement="top" title="Masuk">
-                                        <i class="font-size-22 ec ec-user"></i>
-                                    </a>
-                                </li>
-                                <li class="col pr-xl-0 px-2 px-sm-3 d-none d-xl-block">
+
+                                <li class="col mx-sm-2 d-none d-xl-block">
                                     <div id="cartTopHover" class="text-gray-90 position-relative d-flex c-pointer" data-toggle="tooltip" data-placement="top" title="Cart"
                                         aria-controls="cartDropDown"
                                         aria-haspopup="true"
@@ -238,19 +159,52 @@
                                         data-unfold-hide-on-scroll="true"
                                         data-unfold-animation-in="slideInUp"
                                         data-unfold-animation-out="fadeOut">
-                                        <i class="font-size-22 ec ec-shopping-bag"></i>
-                                        <span class="bg-lg-down-black text-white width-22 height-22 bg-primary position-absolute d-flex align-items-center justify-content-center rounded-circle left-12 top-8 font-weight-bold font-size-12">
+                                        <i class="ec ec-shopping-bag font-size-32" style="line-height: 30px;"></i>
+                                        <span class="align-items-center bg-lg-down-black bg-primary border border-white d-flex font-size-12 font-weight-bold height-22 justify-content-center left-12 position-absolute rounded-circle text-white top-8 width-22">
                                             {{ get_totalCart() }}
                                         </span>
                                     </div>
                                     <div id="cartDropDown" class="cart-dropdown dropdown-menu dropdown-unfold border-top border-top-primary mt-5 border-width-2 border-left-0 border-right-0 border-bottom-0 left-auto right-0 min-width-450" aria-labelledby="cartTopHover">
-
+                                        <div class="py-4 text-center">
+                                            <div class="height-50 spinner-grow text-primary width-50" role="status">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </li>
-                            </ul>
-                            @if(Auth::guard('web')->check())
-                                <div class="position-relative py-1">
-                                    <a id="userAuthInvoker" class="dropdown-nav-link dropdown-toggle d-flex align-items-center font-weight-bold font-size-16" href="javascript:void(0);" role="button"
+                                @if(Auth::guard('web')->check())
+
+                                <!-- Notifikasi -->
+                                <li class="col mx-sm-2 d-none d-xl-block">
+                                    <div id="notifHover" class="text-gray-90 position-relative d-flex c-pointer" data-toggle="tooltip" data-placement="top" title="Cart"
+                                        aria-controls="notifDropDown"
+                                        aria-haspopup="true"
+                                        aria-expanded="false"
+                                        data-unfold-event="hover"
+                                        data-unfold-target="#notifDropDown"
+                                        data-unfold-type="css-animation"
+                                        data-unfold-duration="150"
+                                        data-unfold-delay="150"
+                                        data-unfold-hide-on-scroll="true"
+                                        data-unfold-animation-in="slideInUp"
+                                        data-unfold-animation-out="fadeOut">
+                                        <i class="fa fa-bell font-size-32" style="line-height: 30px;"></i>
+                                        <span class="align-items-center bg-lg-down-black bg-primary border border-white d-flex font-size-12 font-weight-bold height-22 justify-content-center left-12 position-absolute rounded-circle text-white top-8 width-22">
+                                            0
+                                        </span>
+                                    </div>
+                                    <div id="notifDropDown" class="dropdown-menu dropdown-unfold border-top border-top-primary mt-5 border-width-2 border-left-0 border-right-0 border-bottom-0 left-auto right-0 min-width-450" aria-labelledby="notifHover">
+                                        <div class="py-4 text-center">
+                                            <div class="height-50 spinner-grow text-primary width-50" role="status">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <!-- End Notifikasi -->
+
+                                <li class="col-auto mx-sm-2 d-none d-xl-block">
+                                    <a id="userAuthInvoker" class="text-gray-90 position-relative d-flex c-pointer" href="javascript:void(0);" role="button"
                                         aria-controls="userAuth"
                                         aria-haspopup="true"
                                         aria-expanded="false"
@@ -262,8 +216,12 @@
                                         data-unfold-hide-on-scroll="true"
                                         data-unfold-animation-in="slideInUp"
                                         data-unfold-animation-out="fadeOut">
-                                        <span class="d-inline-block d-sm-none"><i class="ec ec-user"></i></span>
-                                        <span class="d-none d-sm-inline-flex align-items-center"><i class="ec ec-user mr-1"></i>Hi,  {{ auth()->guard('web')->user()->nama }}</span>
+                                        <span class="d-inline-block d-sm-none">
+                                            <i class="ec ec-user"></i>
+                                        </span>
+                                        <span class="d-none d-sm-inline-flex align-items-center line-h-30">
+                                            <i class="ec ec-user mr-1 font-size-30"></i>Hi,  {{ auth()->guard('web')->user()->nama }}
+                                        </span>
                                     </a>
                                     <div id="userAuth" class="font-size-16 user-dropdown dropdown-menu dropdown-unfold border-top border-top-primary mt-5 border-width-2 border-left-0 border-right-0 border-bottom-0 left-auto right-0" aria-labelledby="userAuthInvoker">
                                         <a class="user-dropdown-item dropdown-item font-size-16" href="{{ route('user.profil') }}">
@@ -279,17 +237,20 @@
                                             </form>
                                         ‎</a>
                                     </div>
-                                </div>
-                            @else
-                            <div class="auth-button d-none d-sm-block">
-                                <a href="{{ route('login') }}" class="btn btn-primary mr-3">
-                                    Masuk
-                                </a>
-                                <a href="{{ route('register') }}" class="btn btn-primary">
-                                    Daftar
-                                </a>
-                            </div>
-                            @endif
+                                </li>
+
+                                @else
+                                <li class="auth-button d-none d-sm-block">
+                                    <button type="button" href="{{ route('login') }}" class="btn btn-outline-primary mr-1" data-toggle="modal" data-target="#loginModal">
+                                        Masuk
+                                    </button>
+                                    <a href="{{ route('register') }}" class="btn btn-primary">
+                                        Daftar
+                                    </a>
+                                </li>
+                                @endif
+
+                            </ul>
                         </div>
                     </div>
                     <!-- End Header Icons -->

@@ -22,7 +22,54 @@ $(document).ready(function(){
         });
     });
 
+    $("#form-modallogin").submit(function (e) {
+        e.preventDefault();
+        var formData = new FormData($('#form-modallogin')[0]);
+        $.ajax({
+            url: laroute.route('loginPost'),
+            type: 'POST',
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            beforeSend: function(){
+                Swal.fire({
+                    title: 'Tunggu Sebentar...',
+                    text: '',
+                    imageUrl: laroute.url('assets/img/loading.gif', ['']),
+                    showConfirmButton: false,
+                    allowOutsideClick: false,
+                });
+            },
+            success: function (response) {
+                if (response.fail === false) {
+                    Swal.fire({
+                        title: "Berhasil",
+                        text: "Proses Masuk Ke Akun Kamu Berhasil!",
+                        timer: 3000,
+                        showConfirmButton: false,
+                        icon: 'success'
+                    });
+                    window.setTimeout(function () {
+                        location.reload();
+                    }, 1500);
+                } else {
+                    Swal.close();
+                    for (control in response.errors) {
+                        $('#field-' + control).addClass('is-invalid');
+                        $('#error-' + control).html(response.errors[control]);
+                    }
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                Swal.close();
+                alert('Error adding / update data');
+            }
+        });
+    });
+
 });
+
 
 $(document).ready(function() {
     //Set global currency to be used in the application

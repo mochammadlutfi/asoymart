@@ -7,6 +7,9 @@
 
 @section('content')
 <div class="content">
+    <div class="content-heading pt-0 mb-3">
+        Kategori Produk
+    </div>
     <div class="row">
         <div class="col-lg-4">
             <div class="block">
@@ -22,7 +25,7 @@
             </div>
         </div>
         <div class="col-lg-8">
-            <form id="form-kategori">
+            <form id="form-kategori" onsubmit="return false">
                 <input type="hidden" id="metode" value="tambah"/>
                 <input type="hidden" id="nama_kategori" value=""/>
                 <input type="hidden" id="field-kategori_id" name="kategori_id" value=""/>
@@ -35,7 +38,7 @@
                             <i class="si si-trash mr-1"></i>
                             Hapus
                         </button>
-                        <button type="submit" class="btn btn-secondary float-right">
+                        <button type="submit" class="btn btn-primary float-right">
                             <i class="si si-paper-plane mr-1"></i>
                             Simpan
                         </button>
@@ -48,29 +51,26 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-lg-3 col-form-label" for="field-is_active">Status</label>
+                            <label class="col-lg-3 col-form-label" for="field-nama">Thumbnail</label>
                             <div class="col-lg-7">
-                                <div class="custom-control custom-checkbox custom-control-inline mb-5">
-                                    <input class="custom-control-input" type="checkbox" name="is_active" id="field-is_active" value="1" checked="">
-                                    <label class="custom-control-label" for="field-is_active">Aktifkan Kategori</label>
+                                <div class="col-6 pl-0">
+                                    <img id="thumbPrev" class="border border-2x border-primary img-fluid mb-2" src="{{ asset('assets/img/placeholder/product.png') }}"/>
+                                    <input type="hidden" name="thumbnail" value="">
+                                    <div class="btn btn-primary btn-block">
+                                        <input type="file" class="file-upload" id="uploadThumb" accept="image/*">
+                                        <i class="si si-camera mr-1"></i>Pilih Foto
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-lg-3 col-form-label" for="field-nama">Icon</label>
+                            <label class="col-lg-3 col-form-label" for="field-nama">Sampul</label>
                             <div class="col-lg-7">
-                                <div class="row justify-content-center mb-10">
-                                    <div class="col-6 py-1">
-                                        <img id="img_preview" src="{{ asset('assets/img/placeholder/product.png') }}" width="100%"/>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="btn btn-alt-primary btn-block">
-                                            <input type="file" class="file-upload" id="file-upload" accept="image/*">
-                                            Pilih Foto
-                                        </div>
-                                    </div>
+                                <img id="sampulPrev" class="border border-2x border-primary img-fluid mb-2" src="{{ asset('assets/img/poster.png') }}"/>
+                                <input type="hidden" name="sampul" value="">
+                                <div class="btn btn-primary btn-block">
+                                    <input type="file" class="file-upload" id="uploadSampul" accept="image/*">
+                                    <i class="si si-camera mr-1"></i>Pilih Foto
                                 </div>
                             </div>
                         </div>

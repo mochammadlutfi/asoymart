@@ -3,10 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
 
 class ProdukVariasi extends Model
 {
+    use Uuid;
     protected $table = 'produk_variasi';
+    protected $primaryKey = 'id';
+    protected $keyType = 'string';
+    public $incrementing = false;
+
     protected $fillable = [
         'variant', 'sku', 'harga', 'stok', 'produk_id',
     ];
