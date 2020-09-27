@@ -10,7 +10,7 @@ class Provinsi extends Model
 
     public function kota()
     {
-        return $this->hasMany('Modules\Wilayah\Entities\Kota', 'id', 'regency_id');
+        return $this->hasMany('App\Models\Kota', 'id', 'regency_id');
     }
 
 }

@@ -248,129 +248,12 @@
                                 </form>
                                 <!-- END Form -->
                             </div>
-                            {{-- <div id="pendaftaran" class="block mb-0">
-                                <!-- Step Tabs -->
-                                <ul class="nav nav-tabs nav-tabs-alt nav-fill" role="tablist">
-                                    <li class="nav-item">
-                                        <a class="nav-link active" href="#info_warung" data-toggle="tab">1.
-                                            Informasi Toko</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#konfirmasi_data" data-toggle="tab">2.
-                                            Konfirmasi Data</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#berhasil" data-toggle="tab">3.
-                                            Berhasil</a>
-                                    </li>
-                                </ul>
-                                <!-- END Step Tabs -->
-
-                                <!-- Form -->
-                                <form id="form-pendaftaran" method="post" onsubmit="return false;">
-                                    <!-- Steps Content -->
-                                    <div class="block-content block-content-full tab-content"
-                                        style="min-height: 274px;">
-                                        <!-- Step 1 -->
-                                        <div class="tab-pane active" id="info_warung" role="tabpanel">
-                                            <div class="form-group">
-                                                <label for="field-nama">Nama Toko</label>
-                                                <input class="form-control" type="text" id="field-nama"
-                                                    name="nama" placeholder="Masukan Nama Bisnis">
-                                                <div id="error-nama" class="invalid-feedback"></div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="field-no_kontak">No Telepon</label>
-                                                <input class="form-control" type="text" id="field-no_kontak"
-                                                    name="no_kontak" placeholder="Masukan No. Kontak">
-                                                <div id="error-no_kontak" class="invalid-feedback"></div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="field-link_toko">Link Toko</label>
-                                                <div class="input-group">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text">
-                                                            Asoymart.com/toko/
-                                                        </span>
-                                                    </div>
-                                                    <input type="text" class="form-control" id="field-link_toko" name="link_toko" placeholder="Contoh: kirana">
-                                                </div>
-                                                </div>
-                                                <div id="error-link_toko" class="invalid-feedback"></div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="field-alamat">Alamat</label>
-                                                <textarea class="form-control" name="alamat"id="field-alamat" placeholder="Masukan Alamat Usaha"></textarea>
-                                                <div id="error-alamat" class="invalid-feedback"></div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="field-wilayah">Wilayah</label>
-                                                <select class="form-control" name="wilayah" id="field-wilayah" style="width:100%"></select>
-                                                <div id="error-wilayah" class="invalid-feedback"></div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="field-pos">Kode Pos</label>
-                                                <input class="form-control" type="text" id="field-pos"
-                                                    name="pos"  placeholder="Masukan Kode POS">
-                                                <div id="error-pos" class="invalid-feedback"></div>
-                                            </div>
-                                        </div>
-                                        <!-- END Step 1 -->
-
-                                        <!-- Step 2 -->
-                                        <div class="tab-pane" id="konfirmasi_data" role="tabpanel">
-
-                                        </div>
-                                        <div class="tab-pane" id="berhasil" role="tabpanel">
-
-                                        </div>
-                                        <!-- END Step 2 -->
-                                    </div>
-                                    <!-- END Steps Content -->
-
-                                    <!-- Steps Navigation -->
-                                    <div class="block-content block-content-sm block-content-full bg-white">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <button type="button" class="btn btn-alt-secondary disabled"
-                                                    data-wizard="prev">
-                                                    <i class="fa fa-angle-left mr-5"></i> Sebelumnya
-                                                </button>
-                                            </div>
-                                            <div class="col-6 text-right">
-                                                <button type="button" class="btn btn-alt-secondary" data-wizard="next">
-                                                    Selanjutnya <i class="fa fa-angle-right ml-5"></i>
-                                                </button>
-                                                <button type="submit" class="btn btn-alt-primary d-none"
-                                                    data-wizard="finish">
-                                                    <i class="fa fa-check mr-5"></i> Daftar Sekarang
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- END Steps Navigation -->
-                                </form>
-                                <!-- END Form -->
-                            </div> --}}
                         </div>
                     </div>
                 </div>
                 <!-- END Page Content -->
             </main>
             <!-- END Main Container -->
-
-            <!-- Footer -->
-            {{-- <footer id="page-footer" class="bg-white opacity-0">
-                <div class="content py-20 font-size-sm clearfix">
-                    <div class="float-right">
-                        Crafted with <i class="fa fa-heart text-pulse"></i> by <a class="font-w600" href="https://1.envato.market/ydb" target="_blank">pixelcave</a>
-                    </div>
-                    <div class="float-left">
-                        <a class="font-w600" href="https://1.envato.market/95j" target="_blank">Codebase 3.4</a> &copy; <span class="js-year-copy"></span>
-                    </div>
-                </div>
-            </footer> --}}
-            <!-- END Footer -->
         </div>
         <script src="{{ asset('assets/js/laroute.js') }}"></script>
         <script src="{{ asset('assets/js/codebase.app.js') }}"></script>
@@ -379,6 +262,6 @@
         <script src="{{ asset('assets/js/plugins/bootstrap-wizard/jquery.bootstrap.wizard.js') }}"></script>
         <script src="{{ asset('assets/js/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
         <script src="{{ asset('assets/js/plugins/bootstrap-notify/bootstrap-notify.min.js') }}"></script>
-        <script src="{{ asset('assets/modules/mitra/js/daftar.js') }}"></script>
+        <script src="{{ asset('assets/js/mitra/auth/daftar.js') }}"></script>
     </body>
 </html>

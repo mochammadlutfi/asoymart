@@ -56,12 +56,13 @@ class LoginController extends Controller
         $input = $request->all();
 
         $rules = [
-            'email' => 'required|string',
+            'email' => 'required|exists:users,email|string',
             'password' => 'required|string'
         ];
 
         $pesan = [
             'email.required' => 'Alamat Email Wajib Diisi!',
+            'email.exists' => 'Alamat Email Belum Terdaftar!',
             'password.required' => 'Password Wajib Diisi!',
         ];
         $validator = Validator::make($request->all(), $rules, $pesan);
@@ -72,17 +73,17 @@ class LoginController extends Controller
                 'errors' => $validator->errors(),
             ]);
         }else{
-
             $fieldType = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
-
-            if(auth()->attempt($request->only('email','password')))
+            if(auth()->guard('web')->attempt($request->only('email','password')))
             {
                 return response()->json([
                     'fail' => false,
                 ]);
             }else{
+                $gagal['password'] = array('Password salah!');
                 return response()->json([
                     'fail' => true,
+                    'errors' => $gagal,
                 ]);
             }
         }

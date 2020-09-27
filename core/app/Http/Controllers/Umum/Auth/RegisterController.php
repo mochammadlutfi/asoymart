@@ -33,13 +33,17 @@ class RegisterController extends Controller
         $rules = [
             'nama' => 'required',
             'email' => 'required',
-            'password' => 'required',
+            'password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
+            'password_confirmation' => 'min:6'
         ];
 
         $pesan = [
             'nama.required' => 'Nama Lengkap Wajib Diisi!',
             'email.required' => 'Alamat Email Wajib Diisi!',
             'password.required' => 'Password Wajib Diisi!',
+            'password.min' => 'Tidak Boleh Kurang Dari 6 Karakter!',
+            'password.same' => 'Konfirmasi Password Tidak Sama!',
+            'password_confirmation.min' => 'Tidak Boleh Kurang Dari 6 Karakter!'
         ];
 
         $validator = Validator::make($request->all(), $rules, $pesan);

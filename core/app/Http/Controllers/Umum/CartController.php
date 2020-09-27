@@ -30,15 +30,7 @@ class CartController extends Controller
         return view('umum.cart.index');
     }
 
-    public function checkout(Request $request)
-    {
-        $cart = Cart::whereIn('id', $request->c_id)->with('bisnis:id,nama')->orderBy('updated_at', 'DESC')->get();
-        $cart = $cart->groupBy(function ($bisnis) {
-            return $bisnis->bisnis_id.'-'.$bisnis->bisnis->nama;
-        })->all();
-        $alamat = Alamat::where('user_id', auth()->guard('web')->user()->id)->where('is_utama', 1)->first();
-        return view('umum.cart.checkout', compact('cart', 'alamat'));
-    }
+
 
     public function addToCart(Request $request)
     {

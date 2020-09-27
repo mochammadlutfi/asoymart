@@ -76,7 +76,7 @@
                                     </button>
                                 </span>
                                 <input type="text" name="quantity"
-                                    class="form-control input-number text-center" placeholder="1" value="{{ $p->qty }}" data-min="1" data-max="{{ $p->variant->stok }}">
+                                    class="form-control input-number text-center" placeholder="1" value="{{ $p->qty }}" data-min="1" data-max="{{ $p->variasi->stok }}">
                                 <span class="input-group-btn">
                                     <button class="btn btn-primary ml-1 quantity-up"
                                         type="button" data-type="plus">

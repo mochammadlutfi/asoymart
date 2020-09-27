@@ -10,6 +10,6 @@ class Kecamatan extends Model
 
     public function kota()
     {
-        return $this->belongsTo('Modules\Wilayah\Entities\Kota', 'regency_id', 'id');
+        return $this->belongsTo('App\Models\Kota', 'regency_id', 'id');
     }
 }

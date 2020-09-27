@@ -1,4 +1,3 @@
-{{-- <div class="mb-6"> --}}
     <div class="d-flex justify-content-between align-items-center border-bottom border-color-1 flex-lg-nowrap flex-wrap mb-3">
         <h3 class="section-title section-title__full mb-0 pb-2 font-size-22">Kategori Produk</h3>
     </div>
@@ -47,10 +46,10 @@
                     <div class="product-item__inner px-xl-4">
                         <div class="product-item__body pb-xl-2">
                             <div class="mb-2">
-                                <a href="#" class="d-block text-center"><img class="img-fluid" src="{{ asset($kategori->thumbnail) }}" alt="Image Description"></a>
+                                <a href="{{ route('kategori.detail', $kategori->slug) }}" class="d-block text-center"><img class="img-fluid" src="{{ asset($kategori->thumbnail) }}" alt="Image Description"></a>
                             </div>
                             <h5 class="text-center mb-1 product-item__title">
-                                <a href="../shop/single-product-fullwidth.html" class="font-size-15 text-gray-90">
+                                <a href="{{ route('kategori.detail', $kategori->slug) }}" class="font-size-15 text-gray-90">
                                     {{ $kategori->nama }}
                                 </a>
                             </h5>
@@ -61,38 +60,3 @@
         </div>
         @endforeach
     </div>
-    {{-- <ul class="row list-unstyled products-group no-gutters mb-6">
-        @foreach(kategori_menu() as $kategori)
-        <li class="col-6 col-md-2 col-xl-1gdot7 p-3">
-            <div class="card">
-                <div class="card-body">
-                    <div class="mb-2">
-                        <a href="#" class="d-block text-center"><img class="img-fluid" src="{{ asset($kategori->thumbnail) }}" alt="Image Description"></a>
-                    </div>
-                    <h5 class="text-center mb-1 product-item__title">
-                        <a href="../shop/single-product-fullwidth.html" class="font-size-15 text-gray-90">
-                            {{ $kategori->nama }}
-                        </a>
-                    </h5>
-                </div>
-            </div>
-        </li> --}}
-        {{-- <li class="col-6 col-md-2 col-xl-1gdot7 product-item">
-            <div class="product-item__outer h-100 w-100">
-                <div class="product-item__inner px-xl-4 p-3">
-                    <div class="product-item__body pb-xl-2">
-                        <div class="mb-2">
-                            <a href="#" class="d-block text-center"><img class="img-fluid" src="{{ asset($kategori->thumbnail) }}" alt="Image Description"></a>
-                        </div>
-                        <h5 class="text-center mb-1 product-item__title">
-                            <a href="../shop/single-product-fullwidth.html" class="font-size-15 text-gray-90">
-                                {{ $kategori->nama }}
-                            </a>
-                        </h5>
-                    </div>
-                </div>
-            </div>
-        </li> --}}
-        {{-- @endforeach --}}
-    {{-- </ul>
-</div> --}}

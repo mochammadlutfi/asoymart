@@ -10,6 +10,6 @@ class Kelurahan extends Model
 
     public function kecamatan()
     {
-        return $this->belongsTo('Modules\Wilayah\Entities\Kecamatan', 'district_id', 'id');
+        return $this->belongsTo('App\Models\Kecamatan', 'district_id', 'id');
     }
 }

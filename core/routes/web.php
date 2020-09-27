@@ -3,6 +3,9 @@
 /* --------------------- Common/User Routes START -------------------------------- */
 // Route::get('/coba', function () {
 // });
+Route::prefix('wilayah')->group(function() {
+    Route::post('/jsonSelect', 'WilayahController@jsonSelect')->name('wilayah.jsonSelect');
+});
 Route::namespace('Umum')->group(function(){
     Route::get('/', 'HomeController@index')->name('home');
     Route::namespace('Auth')->group(function(){
@@ -50,7 +53,11 @@ Route::namespace('Umum')->group(function(){
         Route::post('/addtocart', 'CartController@addToCart')->name('cart.addToCart');
         Route::post('/hapus', 'CartController@hapus')->name('cart.hapus');
         Route::post('/updateQuantity', 'CartController@updateQuantity')->name('cart.updateQuantity');
-        Route::post('/checkout', 'CartController@checkout')->name('cart.checkout');
+    });
+
+    Route::group(['prefix' => 'checkout'], function () {
+        Route::post('/', 'CheckoutController@index')->name('checkout');
+        Route::post('/post', 'CheckoutController@simpan')->name('checkout.simpan');
     });
 
     Route::post('/variant_price', 'ProdukController@variant_price')->name('variant_price');
@@ -69,15 +76,3 @@ Route::namespace('Umum')->group(function(){
     Route::get('/{seller}', 'SellerController@detail')->name('seller');
     Route::get('{bisnis}/{produk}', 'ProdukController@detail')->name('produk.detail');
 });
-
-
-// Auth::routes([ 'verify' => true ]);
-
-// Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
-
-/* --------------------- Common/User Routes END -------------------------------- */
-
-// Route::post('json/wilayah','GeneralController@wilayah')->name('wilayah.json');
-// Route::post('json/getPos','GeneralController@getPos')->name('getPos.json');
-// Route::post('json/kategori-bisnis','GeneralController@bisnisKategori')->name('bisnisKategori.json');
-

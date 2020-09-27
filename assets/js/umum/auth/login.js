@@ -20,17 +20,24 @@ $(document).ready(function() {
             },
             success: function (response) {
                 if (response.fail == false) {
-                    Swal.fire({
-                        title: "Berhasil",
-                        text: "Proses Masuk Ke Akun Kamu Berhasil!",
-                        timer: 3000,
-                        showConfirmButton: false,
-                        icon: 'success'
-                    });
-                    window.setTimeout(function () {
-                        location.reload();
-                    }, 1500);
-                } else {
+                    if(response.access == true)
+                    {
+                        Swal.fire({
+                            title: "Berhasil",
+                            text: "Proses Masuk Ke Akun Kamu Berhasil!",
+                            timer: 3000,
+                            showConfirmButton: false,
+                            icon: 'success'
+                        });
+                        window.setTimeout(function () {
+                            location.reload();
+                        }, 1500);
+                    }else{
+                        window.setTimeout(function () {
+                            location.reload();
+                        }, 1500);
+                    }
+                }else {
                     Swal.close();
                     for (control in response.errors) {
                         $('#field-' + control).addClass('is-invalid');

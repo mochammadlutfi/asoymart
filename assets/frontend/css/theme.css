@@ -38058,3 +38058,74 @@ ul.menu-main_top > li:hover{
 .d-table.checkbox-alphanumeric--style-1 label {
   width: 100%;
 }
+
+/*------------------------------------
+  9. Payment Category
+------------------------------------*/
+
+.as-payment-cat {
+  display: block;
+}
+
+.as-payment-cat__label {
+  display: block;
+  cursor: pointer;
+}
+
+.as-radio-button {
+  position: relative;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+.as-radio-button input[type=radio] {
+  position: absolute;
+  opacity: 0;
+  left: 0;
+  width: 18px;
+  height: 18px;
+}
+
+.as-radio-button input[type=radio]:checked+.as-radio-button__check {
+  border: 5px solid #028a4a;
+}
+
+.as-radio-button input[type=radio]+.as-radio-button__check {
+  -webkit-box-flex: 0;
+  -ms-flex: none;
+  flex: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #737373;
+  border-radius: 100%;
+  background-color: #fff;
+  -webkit-transition: all .08s ease-in-out;
+  transition: all .08s ease-in-out;
+}
+
+.as-payment-method {
+  margin-right: 8px;
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+
+.as-logo-payment {
+  display: inline-block;
+  margin-bottom: -1px;
+  width: 64px;
+  height: 32px;
+  position: relative;
+  overflow: hidden;
+  border-radius:4px;
+}
+
+.as-logo-payment__img {
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 32px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}

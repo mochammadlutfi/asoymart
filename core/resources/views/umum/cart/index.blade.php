@@ -29,9 +29,9 @@
                         <div class="font-size-20 font-weight-bold total_title">Total belanja</div>
                         <div class="cart-price-value font-size-24 font-weight-bold float-right total_belanja mb-3">Rp0</div>
 
-                        <form id="checkout" method="POST" action="{{ route('cart.checkout') }}">
+                        <form id="checkout" method="POST" action="{{ route('checkout') }}">
                             @csrf
-                            <button class="btn btn-primary btn-block btn-lg" type="submit">
+                            <button class="btn btn-primary btn-block btn-lg" type="submit" disabled>
                                 Lanjut Ke Pembayaran
                             </button>
                         </form>

@@ -34,15 +34,12 @@
                         </ul>
                     </div>
                     <div class="card-body">
-                        <div class="css-1ynqz4z-unf-emptystate e1lf3yex0">
-                            <div class="unf-emptystate-img"><img alt="no-order-found"
-                                    src="https://assets.tokopedia.net/assets-tokopedia-lite/v2/zeus/production/dd7dcb8c.png">
-                            </div>
+                        <div class="height-380 py-5">
+                            <img class="empty-img" src="{{ asset('assets/img/placeholder/empty.png') }}">
                             <div>
-                                <h3 class="css-1og3umh-unf-heading e1qvo2ff3">Nggak ada transaksi dalam 90 Hari Terakhir
+                                <h3 class="font-size-24 font-weight-bold mt-5">Belum Ada Transaksi Yang Dilakukan
                                 </h3>
-                                <p class="css-1ers9d0-unf-heading e1qvo2ff8">Coba ubah filter untuk cek rentang waktu
-                                    lainnya, ya.</p>
+                                <p class="font-size-16">Daftar transaksi anda masih kosong. Yuk segera mulai belanja di Asoy Mart</p>
                             </div>
                         </div>
                     </div>

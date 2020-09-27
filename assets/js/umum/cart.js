@@ -64,8 +64,10 @@ function updateCart()
     if($('.product').find('input[type=checkbox]:checked').length > 0)
     {
         $('#hapus-all').removeClass('hide');
+        $('button[type="submit"]').prop('disabled', false);
     }else{
         $('#hapus-all').addClass('hide');
+        $('button[type="submit"]').prop('disabled', true);
     }
     $('.total_title').html('Total belanja ('+produk+' produk)');
     $('.total_belanja').text(__convert_currency(total, true, true));

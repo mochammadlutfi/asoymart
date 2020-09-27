@@ -10,6 +10,6 @@ class Kota extends Model
 
     public function provinsi()
     {
-        return $this->belongsTo('Modules\Wilayah\Entities\Provinsi', 'province_id', 'id');
+        return $this->belongsTo('App\Models\Provinsi', 'province_id', 'id');
     }
 }

@@ -26,7 +26,7 @@ class Cart extends Model
         return $this->belongsTo('App\Models\Produk', 'produk_id');
     }
 
-    public function variant()
+    public function variasi()
     {
         return $this->belongsTo('App\Models\ProdukVariasi', 'variasi_id', 'id');
     }
@@ -53,7 +53,12 @@ class Cart extends Model
 
     public function getProdukNamaAttribute($value)
     {
-        return $this->produk->nama .' ('. $this->variant->variant.')';
+        if($this->variasi->variant === null)
+        {
+            return $this->produk->nama;
+        }else{
+            return $this->produk->nama .' ('. $this->variasi->variant.')';
+        }
     }
 
 }

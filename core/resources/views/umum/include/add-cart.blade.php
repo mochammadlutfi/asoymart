@@ -35,7 +35,7 @@
                     <div class="border-top border-width-3 card-body py-2">
                         <div class="row">
                             <div class="col-12">
-                                <form id="checkout" method="POST" action="{{ route('cart.checkout') }}">
+                                <form id="checkout" method="POST" action="{{ route('checkout') }}">
                                     @csrf
                                     <input type="hidden" class="ck" name="c_id[0]" value="">
                                     <button type="submit" class="btn btn-primary float-right">Lanjut Ke Pembayaran</button>

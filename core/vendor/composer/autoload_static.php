@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit24585e8378f306d21a9e584f404db6e6
+class ComposerStaticInit24cc577772453de7c48092241d53fea5
 {
     public static $files = array (
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
@@ -132,6 +132,7 @@ class ComposerStaticInit24585e8378f306d21a9e584f404db6e6
         'M' => 
         array (
             'Monolog\\' => 8,
+            'Midtrans\\' => 9,
         ),
         'L' => 
         array (
@@ -415,6 +416,10 @@ class ComposerStaticInit24585e8378f306d21a9e584f404db6e6
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
         ),
+        'Midtrans\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/midtrans/midtrans-php/Midtrans',
+        ),
         'League\\MimeTypeDetection\\' => 
         array (
             0 => __DIR__ . '/..' . '/league/mime-type-detection/src',
@@ -578,6 +583,7 @@ class ComposerStaticInit24585e8378f306d21a9e584f404db6e6
         'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Umum/Auth/ConfirmPasswordController.php',
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Umum/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Umum/Auth/VerificationController.php',
+        'App\\Http\\Controllers\\CheckoutWizardController' => __DIR__ . '/../..' . '/app/Http/Controllers/CheckoutWizardController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\Mitra\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Mitra/Auth/LoginController.php',
         'App\\Http\\Controllers\\Mitra\\Auth\\PendaftaranController' => __DIR__ . '/../..' . '/app/Http/Controllers/Mitra/Auth/PendaftaranController.php',
@@ -585,7 +591,6 @@ class ComposerStaticInit24585e8378f306d21a9e584f404db6e6
         'App\\Http\\Controllers\\Mitra\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Mitra/Auth/VerificationController.php',
         'App\\Http\\Controllers\\Mitra\\BerandaController' => __DIR__ . '/../..' . '/app/Http/Controllers/Mitra/BerandaController.php',
         'App\\Http\\Controllers\\Mitra\\EtalaseTokoController' => __DIR__ . '/../..' . '/app/Http/Controllers/Mitra/EtalaseTokoController.php',
-        'App\\Http\\Controllers\\Mitra\\KategoriController' => __DIR__ . '/../..' . '/app/Http/Controllers/Mitra/KategoriController.php',
         'App\\Http\\Controllers\\Mitra\\MerkController' => __DIR__ . '/../..' . '/app/Http/Controllers/Mitra/MerkController.php',
         'App\\Http\\Controllers\\Mitra\\OutletController' => __DIR__ . '/../..' . '/app/Http/Controllers/Mitra/OutletController.php',
         'App\\Http\\Controllers\\Mitra\\POSController' => __DIR__ . '/../..' . '/app/Http/Controllers/Mitra/POSController.php',
@@ -607,12 +612,16 @@ class ComposerStaticInit24585e8378f306d21a9e584f404db6e6
         'App\\Http\\Controllers\\Umum\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Umum/Auth/LoginController.php',
         'App\\Http\\Controllers\\Umum\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Umum/Auth/RegisterController.php',
         'App\\Http\\Controllers\\Umum\\CartController' => __DIR__ . '/../..' . '/app/Http/Controllers/Umum/CartController.php',
+        'App\\Http\\Controllers\\Umum\\CheckoutController' => __DIR__ . '/../..' . '/app/Http/Controllers/Umum/CheckoutController.php',
         'App\\Http\\Controllers\\Umum\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Umum/HomeController.php',
         'App\\Http\\Controllers\\Umum\\KategoriController' => __DIR__ . '/../..' . '/app/Http/Controllers/Umum/KategoriController.php',
         'App\\Http\\Controllers\\Umum\\PaymentController' => __DIR__ . '/../..' . '/app/Http/Controllers/Umum/PaymentController.php',
         'App\\Http\\Controllers\\Umum\\ProdukController' => __DIR__ . '/../..' . '/app/Http/Controllers/Umum/ProdukController.php',
+        'App\\Http\\Controllers\\Umum\\PromoController' => __DIR__ . '/../..' . '/app/Http/Controllers/Umum/PromoController.php',
         'App\\Http\\Controllers\\Umum\\SellerController' => __DIR__ . '/../..' . '/app/Http/Controllers/Umum/SellerController.php',
         'App\\Http\\Controllers\\Umum\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/Umum/UserController.php',
+        'App\\Http\\Controllers\\UserWizardController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserWizardController.php',
+        'App\\Http\\Controllers\\WilayahController' => __DIR__ . '/../..' . '/app/Http/Controllers/WilayahController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\CheckForMaintenanceMode' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckForMaintenanceMode.php',
@@ -633,7 +642,6 @@ class ComposerStaticInit24585e8378f306d21a9e584f404db6e6
         'App\\Models\\Kecamatan' => __DIR__ . '/../..' . '/app/Models/Kecamatan.php',
         'App\\Models\\Kelurahan' => __DIR__ . '/../..' . '/app/Models/Kelurahan.php',
         'App\\Models\\Kota' => __DIR__ . '/../..' . '/app/Models/Kota.php',
-        'App\\Models\\Merk' => __DIR__ . '/../..' . '/app/Models/Merk.php',
         'App\\Models\\Mitra' => __DIR__ . '/../..' . '/app/Models/Mitra.php',
         'App\\Models\\Outlet' => __DIR__ . '/../..' . '/app/Models/Outlet.php',
         'App\\Models\\Pelanggan' => __DIR__ . '/../..' . '/app/Models/Pelanggan.php',
@@ -642,6 +650,7 @@ class ComposerStaticInit24585e8378f306d21a9e584f404db6e6
         'App\\Models\\Produk' => __DIR__ . '/../..' . '/app/Models/Produk.php',
         'App\\Models\\ProdukFoto' => __DIR__ . '/../..' . '/app/Models/ProdukFoto.php',
         'App\\Models\\ProdukVariasi' => __DIR__ . '/../..' . '/app/Models/ProdukVariasi.php',
+        'App\\Models\\Promo' => __DIR__ . '/../..' . '/app/Models/Promo.php',
         'App\\Models\\Provinsi' => __DIR__ . '/../..' . '/app/Models/Provinsi.php',
         'App\\Models\\Satuan' => __DIR__ . '/../..' . '/app/Models/Satuan.php',
         'App\\Models\\Supplier' => __DIR__ . '/../..' . '/app/Models/Supplier.php',
@@ -650,7 +659,6 @@ class ComposerStaticInit24585e8378f306d21a9e584f404db6e6
         'App\\Models\\VariasiDetail' => __DIR__ . '/../..' . '/app/Models/VariasiDetail.php',
         'App\\Notifications\\AdminEmailVerificationNotification' => __DIR__ . '/../..' . '/app/Notifications/AdminEmailVerificationNotification.php',
         'App\\Notifications\\AdminResetPasswordNotification' => __DIR__ . '/../..' . '/app/Notifications/AdminResetPasswordNotification.php',
-        'App\\Promo' => __DIR__ . '/../..' . '/app/Promo.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
@@ -677,6 +685,7 @@ class ComposerStaticInit24585e8378f306d21a9e584f404db6e6
         'App\\Utils\\ProdukUtil' => __DIR__ . '/../..' . '/app/Utils/ProdukUtil.php',
         'App\\Utils\\TransaksiUtil' => __DIR__ . '/../..' . '/app/Utils/TransaksiUtil.php',
         'App\\Utils\\Util' => __DIR__ . '/../..' . '/app/Utils/Util.php',
+        'App\\Widgets\\Umum\\KategoriBox' => __DIR__ . '/../..' . '/app/Widgets/Umum/KategoriBox.php',
         'App\\Widgets\\Umum\\PromoSlide' => __DIR__ . '/../..' . '/app/Widgets/Umum/PromoSlide.php',
         'App\\Widgets\\Umum\\SellerBox' => __DIR__ . '/../..' . '/app/Widgets/Umum/SellerBox.php',
         'App\\Widgets\\Umum\\SellerHeader' => __DIR__ . '/../..' . '/app/Widgets/Umum/SellerHeader.php',
@@ -2975,6 +2984,14 @@ class ComposerStaticInit24585e8378f306d21a9e584f404db6e6
         'League\\MimeTypeDetection\\FinfoMimeTypeDetector' => __DIR__ . '/..' . '/league/mime-type-detection/src/FinfoMimeTypeDetector.php',
         'League\\MimeTypeDetection\\GeneratedExtensionToMimeTypeMap' => __DIR__ . '/..' . '/league/mime-type-detection/src/GeneratedExtensionToMimeTypeMap.php',
         'League\\MimeTypeDetection\\MimeTypeDetector' => __DIR__ . '/..' . '/league/mime-type-detection/src/MimeTypeDetector.php',
+        'Midtrans\\ApiRequestor' => __DIR__ . '/..' . '/midtrans/midtrans-php/Midtrans/ApiRequestor.php',
+        'Midtrans\\Config' => __DIR__ . '/..' . '/midtrans/midtrans-php/Midtrans/Config.php',
+        'Midtrans\\CoreApi' => __DIR__ . '/..' . '/midtrans/midtrans-php/Midtrans/CoreApi.php',
+        'Midtrans\\Notification' => __DIR__ . '/..' . '/midtrans/midtrans-php/Midtrans/Notification.php',
+        'Midtrans\\Sanitizer' => __DIR__ . '/..' . '/midtrans/midtrans-php/Midtrans/Sanitizer.php',
+        'Midtrans\\Snap' => __DIR__ . '/..' . '/midtrans/midtrans-php/Midtrans/Snap.php',
+        'Midtrans\\SnapApiRequestor' => __DIR__ . '/..' . '/midtrans/midtrans-php/Midtrans/SnapApiRequestor.php',
+        'Midtrans\\Transaction' => __DIR__ . '/..' . '/midtrans/midtrans-php/Midtrans/Transaction.php',
         'MitraTableSeeder' => __DIR__ . '/../..' . '/database/seeds/MitraTableSeeder.php',
         'Mockery' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery.php',
         'Mockery\\Adapter\\Phpunit\\MockeryPHPUnitIntegration' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryPHPUnitIntegration.php',
@@ -5329,10 +5346,10 @@ class ComposerStaticInit24585e8378f306d21a9e584f404db6e6
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit24585e8378f306d21a9e584f404db6e6::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit24585e8378f306d21a9e584f404db6e6::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit24585e8378f306d21a9e584f404db6e6::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit24585e8378f306d21a9e584f404db6e6::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit24cc577772453de7c48092241d53fea5::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit24cc577772453de7c48092241d53fea5::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit24cc577772453de7c48092241d53fea5::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit24cc577772453de7c48092241d53fea5::$classMap;
 
         }, null, ClassLoader::class);
     }

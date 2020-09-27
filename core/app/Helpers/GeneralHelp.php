@@ -47,6 +47,7 @@ if (!function_exists('get_produk_img')) {
 
     }
 }
+
 if (!function_exists('get_variant')) {
 
     /**
@@ -161,49 +162,18 @@ if (!function_exists('uf_date')) {
     }
 }
 
-if (!function_exists('get_daerah')) {
+if (!function_exists('currency_frm')) {
 
     /**
-     * Konversi tanggal kedalam format MYSQL
+     * Konversi Ke Rupiah Currency
      *
      * @param string $date
      * @param bool $time (default = false)
      * @return strin
      */
-    function get_daerah($daerah_id)
+    function currency_frm($value)
     {
-        $daerah = Daerah::find($daerah_id);
-
-        $alamat  = ucwords(strtolower($daerah->urban)).', ';
-        $alamat .= ucwords(strtolower($daerah->sub_district)).',<br>';
-        $alamat .= ucwords(strtolower($daerah->city)).', ';
-        $alamat .= ucwords(strtolower($daerah->provinsi->province_name));
-        return $alamat;
-    }//
-}
-
-if (!function_exists('showStatusPembayaran')) {
-
-    /**
-     * Konversi tanggal kedalam format MYSQL
-     *
-     * @param string $date
-     * @param bool $time (default = false)
-     * @return strin
-     */
-    function showStatusPembayaran($status)
-    {
-        if($status == 'lunas')
-        {
-            $badge = '<span class="badge badge-success">'. ucwords($status) .'</span>';
-        }elseif($status == 'sebagian')
-        {
-            $badge = '<span class="badge badge-warning">'. ucwords($status) .'</span>';
-        }elseif($status == 'belum dibayar')
-        {
-            $badge = '<span class="badge badge-danger">'. ucwords($status) .'</span>';
-        }
-        return $badge;
+        return "Rp".number_format($value,0,',','.');
     }
 }
 
