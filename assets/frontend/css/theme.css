@@ -38150,17 +38150,17 @@ ul.menu-main_top > li:hover{
   }
 }
 
-@media only screen and (max-width: 600px){
+@media (max-width: 600px){
   .promoBanner img{
     border-radius : 8px;
-    max-width: 400px;
+    max-width: 360px;
   }
   .slide-pagination{
     display:none;
   }
 }
 
-@media only screen and (max-width: 360px){
+@media (max-width: 580){
   .promoBanner img{
     border-radius : 8px;
     max-width: 320px;
@@ -38169,7 +38169,7 @@ ul.menu-main_top > li:hover{
     display:none;
   }
 }
-@media only screen and (max-width: 320px){
+@media (max-width: 320px){
   .promoBanner img{
     border-radius : 8px;
     max-width: 300px;
