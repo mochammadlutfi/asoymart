@@ -1,4 +1,4 @@
-<footer>
+<footer class="d-lg-block d-none">
     <!-- Footer-bottom-widgets -->
     <div class="pt-8 pb-4 bg-gray-13">
         <div class="container mt-1">

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        @include('umum.layouts.meta')
+        @include('include.meta')
         <!-- Google Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap" rel="stylesheet">
 
@@ -32,12 +32,6 @@
                     @csrf
                     {{-- <input type="hidden" name="ongkir" value="{{ $total_belanja }}"> --}}
                     <input type="hidden" name="total" value="{{ $total_belanja }}">
-                    <input type="hidden" name="alamat['id']" value="{{ $alamat->id }}">
-                    <input type="hidden" name="alamat['penerima']" value="{{ $alamat->penerima }}">
-                    <input type="hidden" name="alamat['phone']" value="{{ $alamat->phone }}">
-                    <input type="hidden" name="alamat['alamat']" value="{{ $alamat->alamat }}">
-                    <input type="hidden" name="alamat['kelurahan_id']" value="{{ $alamat->kelurahan_id }}">
-                    <input type="hidden" name="alamat['kd_pos']" value="{{ $alamat->kd_pos }}">
 
                     <div class="row my-4 my-xl-10">
                         <div id="wizard" class="col-md-8 col-sm-12">
@@ -52,6 +46,12 @@
                                     </div>
                                     <div class="card-body">
                                         @if($alamat)
+                                        <input type="hidden" name="alamat['id']" value="{{ $alamat->id }}">
+                                        <input type="hidden" name="alamat['penerima']" value="{{ $alamat->penerima }}">
+                                        <input type="hidden" name="alamat['phone']" value="{{ $alamat->phone }}">
+                                        <input type="hidden" name="alamat['alamat']" value="{{ $alamat->alamat }}">
+                                        <input type="hidden" name="alamat['kelurahan_id']" value="{{ $alamat->kelurahan_id }}">
+                                        <input type="hidden" name="alamat['kd_pos']" value="{{ $alamat->kd_pos }}">
                                         <div>
                                             <p class="mb-0">
                                                 <b class="nama-penerima">{{ $alamat->penerima }}</b>

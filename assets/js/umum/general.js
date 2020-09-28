@@ -84,6 +84,7 @@ $(document).on('click', '#btn-add-cart', function () {
                 $('#addToCart').modal();
            },
            error: function(httpObj, textStatus, errorThrown) {
+                Swal.close();
             if(httpObj.status == 401)
                 $('#loginModal').modal();
            }

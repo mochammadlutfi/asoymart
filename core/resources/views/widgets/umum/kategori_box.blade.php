@@ -3,7 +3,6 @@
     </div>
     <div class="js-slick-carousel u-slick mb-2"
         data-slides-show="7"
-        data-infinite="true"
         data-slides-scroll="4"
         data-arrows-classes="d-none d-lg-inline-block u-slick__arrow-classic u-slick__arrow-centered--y rounded-circle"
         data-arrow-left-classes="fas fa-arrow-left u-slick__arrow-classic-inner u-slick__arrow-classic-inner--left left-n16 bg-white shadow border text-primary"
@@ -11,32 +10,38 @@
         data-responsive='[{
             "breakpoint": 1400,
             "settings": {
-            "slidesToShow": 7
+                "slidesToShow": 7,
+                "slidesToScroll":4
             }
         }, {
             "breakpoint": 1200,
             "settings": {
-                "slidesToShow": 6
+                "slidesToShow": 6,
+                "slidesToScroll":4
             }
         }, {
             "breakpoint": 992,
             "settings": {
-            "slidesToShow": 6
+                "slidesToShow": 6,
+                "slidesToScroll": 4
             }
         }, {
             "breakpoint": 768,
             "settings": {
-            "slidesToShow": 4
+                "slidesToShow": 4,
+                "slidesToScroll":4
             }
         }, {
             "breakpoint": 554,
             "settings": {
-            "slidesToShow": 3
+                "slidesToShow": 3,
+                "slidesToScroll": 3
             }
         }, {
             "breakpoint": 480,
             "settings": {
-            "slidesToShow": 2
+                "slidesToShow": 2,
+                "slidesToScroll": 2
             }
         }]'>
         @foreach(kategori_menu() as $kategori)

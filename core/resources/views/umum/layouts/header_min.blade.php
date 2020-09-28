@@ -30,7 +30,7 @@
                                     <!-- End Fullscreen Toggle Button -->
 
                                     <!-- Logo -->
-                                    <a class="navbar-brand u-header__navbar-brand u-header__navbar-brand-center ml-1 ml-xl-0 mr-0" href="{{ url('/') }}" aria-label="Asoy Mart">
+                                    <a class="navbar-brand u-header__navbar-brand u-header__navbar-brand-center ml-1 ml-xl-0 mr-0" href="{{ redirect()->back() }}" aria-label="Asoy Mart">
                                         <img src="{{ asset('assets/media/logo/logo.png') }}"/>
                                     </a>
                                     <!-- End Logo -->

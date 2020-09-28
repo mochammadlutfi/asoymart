@@ -44,14 +44,15 @@
         <!-- ========== HEADER SIDEBAR ========== -->
         @include('umum.layouts.sidebar_nav')
         <!-- ========== END HEADER SIDEBAR ========== -->
-
+        @include('umum.layouts.bottom_menu')
         <!-- ========== END SECONDARY CONTENTS ========== -->
         @include('umum.include.add-cart')
+
         @include('umum.include.login')
 
 
         <!-- Go to Top -->
-        <a class="js-go-to u-go-to" href="#"
+        <a class="js-go-to u-go-to d-none d-lg-block" href="#"
             data-position='{"bottom": 15, "right": 15 }'
             data-type="fixed"
             data-offset-top="400"

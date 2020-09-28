@@ -34,9 +34,8 @@ Route::namespace('Umum')->group(function(){
         // Route::get('email/resend','VerificationController@resend')->name('verification.resend');
     });
     Route::name('user.')->prefix('user')->group(function () {
+        Route::get('/','UserController@index')->name('index');
         Route::get('/profil','UserController@profil')->name('profil');
-
-
         Route::get('/pembayaran','OrderController@belum_bayar')->name('belum_bayar');
         Route::get('/pesanan-saya','OrderController@index')->name('pesanan');
 

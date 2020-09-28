@@ -24,13 +24,14 @@
             <div class="container">
                 <div class="row align-items-center justify-content-between justify-content-xl-start">
                     <!-- Logo -->
-                    <div class="col-auto">
+                    <div class="col-auto px-0 px-lg-5 pl-2">
                         <div class="d-inline-flex d-xl-flex align-items-center justify-content-xl-between position-relative">
                             <!-- Responsive Menu -->
                             <div id="logoAndNav">
                                 <!-- Nav -->
                                 <nav class="navbar navbar-expand u-header__navbar">
                                     <!-- Fullscreen Toggle Button -->
+                                    @if(Route::current()->getName() === 'home')
                                     <button id="sidebarHeaderInvoker" type="button" class="mr-2 pl-0 navbar-toggler d-block d-xl-none btn u-hamburger ml-auto"
                                         aria-controls="sidebarHeader"
                                         aria-haspopup="true"
@@ -46,6 +47,11 @@
                                             <span class="u-hamburger__inner"></span>
                                         </span>
                                     </button>
+                                    @else
+                                    <a class="d-block d-xl-none font-size-30 ml-auto mr-2 pl-0 text-black" href="{{ url()->previous() }}">
+                                        <i class="fa fa-arrow-left"></i>
+                                    </a>
+                                    @endif
                                     <!-- End Fullscreen Toggle Button -->
 
                                     <!-- Logo -->
@@ -122,13 +128,13 @@
                     </div>
                     <!-- End Logo -->
                     <!-- Search Bar -->
-                    <div class="col d-xl-block">
+                    <div class="col d-xl-block pl-0">
                         <form class="js-focus-state">
                             <label class="sr-only" for="searchproduct">Search</label>
                             <div class="input-group">
                                 <input type="text" class="form-control font-size-15 border-right-0 height-40 border-width-2 border-primary" name="pencarian" placeholder="Kamu lagi cari apa?" required>
                                 <div class="input-group-append">
-                                    <button class="btn btn-primary height-40 py-2 px-3" type="button" id="searchProduct1">
+                                    <button class="btn btn-primary height-40 px-2" type="button" id="searchProduct1">
                                         <span class="ec ec-search font-size-24"></span>
                                     </button>
                                 </div>
@@ -139,17 +145,7 @@
                     <!-- Header Icons -->
                     <div class="col-auto position-static px-0">
                         <div class="d-flex">
-                            <ul class="menu-main_top d-flex list-unstyled mb-0 mr-5">
-                                <!-- Search -->
-                                <li class="col mx-sm-2 d-xl-none">
-                                    <a class="text-gray-90 position-relative d-flex c-pointer" href="{{ route('cart') }}">
-                                        <i class="ec ec-shopping-bag font-size-32" style="line-height: 30px;"></i>
-                                        <span class="align-items-center bg-lg-down-black bg-primary border border-white d-flex font-size-12 font-weight-bold height-22 justify-content-center left-12 position-absolute rounded-circle text-white top-8 width-22">
-                                            {{ get_totalCart() }}
-                                        </span>
-                                    </a>
-                                </li>
-                                <!-- End Search -->
+                            <ul class="menu-main_top d-flex list-unstyled mb-0 ">
 
                                 <li class="col mx-sm-2 d-none d-xl-block">
                                     <div id="cartTopHover" class="text-gray-90 position-relative d-flex c-pointer" data-toggle="tooltip" data-placement="top" title="Keranjang Belanja"

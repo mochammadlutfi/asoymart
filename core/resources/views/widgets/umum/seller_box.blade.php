@@ -12,7 +12,7 @@
                 <div class="seller-box__body pt-0 px-2">
                     <div class="d-block d-flex float-left media position-relative"> <img src="{{ get_toko_img($t->logo) }}" alt="" class="border border-white d-flex img-fluid mb-4 mb-lg-0 mr-lg-3 mx-auto rounded-circle">
                         <div class="align-self-start py-2">
-                            <h6 class="font-size-20 font-weight-700 font-weight-bold pl-4 text-gray-111">
+                            <h6 class="font-size-14-down-lg font-size-20 font-weight-700 font-weight-bold pl-4 text-gray-111">
                                 {{ $t->nama }}
                             </h6>
                         </div>

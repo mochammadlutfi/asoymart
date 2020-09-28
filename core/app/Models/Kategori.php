@@ -47,7 +47,10 @@ class Kategori extends Model
 
     public function getThumbnailAttribute($value)
     {
-        return 'uploads/'.$value;
+        if(!empty($value))
+        {
+            return 'uploads/'.$value;
+        }
     }
 
     public function getCreatedAtAttribute($value)

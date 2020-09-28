@@ -23,6 +23,12 @@ class UserController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+    public function index()
+    {
+
+        return view('umum.user.index');
+    }
+
     public function profil()
     {
 
@@ -33,7 +39,7 @@ class UserController extends Controller
     {
         $order = Order::where('user_id', auth()->guard('web')->user()->nama)->where('bayar_status', 'unpaid')->orderBy('tgl_transkasi', 'DESC')->get();
 
-        
+
         return view('umum.user.pesanan', compact('order'));
     }
 

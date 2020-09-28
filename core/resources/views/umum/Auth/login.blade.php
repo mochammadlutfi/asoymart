@@ -11,7 +11,7 @@
             </div>
             <div class="col-lg-4">
                 <h3 class="mb-0 pb-2 font-size-26 text-center">Masuk ke akun kamu</h3>
-                <div class="card">
+                <div class="border-lg-down-0 card">
                     <div class="card-body">
                         <form id="form-login" onsubmit="return false;">
                             @csrf
@@ -45,5 +45,5 @@
 
 @push('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
-<script src="{{ asset('assets/umum/auth/login.js') }}"></script>
+<script src="{{ asset('assets/js/umum/auth/login.js') }}"></script>
 @endpush

@@ -11,9 +11,9 @@
     <!-- End breadcrumb -->
     <div class="container">
         <!-- Single Product Body -->
-        <div class="card shadow border p-3 mb-lg-4">
+        <div class="border-lg-down-0 card mb-lg-4 p-lg-3 shadow-lg shadow-none">
             <div class="row">
-                <div class="col-md-4 mb-4 mb-md-0">
+                <div class="col-md-4 mb-1">
                     <div id="sliderSyncingNav" class="js-slick-carousel u-slick mb-2"
                         data-infinite="true"
                         data-arrows-classes="d-none d-lg-inline-block u-slick__arrow-classic u-slick__arrow-centered--y rounded-circle"
@@ -24,7 +24,6 @@
                         </div>
                         @endforeach
                     </div>
-
 
                     <div id="sliderSyncingThumb" class="d-none d-xl-block js-slick-carousel u-slick u-slick--slider-syncing u-slick--slider-syncing-size u-slick--transform-off"
                         data-infinite="true"
@@ -40,9 +39,9 @@
                 </div>
                 <div class="col-md-7 mb-md-6 mb-lg-0">
                     <div class="mb-2 product-body">
-                        <div class="border-bottom mb-3 pb-md-1 pb-3">
-                            <h2 class="font-size-30 font-weight-bold text-lh-1dot2 ">{{ $produk->nama }}</h2>
-                            <div class="mb-2">
+                        <div class="border-bottom mb-lg-3 pb-md-1 pb-lg-3">
+                            <h2 class="font-size-30-lg font-size-16 font-weight-bold text-lh-1dot2 ">{{ $produk->nama }}</h2>
+                            <div class="mb-2 d-none d-block-lg">
                                 <a class="d-inline-flex align-items-center small font-size-15 text-lh-1" href="#">
                                     <div class="text-warning mr-2">
                                         <small class="fas fa-star"></small>
@@ -102,27 +101,6 @@
                                 </div>
                                 @endif
                             @endif
-
-                            {{-- @if (count(json_decode($detailedProduct->colors)) > 0)
-                                <div class="row no-gutters">
-                                    <div class="col-2">
-                                        <div class="product-description-label mt-2">{{ translate('Color')}}:</div>
-                                    </div>
-                                    <div class="col-10">
-                                        <ul class="list-inline checkbox-color mb-1">
-                                            @foreach (json_decode($detailedProduct->colors) as $key => $color)
-                                                <li>
-                                                    <input type="radio" id="{{ $detailedProduct->id }}-color-{{ $key }}" name="color" value="{{ $color }}" @if($key == 0) checked @endif>
-                                                    <label style="background: {{ $color }};" for="{{ $detailedProduct->id }}-color-{{ $key }}" data-toggle="tooltip"></label>
-                                                </li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <hr>
-                            @endif --}}
-
                             <!-- Quantity + Add to cart -->
                             <div class="border-top no-gutters pt-3 pb-2 row">
                                 <div class="col-2">
@@ -160,7 +138,7 @@
                         <div class="alert alert-danger hide" id="error_cart" role="alert">
                             Silahkan pilih variasi terlebih dahulu
                         </div>
-                        <div class="border-top py-3">
+                        <div class="border-top py-3 d-none d-block-lg">
                             <button href="#" class="btn btn btn-outline-primary font-weight-bold" id="btn-buy-now">
                                 Beli Sekarang
                             </button>
@@ -168,7 +146,7 @@
                                 Tambah Ke Keranjang
                             </button>
                         </div>
-                        <div class="border-top py-3">
+                        <div class="border-top py-3 d-none d-block-lg">
                             <button class="btn btn-outline-gray-6 font-size-25 py-2" type="button">
                                 <i class="fa fa-heart"></i>
                             </button>

@@ -94,7 +94,7 @@ jQuery(document).ready(function () {
                         showConfirmButton: false,
                         icon: 'success'
                     });
-                    load_tree();
+                    $('#kategori-tree').jstree().refresh();
                 } else {
                     Swal.close();
                     for (control in response.errors) {
@@ -127,11 +127,11 @@ jQuery(document).ready(function () {
                 $('[name="kategori_id"]').val(response.id);
                 $('[name="nama"]').val(response.nama);
                 $('#nama_kategori').val(response.nama);
-                if(response.thumbnail !== null)
+                if(response.thumbnail === null)
                 {
-                    $("#thumbPrev").attr("src", laroute.url(response.thumbnail, ['']));
-                }else{
                     $("#thumbPrev").attr("src", laroute.url('assets/img/placeholder/product.png', ['']));
+                }else{
+                    $("#thumbPrev").attr("src", laroute.url(response.thumbnail, ['']));
                 }
                 $('#metode').val('update');
                 if(response.is_active)
@@ -140,7 +140,7 @@ jQuery(document).ready(function () {
                 }
             },
             error: function (jqXHR, textStatus, errorThrown){
-                alert('Error get data from ajax');
+                // alert('Error get data from ajax');
             }
         });
     });
