@@ -1,13 +1,13 @@
 <!doctype html>
 <html lang="en" class="no-focus">
     <head>
-        @include('mitra.layouts.meta')
+
+        <title>Mitra | Asoy Mart</title>
+        @include('include.meta')
 
         <!-- Stylesheets -->
 
         <!-- Page JS Plugins CSS -->
-
-        <meta name="csrf-token" content="{{ csrf_token() }}">
         {{-- <link rel="stylesheet" href="{{ asset('assets/backend/js/plugins/slick/slick.css') }}"> --}}
         <link rel="stylesheet" href="{{ asset('assets/js/plugins/datatables/dataTables.bootstrap4.css') }}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.min.css">

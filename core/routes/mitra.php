@@ -10,6 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::prefix('mitra')->name('mitra.')->namespace('Mitra\Auth')->group(function() {
+    Route::get('/login','LoginController@showLoginForm')->name('login');
+    Route::post('/login','LoginController@login')->name('loginPost');
+});
 Route::middleware(['CheckIfMitra'])->prefix('mitra')->name('mitra.')->namespace('Mitra\Auth')->group(function(){
     Route::get('/', 'PendaftaranController@index')->name('daftar');
     Route::post('/daftar-1', 'PendaftaranController@step1')->name('daftarStep1');

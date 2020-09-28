@@ -1,14 +1,7 @@
 @extends('umum.layouts.master')
 @section('styles')
 <style>
-    .promoBanner img{
-        border-radius : 8px;
-        max-width: 591px;
-    }
-    .slide-pagination{
-        position: absolute;
-        left: calc(25% + 20px);
-    }
+
 </style>
 @endsection
 

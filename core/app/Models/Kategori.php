@@ -6,15 +6,21 @@ use Spatie\Sluggable\SlugOptions;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 use Kalnoy\Nestedset\NodeTrait;
+use Rennokki\QueryCache\Traits\QueryCacheable;
 
 class Kategori extends Model
 {
     use HasSlug;
     use NodeTrait;
+    use QueryCacheable;
+
+    // Cache Duration
+    public $cacheFor = 3600;
+    protected static $flushCacheOnUpdate = true;
+
 
     protected $table = 'kategori';
     protected $primaryKey = 'id';
-
     protected $fillable = [
         'nama', 'slug', 'parent_id', 'icon', 'cover',
     ];

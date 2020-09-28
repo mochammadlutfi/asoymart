@@ -20,13 +20,12 @@ class CheckIfMitra
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::guard('web')->check()) {
-            if (auth()->user()->hasRole('Mitra')) {
-                return redirect()->route('mitra.beranda');
-            }
+        if (Auth::guard('web')->check() && auth()->user()->hasRole('Mitra')) {
+            return redirect()->route('mitra.beranda');
+        }else{
             return $next($request);
         }
-        return redirect()->route('login');
+        // return redirect()->route('mitra.login');
 
         // $user = Auth::guard('web')->user();
         // if ( $user->hasAnyRole(['Mitra']) ) {

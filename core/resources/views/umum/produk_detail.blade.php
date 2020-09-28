@@ -168,6 +168,11 @@
                                 Tambah Ke Keranjang
                             </button>
                         </div>
+                        <div class="border-top py-3">
+                            <button class="btn btn-outline-gray-6 font-size-25 py-2" type="button">
+                                <i class="fa fa-heart"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

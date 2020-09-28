@@ -30,6 +30,15 @@
             <div class="container max-width-1130">
                 <form id="checkout" onsubmit="return false">
                     @csrf
+                    {{-- <input type="hidden" name="ongkir" value="{{ $total_belanja }}"> --}}
+                    <input type="hidden" name="total" value="{{ $total_belanja }}">
+                    <input type="hidden" name="alamat['id']" value="{{ $alamat->id }}">
+                    <input type="hidden" name="alamat['penerima']" value="{{ $alamat->penerima }}">
+                    <input type="hidden" name="alamat['phone']" value="{{ $alamat->phone }}">
+                    <input type="hidden" name="alamat['alamat']" value="{{ $alamat->alamat }}">
+                    <input type="hidden" name="alamat['kelurahan_id']" value="{{ $alamat->kelurahan_id }}">
+                    <input type="hidden" name="alamat['kd_pos']" value="{{ $alamat->kd_pos }}">
+
                     <div class="row my-4 my-xl-10">
                         <div id="wizard" class="col-md-8 col-sm-12">
                             <h4 class="hide">Atur Pesanan</h4>
@@ -159,7 +168,7 @@
                                                 <div class="d-flex">
                                                     <div class="d-flex">
                                                         <label class="align-items-center as-radio-button as-radio-button">
-                                                            <input type="radio" name="payment-category" id="virtual_account" class="as-radio-button__input" value="virtual_account">
+                                                            <input type="radio" name="payment_method" id="virtual_account" class="as-radio-button__input" value="virtual_account">
                                                             <span class="as-radio-button__check"></span>
                                                         </label>
                                                     </div>
@@ -209,7 +218,7 @@
                                                 <div class="d-flex">
                                                     <div class="d-flex">
                                                         <label class="align-items-center as-radio-button as-radio-button">
-                                                            <input type="radio" name="payment-category" id="transfer" class="as-radio-button__input" value="transfer">
+                                                            <input type="radio" name="payment_method" id="transfer" class="as-radio-button__input" value="transfer">
                                                             <span class="as-radio-button__check"></span>
                                                         </label>
                                                     </div>
@@ -255,11 +264,11 @@
 
                                         <!-- Payment Kredit -->
                                         <div class="as-payment-cat px-3">
-                                            <label for="virtual-account" class="as-payment-cat__label">
+                                            <label for="kredit_debit" class="as-payment-cat__label">
                                                 <div class="d-flex">
                                                     <div class="d-flex">
                                                         <label class="align-items-center as-radio-button as-radio-button">
-                                                            <input type="radio" name="payment-category" id="virtual_account" class="as-radio-button__input" value="virtual_account">
+                                                            <input type="radio" name="payment_method" id="kredit_debit" class="as-radio-button__input" value="kredit_debit">
                                                             <span class="as-radio-button__check"></span>
                                                         </label>
                                                     </div>
@@ -317,11 +326,11 @@
                                     <div class="font-size-20 font-weight-bold total_title mb-3">Rincian Harga</div>
                                     <div class="font-size-18 mb-1">
                                         <span>Total Belanja</span>
-                                        <span class="text-black float-right total_belanja">{{ $total_belanja }}</span>
+                                        <span class="text-black float-right total_belanja">{{ currency_frm($total_belanja) }}</span>
                                     </div>
                                     <div class="font-size-18 mb-1">
-                                        <span>Total Belanja</span>
-                                        <span class="text-black float-right total_belanja">{{ $total_belanja }}</span>
+                                        <span>Ongkos Kirim</span>
+                                        <span class="text-black float-right total_belanja"></span>
                                     </div>
                                     <div class="font-size-18 my-3">
                                         <span class="font-size-20 font-weight-bold">Total Pembayaran</span>

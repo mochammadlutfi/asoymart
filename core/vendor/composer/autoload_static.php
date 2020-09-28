@@ -106,6 +106,7 @@ class ComposerStaticInit24cc577772453de7c48092241d53fea5
         ),
         'R' => 
         array (
+            'Rennokki\\QueryCache\\' => 20,
             'Ramsey\\Uuid\\' => 12,
             'Ramsey\\Collection\\' => 18,
         ),
@@ -144,6 +145,7 @@ class ComposerStaticInit24cc577772453de7c48092241d53fea5
         ),
         'K' => 
         array (
+            'Kavist\\RajaOngkir\\' => 18,
             'Kalnoy\\Nestedset\\' => 17,
         ),
         'I' => 
@@ -360,6 +362,10 @@ class ComposerStaticInit24cc577772453de7c48092241d53fea5
         array (
             0 => __DIR__ . '/..' . '/spatie/laravel-permission/src',
         ),
+        'Rennokki\\QueryCache\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/rennokki/laravel-eloquent-query-cache/src',
+        ),
         'Ramsey\\Uuid\\' => 
         array (
             0 => __DIR__ . '/..' . '/ramsey/uuid/src',
@@ -439,6 +445,10 @@ class ComposerStaticInit24cc577772453de7c48092241d53fea5
         'Laravel\\Tinker\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/tinker/src',
+        ),
+        'Kavist\\RajaOngkir\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kavist/rajaongkir/src',
         ),
         'Kalnoy\\Nestedset\\' => 
         array (
@@ -615,11 +625,13 @@ class ComposerStaticInit24cc577772453de7c48092241d53fea5
         'App\\Http\\Controllers\\Umum\\CheckoutController' => __DIR__ . '/../..' . '/app/Http/Controllers/Umum/CheckoutController.php',
         'App\\Http\\Controllers\\Umum\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Umum/HomeController.php',
         'App\\Http\\Controllers\\Umum\\KategoriController' => __DIR__ . '/../..' . '/app/Http/Controllers/Umum/KategoriController.php',
+        'App\\Http\\Controllers\\Umum\\OrderController' => __DIR__ . '/../..' . '/app/Http/Controllers/Umum/OrderController.php',
         'App\\Http\\Controllers\\Umum\\PaymentController' => __DIR__ . '/../..' . '/app/Http/Controllers/Umum/PaymentController.php',
         'App\\Http\\Controllers\\Umum\\ProdukController' => __DIR__ . '/../..' . '/app/Http/Controllers/Umum/ProdukController.php',
         'App\\Http\\Controllers\\Umum\\PromoController' => __DIR__ . '/../..' . '/app/Http/Controllers/Umum/PromoController.php',
         'App\\Http\\Controllers\\Umum\\SellerController' => __DIR__ . '/../..' . '/app/Http/Controllers/Umum/SellerController.php',
         'App\\Http\\Controllers\\Umum\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/Umum/UserController.php',
+        'App\\Http\\Controllers\\Umum\\WishlistController' => __DIR__ . '/../..' . '/app/Http/Controllers/Umum/WishlistController.php',
         'App\\Http\\Controllers\\UserWizardController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserWizardController.php',
         'App\\Http\\Controllers\\WilayahController' => __DIR__ . '/../..' . '/app/Http/Controllers/WilayahController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
@@ -643,20 +655,18 @@ class ComposerStaticInit24cc577772453de7c48092241d53fea5
         'App\\Models\\Kelurahan' => __DIR__ . '/../..' . '/app/Models/Kelurahan.php',
         'App\\Models\\Kota' => __DIR__ . '/../..' . '/app/Models/Kota.php',
         'App\\Models\\Mitra' => __DIR__ . '/../..' . '/app/Models/Mitra.php',
+        'App\\Models\\Order' => __DIR__ . '/../..' . '/app/Models/Order.php',
+        'App\\Models\\OrderBayar' => __DIR__ . '/../..' . '/app/Models/OrderBayar.php',
+        'App\\Models\\OrderDetail' => __DIR__ . '/../..' . '/app/Models/OrderDetail.php',
         'App\\Models\\Outlet' => __DIR__ . '/../..' . '/app/Models/Outlet.php',
         'App\\Models\\Pelanggan' => __DIR__ . '/../..' . '/app/Models/Pelanggan.php',
         'App\\Models\\Pembelian' => __DIR__ . '/../..' . '/app/Models/Pembelian.php',
-        'App\\Models\\Penjualan' => __DIR__ . '/../..' . '/app/Models/Penjualan.php',
+        'App\\Models\\Pengiriman' => __DIR__ . '/../..' . '/app/Models/Pengiriman.php',
         'App\\Models\\Produk' => __DIR__ . '/../..' . '/app/Models/Produk.php',
         'App\\Models\\ProdukFoto' => __DIR__ . '/../..' . '/app/Models/ProdukFoto.php',
         'App\\Models\\ProdukVariasi' => __DIR__ . '/../..' . '/app/Models/ProdukVariasi.php',
         'App\\Models\\Promo' => __DIR__ . '/../..' . '/app/Models/Promo.php',
         'App\\Models\\Provinsi' => __DIR__ . '/../..' . '/app/Models/Provinsi.php',
-        'App\\Models\\Satuan' => __DIR__ . '/../..' . '/app/Models/Satuan.php',
-        'App\\Models\\Supplier' => __DIR__ . '/../..' . '/app/Models/Supplier.php',
-        'App\\Models\\Transaksi' => __DIR__ . '/../..' . '/app/Models/Transaksi.php',
-        'App\\Models\\TransaksiBayar' => __DIR__ . '/../..' . '/app/Models/TransaksiBayar.php',
-        'App\\Models\\VariasiDetail' => __DIR__ . '/../..' . '/app/Models/VariasiDetail.php',
         'App\\Notifications\\AdminEmailVerificationNotification' => __DIR__ . '/../..' . '/app/Notifications/AdminEmailVerificationNotification.php',
         'App\\Notifications\\AdminResetPasswordNotification' => __DIR__ . '/../..' . '/app/Notifications/AdminResetPasswordNotification.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
@@ -2706,6 +2716,24 @@ class ComposerStaticInit24cc577772453de7c48092241d53fea5
         'Kalnoy\\Nestedset\\NodeTrait' => __DIR__ . '/..' . '/kalnoy/nestedset/src/NodeTrait.php',
         'Kalnoy\\Nestedset\\QueryBuilder' => __DIR__ . '/..' . '/kalnoy/nestedset/src/QueryBuilder.php',
         'KategoriTableSeeder' => __DIR__ . '/../..' . '/database/seeds/KategoriTableSeeder.php',
+        'Kavist\\RajaOngkir\\Contracts\\HttpClientContract' => __DIR__ . '/..' . '/kavist/rajaongkir/src/Contracts/HttpClientContract.php',
+        'Kavist\\RajaOngkir\\Contracts\\LocationResourceContract' => __DIR__ . '/..' . '/kavist/rajaongkir/src/Contracts/LocationResourceContract.php',
+        'Kavist\\RajaOngkir\\Contracts\\SearchDriverContract' => __DIR__ . '/..' . '/kavist/rajaongkir/src/Contracts/SearchDriverContract.php',
+        'Kavist\\RajaOngkir\\Exceptions\\ApiResponseException' => __DIR__ . '/..' . '/kavist/rajaongkir/src/Exceptions/ApiResponseException.php',
+        'Kavist\\RajaOngkir\\Exceptions\\BasicHttpClientException' => __DIR__ . '/..' . '/kavist/rajaongkir/src/Exceptions/BasicHttpClientException.php',
+        'Kavist\\RajaOngkir\\Exceptions\\InvalidConfigurationException' => __DIR__ . '/..' . '/kavist/rajaongkir/src/Exceptions/InvalidConfigurationException.php',
+        'Kavist\\RajaOngkir\\Facades\\RajaOngkir' => __DIR__ . '/..' . '/kavist/rajaongkir/src/Facades/RajaOngkir.php',
+        'Kavist\\RajaOngkir\\HttpClients\\AbstractClient' => __DIR__ . '/..' . '/kavist/rajaongkir/src/HttpClients/AbstractClient.php',
+        'Kavist\\RajaOngkir\\HttpClients\\BasicClient' => __DIR__ . '/..' . '/kavist/rajaongkir/src/HttpClients/BasicClient.php',
+        'Kavist\\RajaOngkir\\Providers\\LaravelServiceProvider' => __DIR__ . '/..' . '/kavist/rajaongkir/src/Providers/LaravelServiceProvider.php',
+        'Kavist\\RajaOngkir\\RajaOngkir' => __DIR__ . '/..' . '/kavist/rajaongkir/src/RajaOngkir.php',
+        'Kavist\\RajaOngkir\\Resources\\AbstractLocation' => __DIR__ . '/..' . '/kavist/rajaongkir/src/Resources/AbstractLocation.php',
+        'Kavist\\RajaOngkir\\Resources\\AbstractResource' => __DIR__ . '/..' . '/kavist/rajaongkir/src/Resources/AbstractResource.php',
+        'Kavist\\RajaOngkir\\Resources\\Kota' => __DIR__ . '/..' . '/kavist/rajaongkir/src/Resources/Kota.php',
+        'Kavist\\RajaOngkir\\Resources\\OngkosKirim' => __DIR__ . '/..' . '/kavist/rajaongkir/src/Resources/OngkosKirim.php',
+        'Kavist\\RajaOngkir\\Resources\\Provinsi' => __DIR__ . '/..' . '/kavist/rajaongkir/src/Resources/Provinsi.php',
+        'Kavist\\RajaOngkir\\SearchDrivers\\AbstractDriver' => __DIR__ . '/..' . '/kavist/rajaongkir/src/SearchDrivers/AbstractDriver.php',
+        'Kavist\\RajaOngkir\\SearchDrivers\\BasicDriver' => __DIR__ . '/..' . '/kavist/rajaongkir/src/SearchDrivers/BasicDriver.php',
         'Laravel\\Tinker\\ClassAliasAutoloader' => __DIR__ . '/..' . '/laravel/tinker/src/ClassAliasAutoloader.php',
         'Laravel\\Tinker\\Console\\TinkerCommand' => __DIR__ . '/..' . '/laravel/tinker/src/Console/TinkerCommand.php',
         'Laravel\\Tinker\\TinkerCaster' => __DIR__ . '/..' . '/laravel/tinker/src/TinkerCaster.php',
@@ -4319,6 +4347,11 @@ class ComposerStaticInit24cc577772453de7c48092241d53fea5
         'Ramsey\\Uuid\\UuidInterface' => __DIR__ . '/..' . '/ramsey/uuid/src/UuidInterface.php',
         'Ramsey\\Uuid\\Validator\\GenericValidator' => __DIR__ . '/..' . '/ramsey/uuid/src/Validator/GenericValidator.php',
         'Ramsey\\Uuid\\Validator\\ValidatorInterface' => __DIR__ . '/..' . '/ramsey/uuid/src/Validator/ValidatorInterface.php',
+        'Rennokki\\QueryCache\\Contracts\\QueryCacheModuleInterface' => __DIR__ . '/..' . '/rennokki/laravel-eloquent-query-cache/src/Contracts/QueryCacheModuleInterface.php',
+        'Rennokki\\QueryCache\\FlushQueryCacheObserver' => __DIR__ . '/..' . '/rennokki/laravel-eloquent-query-cache/src/FlushQueryCacheObserver.php',
+        'Rennokki\\QueryCache\\Query\\Builder' => __DIR__ . '/..' . '/rennokki/laravel-eloquent-query-cache/src/Query/Builder.php',
+        'Rennokki\\QueryCache\\Traits\\QueryCacheModule' => __DIR__ . '/..' . '/rennokki/laravel-eloquent-query-cache/src/Traits/QueryCacheModule.php',
+        'Rennokki\\QueryCache\\Traits\\QueryCacheable' => __DIR__ . '/..' . '/rennokki/laravel-eloquent-query-cache/src/Traits/QueryCacheable.php',
         'SebastianBergmann\\CodeCoverage\\CodeCoverage' => __DIR__ . '/..' . '/phpunit/php-code-coverage/src/CodeCoverage.php',
         'SebastianBergmann\\CodeCoverage\\CoveredCodeNotExecutedException' => __DIR__ . '/..' . '/phpunit/php-code-coverage/src/Exception/CoveredCodeNotExecutedException.php',
         'SebastianBergmann\\CodeCoverage\\Driver\\Driver' => __DIR__ . '/..' . '/phpunit/php-code-coverage/src/Driver/Driver.php',

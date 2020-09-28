@@ -4,7 +4,7 @@
             <div class="col-6">
                 <div class="checkbox py-1">
                     <input id="select-all" type="checkbox">
-                    <label for="select-all" class="cart__header-select font-size-18 font-weight-semi-bold">Pilih Semua Produk</label>
+                    <label for="select-all" class="cart__header-select font-size-18 font-size-14-down-lg font-weight-semi-bold">Pilih Semua Produk</label>
                 </div>
             </div>
             <div class="col-6">
@@ -40,18 +40,18 @@
             @foreach($produk as $p)
             <div class="product card-body">
                 <div class="row">
-                    <div class="col-2 d-flex pr-0">
-                        <div class="b-narrow d-flex">
+                    <div class="col d-flex pr-0">
+                        <div class="d-flex">
                             <div class="checkbox product_check">
                                 <input id="{{ $sel_id }}-{{ $p->id }}" type="checkbox">
                                 <label for="{{ $sel_id }}-{{ $p->id }}">&nbsp;</label>
                             </div>
                         </div>
-                        <div class="b-narrow p-3">
+                        <div class="p-2 p-lg-3">
                             <img src="{{ get_produk_img($p->produk->fotoUtama) }}" data-src="" alt="" class="img-fluid lazyImage" data-loaded="true">
                         </div>
                     </div>
-                    <div class="col-10 pl-0 pt-3">
+                    <div class="col-8 col-lg-10 pl-0 pt-3">
                         <div class="product__name">
                             <a href="">
                                 <div class="product__name">
@@ -76,7 +76,7 @@
                                     </button>
                                 </span>
                                 <input type="text" name="quantity"
-                                    class="form-control input-number text-center" placeholder="1" value="{{ $p->qty }}" data-min="1" data-max="{{ $p->variasi->stok }}">
+                                    class="form-control input-number text-center" placeholder="1" value="{{ $p->qty }}" data-min="0" data-max="{{ $p->variasi->stok }}">
                                 <span class="input-group-btn">
                                     <button class="btn btn-primary ml-1 quantity-up"
                                         type="button" data-type="plus">
@@ -95,12 +95,13 @@
     <div class="card shadow shadow">
         <div class="card-body text-center">
         <div class="height-380 py-5">
-            <img class="empty-img" src="{{ asset('assets/img/placeholder/alamat.png') }}">
+            <img class="empty-img" src="{{ asset('assets/img/placeholder/cart_is_empty.png') }}">
             <div>
-                <h3 class="font-size-24 font-weight-bold mt-5">Alamat Pengiriman Belum Ditambahkan</h3>
+                <h3 class="font-size-24 font-weight-bold mt-5">Yah, keranjang belanja masih kosong</h3>
                 <p class="font-size-16"></p>
-                <button type="button" class="btn btn-primary btn-lg" id="btn-add_alamat">
-                    <i class="fa fa-plus mr-1"></i>Tambah Alamat</button>
+                <a href="{{ url('/') }}" class="btn btn-primary btn-lg" id="btn-add_alamat">
+                    <i class="fa fa-search mr-1"></i>Cari Produk
+                </a>
             </div>
         </div>
         </div>

@@ -14,98 +14,21 @@
         <div id="page-container" class="sidebar-inverse side-scroll page-header-fixed main-content-boxed">
 
             <!-- Header -->
-            <header id="page-header">
-                <!-- Header Content -->
-                <div class="content-header min-height-75">
-                    <div class="content-header-section w-100">
-                        <div class="row no-gutters">
-                            <div class="col d-flex">
-                                <!-- Toggle Sidebar -->
-                                <button type="button" class="btn btn-dual-secondary d-lg-none" data-toggle="layout" data-action="sidebar_toggle">
-                                    <i class="fa fa-navicon"></i>
-                                </button>
-
-                                <div class="content-header-item">
-                                    <a href="{{ url('/mitra') }}">
-                                        <img src="{{ asset('assets/img/logo/logo.png') }}" width="180px"/>
-                                    </a>
-                                </div>
-                                <div class="min-height-20 ml-10">
-                                    <h2 class="border-3x border-left border-primary font-size-h3 mb-0 my-5 pl-10 text-primary">Mitra</h2>
-                                </div>
-                            </div>
-                            <div class="col text-right">
-                                {{-- <ul class="nav-main-header">
-                                    <li>
-                                        <a class="active" href="javascript:void(0)">
-                                            <i class="si si-home d-none d-xl-inline-block"></i> Home
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0)">
-                                            <i class="si si-flag d-none d-xl-inline-block"></i> Notifications
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0)">
-                                            <i class="si si-envelope d-none d-xl-inline-block"></i> Messages
-                                        </a>
-                                    </li>
-                                </ul> --}}
-                                <a href="{{ route('mitra.daftar') }}" class="btn btn-outline-primary">Login</a>
-                                <a href="{{ route('mitra.daftar') }}" class="btn btn-primary">Daftar</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- END Header Content -->
-
-                <!-- Header Search -->
-                <div id="page-header-search" class="overlay-header">
-                    <div class="content-header content-header-fullrow">
-                        <form>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <!-- Close Search Section -->
-                                    <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-                                    <button type="button" class="btn btn-secondary px-15" data-toggle="layout" data-action="header_search_off">
-                                        <i class="fa fa-times"></i>
-                                    </button>
-                                    <!-- END Close Search Section -->
-                                </div>
-                                <input type="text" class="form-control" placeholder="Search or hit ESC.." id="page-header-search-input" name="page-header-search-input">
-                                <div class="input-group-append">
-                                    <button type="submit" class="btn btn-secondary px-15">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <!-- END Header Search -->
-
-                <!-- Header Loader -->
-                <div id="page-header-loader" class="overlay-header bg-primary">
-                    <div class="content-header content-header-fullrow text-center">
-                        <div class="content-header-item">
-                            <i class="fa fa-sun-o fa-spin text-white"></i>
-                        </div>
-                    </div>
-                </div>
-                <!-- END Header Loader -->
-            </header>
+            @include('mitra.layouts.header_front')
             <!-- END Header -->
 
             <!-- Main Container -->
             <main id="main-container">
                 <!-- Page Content -->
-                <div class="content pt-100">
-                    <div class="row">
-                        <div class="col-6">
-
-                        </div>
-                        <div class="col-6">
+                <div class="content">
+                    <div class="text-center">
+                        <h1 class="h4 font-w700 mt-30 mb-10"> Halo, Selamat Datang!</h1>
+                        <h2 class="h5 font-w400 text-muted mb-0">
+                           Silahkan Daftar Untuk Menjadi Mitra Asoy Mart. Jika Sudah Punya Akun? <a href="{{ route('mitra.login') }}">Login</a> Disini
+                        </h2>
+                    </div>
+                    <div class="mt-50 row">
+                        <div class="col-lg-6">
                             <div id="pendaftaran" class="block">
                                 <!-- Step Tabs -->
                                 <ul class="nav nav-tabs nav-tabs-alt nav-fill" role="tablist">
@@ -248,6 +171,9 @@
                                 </form>
                                 <!-- END Form -->
                             </div>
+                        </div>
+                        <div class="col">
+
                         </div>
                     </div>
                 </div>

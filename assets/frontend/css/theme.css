@@ -19634,6 +19634,10 @@ button.bg-indigo:focus {
   color: #fff !important;
 }
 
+.text-pink {
+  color: #ff69b4 !important;
+}
+
 .text-primary {
   color: #006837 !important;
 }
@@ -38128,4 +38132,22 @@ ul.menu-main_top > li:hover{
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
+}
+
+.slide-pagination{
+  position: absolute;
+  left: calc(25% + 20px);
+}
+@media (min-width: 780px){
+  .promoBanner img{
+    border-radius : 8px;
+    max-width: 591px;
+  }
+}
+
+@media only screen and (max-width: 600px){
+  .promoBanner img{
+    border-radius : 8px;
+    max-width: 400px;
+  }
 }

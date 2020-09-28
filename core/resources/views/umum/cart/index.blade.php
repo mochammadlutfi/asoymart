@@ -12,7 +12,7 @@
         </div>
 
         <div class="row">
-            <div class="col-md-8 col-sm-12" id="cart-content">
+            <div class="col-md-8 col-sm-12 px-1 px-sm-3" id="cart-content">
                 <div class="card shadow shadow">
                     <div class="card-body">
                         <div class="py-6 text-center">

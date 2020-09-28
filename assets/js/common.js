@@ -42,6 +42,7 @@ $(document).ready(function(){
                 });
             },
             success: function (response) {
+                $("#form-modallogin").find('input').removeClass('is-invalid');
                 if (response.fail === false) {
                     Swal.fire({
                         title: "Berhasil",
@@ -53,7 +54,7 @@ $(document).ready(function(){
                     window.setTimeout(function () {
                         location.reload();
                     }, 1500);
-                } else {
+                }else{
                     Swal.close();
                     for (control in response.errors) {
                         $('#field-' + control).addClass('is-invalid');
@@ -67,7 +68,6 @@ $(document).ready(function(){
             }
         });
     });
-
 });
 
 

@@ -14,7 +14,7 @@
                 <div id="sidebarNav1Collapse" class="collapse {{ Request::is('user/pembayaran', 'user/ordering') ? 'show' : null }}" data-parent="#sidebarNav">
                     <ul id="sidebarNav1" class="user-menu dropdown-list">
                         <!-- Menu List -->
-                        <li><a class="{{ Request::is('user/pembayaran') ? 'active' : null }}" href="{{ route('user.pembayaran') }}">Menunggu Pembayaran</a></li>
+                        <li><a class="{{ Request::is('user/pembayaran') ? 'active' : null }}" href="{{ route('user.belum_bayar') }}">Menunggu Pembayaran</a></li>
                         <li><a class="{{ Request::is('user/ordering') ? 'active' : null }}" href="{{ route('user.pesanan') }}">Daftar Transaksi</a></li>
                         <!-- End Menu List -->
                     </ul>

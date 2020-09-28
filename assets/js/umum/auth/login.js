@@ -12,7 +12,7 @@ $(document).ready(function() {
             beforeSend: function(){
                 Swal.fire({
                     title: 'Tunggu Sebentar...',
-                    text: ' ',
+                    text: 'Data Sedang Diproses!',
                     imageUrl: laroute.url('assets/img/loading.gif', ['']),
                     showConfirmButton: false,
                     allowOutsideClick: false,
@@ -40,8 +40,8 @@ $(document).ready(function() {
                 }else {
                     Swal.close();
                     for (control in response.errors) {
-                        $('#field-' + control).addClass('is-invalid');
-                        $('#error-' + control).html(response.errors[control]);
+                        $('#field_login-' + control).addClass('is-invalid');
+                        $('#error_login-' + control).html(response.errors[control]);
                     }
                 }
             },

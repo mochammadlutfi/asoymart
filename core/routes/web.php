@@ -1,5 +1,6 @@
 <?php
 
+use Kavist\RajaOngkir\Facades\RajaOngkir;
 /* --------------------- Common/User Routes START -------------------------------- */
 // Route::get('/coba', function () {
 // });
@@ -34,8 +35,10 @@ Route::namespace('Umum')->group(function(){
     });
     Route::name('user.')->prefix('user')->group(function () {
         Route::get('/profil','UserController@profil')->name('profil');
-        Route::get('/pembayaran','UserController@pembayaran')->name('pembayaran');
-        Route::get('/ordering','UserController@pesanan')->name('pesanan');
+
+
+        Route::get('/pembayaran','OrderController@belum_bayar')->name('belum_bayar');
+        Route::get('/pesanan-saya','OrderController@index')->name('pesanan');
 
         Route::group(['prefix' => 'alamat'], function () {
             Route::get('/','AlamatController@index')->name('alamat');
@@ -56,7 +59,8 @@ Route::namespace('Umum')->group(function(){
     });
 
     Route::group(['prefix' => 'checkout'], function () {
-        Route::post('/', 'CheckoutController@index')->name('checkout');
+        Route::match(['get', 'post'], '/','CheckoutController@index')->name('checkout');
+        // Route::post('/', 'CheckoutController@index');
         Route::post('/post', 'CheckoutController@simpan')->name('checkout.simpan');
     });
 

@@ -5,7 +5,9 @@
             <div class="container">
                 <div class="d-flex align-items-center">
                     <div class="topbar-left">
-                        <a href="#" class="text-gray-110 font-size-13 hover-on-dark">Lokasi Anda!</a>
+                        <a href="#" class="text-gray-110 font-size-13 hover-on-dark">
+                            <i class="fa fa-map-marked-alt mr-2"></i>Lokasi Anda!
+                        </a>
                     </div>
                     <div class="topbar-right ml-auto">
                         <ul class="list-inline mb-0">
@@ -66,7 +68,10 @@
                                             data-target="#basicsCollapseOne"
                                             aria-expanded="true"
                                             aria-controls="basicsCollapseOne">
-                                            <span class="text-gray-90 font-size-15">Kategori <i class="ml-2 ec ec-arrow-down-search"></i></span>
+                                            <span class="text-gray-90 font-size-15">
+                                                Kategori
+                                                <i class="ml-2 ec ec-arrow-down-search"></i>
+                                            </span>
                                         </button>
                                     </div>
                                     <div id="basicsCollapseOne" class="collapse vertical-menu v3 border-top-primary border-top border-width-2"
@@ -147,7 +152,7 @@
                                 <!-- End Search -->
 
                                 <li class="col mx-sm-2 d-none d-xl-block">
-                                    <div id="cartTopHover" class="text-gray-90 position-relative d-flex c-pointer" data-toggle="tooltip" data-placement="top" title="Cart"
+                                    <div id="cartTopHover" class="text-gray-90 position-relative d-flex c-pointer" data-toggle="tooltip" data-placement="top" title="Keranjang Belanja"
                                         aria-controls="cartDropDown"
                                         aria-haspopup="true"
                                         aria-expanded="false"
@@ -176,7 +181,7 @@
 
                                 <!-- Notifikasi -->
                                 <li class="col mx-sm-2 d-none d-xl-block">
-                                    <div id="notifHover" class="text-gray-90 position-relative d-flex c-pointer" data-toggle="tooltip" data-placement="top" title="Cart"
+                                    <div id="notifHover" class="text-gray-90 position-relative d-flex c-pointer" data-toggle="tooltip" data-placement="top" title="Notifikasi"
                                         aria-controls="notifDropDown"
                                         aria-haspopup="true"
                                         aria-expanded="false"
@@ -208,7 +213,7 @@
                                         aria-controls="userAuth"
                                         aria-haspopup="true"
                                         aria-expanded="false"
-                                        data-unfold-event="hover"
+                                        data-unfold-event="click"
                                         data-unfold-target="#userAuth"
                                         data-unfold-type="css-animation"
                                         data-unfold-duration="300"
@@ -223,15 +228,18 @@
                                             <i class="ec ec-user mr-1 font-size-30"></i>Hi,  {{ auth()->guard('web')->user()->nama }}
                                         </span>
                                     </a>
-                                    <div id="userAuth" class="font-size-16 user-dropdown dropdown-menu dropdown-unfold border-top border-top-primary mt-5 border-width-2 border-left-0 border-right-0 border-bottom-0 left-auto right-0" aria-labelledby="userAuthInvoker">
-                                        <a class="user-dropdown-item dropdown-item font-size-16" href="{{ route('user.profil') }}">
-                                            Profil
+                                    <div id="userAuth" class="user-dropdown dropdown-menu dropdown-unfold border-top border-top-primary mt-4 border-width-2 border-left-0 border-right-0 border-bottom-0 left-auto right-0 min-width-270" aria-labelledby="userAuthInvoker">
+                                        <a class="user-dropdown-item dropdown-item font-size-16 border-bottom" href="{{ route('user.profil') }}">
+                                            <i class="fa fa-address-card mr-2"></i> Profil Saya
                                         </a>
-                                        <a class="user-dropdown-item dropdown-item font-size-16" href="#">
-                                            Pesanan Saya
+                                        <a class="user-dropdown-item dropdown-item font-size-16 border-bottom" href="{{ route('user.pesanan') }}">
+                                            <i class="fa fa-shopping-bag mr-2"></i> Pesanan Saya
+                                        </a>
+                                        <a class="user-dropdown-item dropdown-item font-size-16 border-bottom" href="{{ route('user.profil') }}">
+                                            <i class="fa fa-heart text-pink mr-2"></i> Wishlist
                                         </a>
                                         <a class="user-dropdown-item dropdown-item font-size-16" href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                            Keluar
+                                            <i class="fa fa-sign-out-alt mr-2"></i>Keluar
                                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                                 @csrf
                                             </form>

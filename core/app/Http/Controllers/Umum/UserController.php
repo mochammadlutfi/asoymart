@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Umum;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Produk;
-
+use App\Models\Order;
 class UserController extends Controller
 {
     /**
@@ -31,8 +31,10 @@ class UserController extends Controller
 
     public function pesanan()
     {
+        $order = Order::where('user_id', auth()->guard('web')->user()->nama)->where('bayar_status', 'unpaid')->orderBy('tgl_transkasi', 'DESC')->get();
 
-        return view('umum.user.pesanan');
+        
+        return view('umum.user.pesanan', compact('order'));
     }
 
     public function pembayaran()

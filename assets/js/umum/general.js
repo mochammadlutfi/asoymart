@@ -58,15 +58,23 @@ function getVariantPrice(){
 }
 
 $(document).on('click', '#btn-add-cart', function () {
-    // $('#addToCart').find('input[type=hidden].ck').val(3);
-    // $('#addToCart').modal();
     if(checkAddToCartValidity()) {
         $('#error_cart').addClass('hide');
         $.ajax({
            type:"POST",
            url: laroute.route('cart.addToCart'),
            data: $('#option-choice-form').serializeArray(),
+           beforeSend: function(){
+               Swal.fire({
+                   title: 'Tunggu Sebentar...',
+                   text: 'Data Sedang Di Proses!',
+                   imageUrl: laroute.url('assets/img/loading.gif', ['']),
+                   showConfirmButton: false,
+                   allowOutsideClick: false,
+               });
+           },
            success: function(response){
+               Swal.close();
                 $('#cartTopHover span').html(parseInt($('#cartTopHover span').text(), 10) +response.data.incr);
                 $('#addToCart').find('.product__name').html(response.data.produk_nama);
                 $('#addToCart').find('.product__img img').attr("src", response.data.produk_img);

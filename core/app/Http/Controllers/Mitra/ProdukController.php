@@ -73,7 +73,7 @@ class ProdukController extends Controller
     {
         $rules = [
             'nama' => 'required',
-            'deskripsi' => 'required|min:100|max:3000',
+            'deskripsi' => 'required|min:100',
             'kategori' => 'required',
             'foto.0' => 'required',
             'berat' => 'required',
@@ -243,7 +243,7 @@ class ProdukController extends Controller
         // dd($request->all());
         $rules = [
             'nama' => 'required',
-            'deskripsi' => 'required|min:100|max:3000',
+            'deskripsi' => 'required|min:100',
             'kategori' => 'required',
             'foto.0' => 'required',
             'berat' => 'required',

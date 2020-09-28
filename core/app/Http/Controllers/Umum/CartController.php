@@ -39,11 +39,17 @@ class CartController extends Controller
             $user = auth()->guard('web')->user()->id;
             if($request->has_variasi === '1')
             {
-                $variant = $request->var1.'-'.$request->var2;
+                if($request->has('var2'))
+                {
+                    $variant = $request->var1.'-'.$request->var2;
+                }else{
+                    $variant = $request->var1;
+                }
                 $produk = ProdukVariasi::where('variant', $variant)->where('produk_id', $request->id)->first();
             }else{
                 $produk = ProdukVariasi::where('produk_id', $request->id)->first();
             }
+            // dd($produk);
             $cart = Cart::where('user_id', $user)->where('produk_id', $produk->produk_id)->where('variasi_id', $produk->id)->first();
             if(empty($cart))
             {
