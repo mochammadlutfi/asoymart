@@ -10,7 +10,7 @@
                 @include('umum.user.menu')
             </div>
             <div class="col-lg-9">
-                <div class="card shadow text-center">
+                <div class="card shadow-lg text-center border-lg-down-0">
                     <div class="card-header">
                         <ul class="nav nav-pills card-header-pills">
                             <li class="nav-item">

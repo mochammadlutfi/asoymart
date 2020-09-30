@@ -1,5 +1,5 @@
 
-<aside class="card">
+<aside class="card d-none d-sm-block">
     <div class="card-body shadow">
         <ul id="sidebarNav" class="user-menu">
             <li>

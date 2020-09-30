@@ -29,7 +29,11 @@
     <body>
 
         <!-- ========== HEADER ========== -->
-        @include('umum.layouts.header')
+        @if(Route::current()->getName() === 'checkout' || Route::current()->getName() === 'checkout.bayar')
+            @include('umum.layouts.header_min')
+        @else
+            @include('umum.layouts.header')
+        @endif
         <!-- ========== END HEADER ========== -->
 
         <!-- ========== MAIN CONTENT ========== -->
@@ -80,7 +84,8 @@
         <script src="{{ asset('assets/frontend/vendor/jquery-validation/dist/jquery.validate.min.js') }}"></script>
         <script src="{{ asset('assets/frontend/vendor/fancybox/jquery.fancybox.min.js') }}"></script>
         <script src="{{ asset('assets/js/plugins/slick-carousel/slick/slick.js') }}"></script>
-        <script src="{{ asset('assets/js/plugins/bootstrap-select/dist/js/bootstrap-select.min.js') }}"></script>
+        {{-- <script src="{{ asset('assets/js/plugins/bootstrap-select/dist/js/bootstrap-select.min.js') }}"></script> --}}
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.18/dist/js/bootstrap-select.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/accounting.js/0.4.1/accounting.min.js"></script>
 
         <!-- JS Electro -->

@@ -7,18 +7,14 @@ use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
 
 class OrderBayar extends Model
 {
-    use Uuid;
-
     protected $table = 'order_bayar';
-    protected $keyType = 'string';
-    public $incrementing = false;
 
     protected $fillable = [
-        'order_id', 'method', 'merchant', 'jumlah', 'tgl_bayar', 'status'
+        'order_id', 'method', 'layanan', 'virtual_account', 'jumlah', 'tgl_bayar', 'status'
     ];
 
-    public function variasi()
+    public function order()
     {
-        return $this->belongsTo('App\Models\ProdukVariasi', 'variasi_id');
+        return $this->belongsTo('App\Models\Order', 'order_id');
     }
 }

@@ -15,22 +15,22 @@ class CartController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(Request $request)
+    public function index()
     {
-        if ($request->ajax()) {
-            $cart = Cart::where('user_id', auth()->guard('web')->user()->id)->with('bisnis:id,nama')->orderBy('updated_at', 'DESC')->get();
-            $cart = $cart->groupBy(function ($bisnis) {
-                return $bisnis->bisnis_id.'-'.$bisnis->bisnis->nama;
-            })->all();
-            return response()->json([
-                'fail' => false,
-                'html' => view('umum.cart.include.data-cart', compact('cart'))->render(),
-            ]);
-        }
         return view('umum.cart.index');
     }
 
-
+    public function data(Request $request)
+    {
+        $cart = Cart::where('user_id', auth()->guard('web')->user()->id)->with('bisnis:id,nama')->orderBy('updated_at', 'DESC')->get();
+        $cart = $cart->groupBy(function ($bisnis) {
+            return $bisnis->bisnis_id.'-'.$bisnis->bisnis->nama;
+        })->all();
+        return response()->json([
+            'fail' => false,
+            'html' => view('umum.cart.include.data-cart', compact('cart'))->render(),
+        ]);
+    }
 
     public function addToCart(Request $request)
     {

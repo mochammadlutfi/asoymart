@@ -4885,6 +4885,72 @@
         ]
     },
     {
+        "name": "spatie/laravel-webhook-client",
+        "version": "2.7.2",
+        "version_normalized": "2.7.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/spatie/laravel-webhook-client.git",
+            "reference": "f50b9366c5f266c7ac977b59e7fe1e74725aebc2"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/spatie/laravel-webhook-client/zipball/f50b9366c5f266c7ac977b59e7fe1e74725aebc2",
+            "reference": "f50b9366c5f266c7ac977b59e7fe1e74725aebc2",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/bus": "^7.0|^8.0",
+            "illuminate/database": "^7.0|^8.0",
+            "illuminate/support": "^7.0|^8.0",
+            "php": "^7.4"
+        },
+        "require-dev": {
+            "orchestra/testbench": "^5.0|^6.0",
+            "phpunit/phpunit": "^9.3.8",
+            "vimeo/psalm": "^3.11"
+        },
+        "time": "2020-09-08T20:19:19+00:00",
+        "type": "library",
+        "extra": {
+            "laravel": {
+                "providers": [
+                    "Spatie\\WebhookClient\\WebhookClientServiceProvider"
+                ]
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Spatie\\WebhookClient\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Freek Van der Herten",
+                "email": "freek@spatie.be",
+                "homepage": "https://spatie.be",
+                "role": "Developer"
+            }
+        ],
+        "description": "Receive webhooks in Laravel apps",
+        "homepage": "https://github.com/spatie/laravel-webhook-client",
+        "keywords": [
+            "laravel-webhook-client",
+            "spatie"
+        ],
+        "funding": [
+            {
+                "url": "https://spatie.be/open-source/support-us",
+                "type": "custom"
+            }
+        ]
+    },
+    {
         "name": "swiftmailer/swiftmailer",
         "version": "v6.2.3",
         "version_normalized": "6.2.3.0",

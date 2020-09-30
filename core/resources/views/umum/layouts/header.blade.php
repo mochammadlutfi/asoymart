@@ -152,7 +152,7 @@
                                         aria-controls="cartDropDown"
                                         aria-haspopup="true"
                                         aria-expanded="false"
-                                        data-unfold-event="click"
+                                        data-unfold-event="hover"
                                         data-unfold-target="#cartDropDown"
                                         data-unfold-type="css-animation"
                                         data-unfold-duration="150"

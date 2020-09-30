@@ -1,15 +1,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-<meta name="description" content="Warung Asoy">
-<meta name="author" content="Warung Asoy">
+<meta name="description" content="Asoy Mart - Toko Online dengan Pengalaman Belanja Online yang Fun & Simple. Beli Gadget Baru, Groceries, Fashion, Sports, Elektronik, Otomotif ✅ Gratis Ongkir">
+<meta name="author" content="Asoy Mart">
 <meta name="robots" content="noindex, nofollow">
 
 <!-- Open Graph Meta -->
-<meta property="og:title" content="Warung Asoy">
-<meta property="og:site_name" content="Warung Asoy">
-<meta property="og:description" content="Warung Asoy">
+<meta property="og:title" content="Asoy Mart | Belanja Mudah & Murah">
+<meta property="og:site_name" content="Asoy Mart">
+<meta property="og:description" content="Asoy Mart - Toko Online dengan Pengalaman Belanja Online yang Fun & Simple. Beli Gadget Baru, Groceries, Fashion, Sports, Elektronik, Otomotif ✅ Gratis Ongkir">
 <meta property="og:type" content="website">
-<meta property="og:url" content="">
+<meta property="og:url" content="https://asoymart.com">
 <meta property="og:image" content="">
 
 

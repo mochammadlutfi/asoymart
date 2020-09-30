@@ -41,7 +41,7 @@
                     <div class="mb-2 product-body">
                         <div class="border-bottom mb-lg-3 pb-md-1 pb-lg-3">
                             <h2 class="font-size-30-lg font-size-16 font-weight-bold text-lh-1dot2 ">{{ $produk->nama }}</h2>
-                            <div class="mb-2 d-none d-block-lg">
+                            <div class="mb-2 d-none d-lg-block">
                                 <a class="d-inline-flex align-items-center small font-size-15 text-lh-1" href="#">
                                     <div class="text-warning mr-2">
                                         <small class="fas fa-star"></small>
@@ -138,7 +138,7 @@
                         <div class="alert alert-danger hide" id="error_cart" role="alert">
                             Silahkan pilih variasi terlebih dahulu
                         </div>
-                        <div class="border-top py-3 d-none d-block-lg">
+                        <div class="border-top py-3 d-none d-lg-block">
                             <button href="#" class="btn btn btn-outline-primary font-weight-bold" id="btn-buy-now">
                                 Beli Sekarang
                             </button>
@@ -146,7 +146,7 @@
                                 Tambah Ke Keranjang
                             </button>
                         </div>
-                        <div class="border-top py-3 d-none d-block-lg">
+                        <div class="border-top py-3 d-none d-lg-block">
                             <button class="btn btn-outline-gray-6 font-size-25 py-2" type="button">
                                 <i class="fa fa-heart"></i>
                             </button>

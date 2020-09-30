@@ -10,8 +10,6 @@ class OrderDetail extends Model
     use Uuid;
 
     protected $table = 'order_detail';
-    protected $keyType = 'string';
-    public $incrementing = false;
 
     protected $fillable = [
         'order_id', 'produk_id', 'variasi_id', 'quantity', 'harga', 'sub_total', 'coupon_id'

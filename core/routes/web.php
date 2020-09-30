@@ -37,7 +37,8 @@ Route::namespace('Umum')->group(function(){
         Route::get('/','UserController@index')->name('index');
         Route::get('/profil','UserController@profil')->name('profil');
         Route::get('/pembayaran','OrderController@belum_bayar')->name('belum_bayar');
-        Route::get('/pesanan-saya','OrderController@index')->name('pesanan');
+        Route::get('/pesanan','OrderController@index')->name('pesanan');
+        Route::get('/pesanan/invoice/{invoice_no}','OrderController@invoice')->name('invoice');
 
         Route::group(['prefix' => 'alamat'], function () {
             Route::get('/','AlamatController@index')->name('alamat');
@@ -45,22 +46,24 @@ Route::namespace('Umum')->group(function(){
             Route::get('/edit/{id}', 'AlamatController@edit')->name('alamat.edit');
             Route::post('/update', 'AlamatController@update')->name('alamat.update');
             Route::get('/hapus/{id}', 'AlamatController@hapus')->name('alamat.hapus');
+            Route::get('/json', 'AlamatController@json')->name('alamat.json');
         });
     });
 
     Route::group(['prefix' => 'cart'], function () {
         Route::get('/', 'CartController@index')->name('cart');
-        Route::post('/nav-cart-items', 'CartController@updateNavCart')->name('cart.nav_cart');
+        Route::get('/data', 'CartController@data')->name('cart.data');
         Route::post('/show-cart-modal', 'CartController@showCartModal')->name('cart.showCartModal');
         Route::post('/addtocart', 'CartController@addToCart')->name('cart.addToCart');
         Route::post('/hapus', 'CartController@hapus')->name('cart.hapus');
         Route::post('/updateQuantity', 'CartController@updateQuantity')->name('cart.updateQuantity');
-    });
 
-    Route::group(['prefix' => 'checkout'], function () {
-        Route::match(['get', 'post'], '/','CheckoutController@index')->name('checkout');
-        // Route::post('/', 'CheckoutController@index');
-        Route::post('/post', 'CheckoutController@simpan')->name('checkout.simpan');
+        Route::group(['prefix' => 'checkout'], function () {
+            Route::match(['get', 'post'], '/','CheckoutController@index')->name('checkout');
+            Route::post('/pembayaran', 'CheckoutController@pembayaran')->name('checkout.bayar');
+            Route::post('/post', 'CheckoutController@simpan')->name('checkout.simpan');
+            Route::get('/bayar', 'CheckoutController@bayar');
+        });
     });
 
     Route::post('/variant_price', 'ProdukController@variant_price')->name('variant_price');

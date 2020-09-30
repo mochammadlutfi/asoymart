@@ -19,7 +19,7 @@
                         <form id="form-profil" onsubmit="return false;">
                             <div class="row">
                                 @csrf
-                                <div class="col-8">
+                                <div class="col-lg-8">
                                     <div class="form-group">
                                         <label class="form-label" for="field-nama">Nama Lengkap
                                             <span class="text-danger">*</span>

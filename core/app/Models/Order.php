@@ -15,7 +15,7 @@ class Order extends Model
     public $incrementing = false;
 
     protected $fillable = [
-        'status', 'bayar_status', 'alamat_kirim', 'user_id', 'final_total', 'tgl_transaksi'
+        'status', 'bayar_status', 'alamat_kirim', 'user_id', 'final_total', 'tgl_transaksi', 'alamat_kirim', 'invoice_no'
     ];
 
     public function bayaran()
@@ -33,9 +33,9 @@ class Order extends Model
         return $this->belongsTo('App\Models\Mitra', 'dibuat_oleh', 'id');
     }
 
-    public function pembelian()
+    public function detail()
     {
-        return $this->hasMany(\App\Models\Pembelian::class);
+        return $this->hasMany(\App\Models\OrderDetail::class);
     }
 
     public function penjualan()

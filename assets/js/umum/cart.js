@@ -1,15 +1,4 @@
 $(document).ready(function () {
-    // $('#cart-content').html(
-    //     `<div class="card shadow shadow">
-    //     <div class="card-body text-center">
-    //     <div class="py-6">
-    //         <div class="height-50 spinner-grow text-primary width-50" role="status">
-    //             <span class="sr-only">Loading...</span>
-    //           </div>
-    //     </div>
-    //     </div>
-    // </div>`
-    // );
     load_cart();
 });
 
@@ -76,7 +65,7 @@ function updateCart()
 function load_cart()
 {
     $.ajax({
-        url: laroute.route('cart'),
+        url: laroute.route('cart.data'),
         type: "GET",
         dataType: "JSON",
         success: function(response) {
@@ -87,6 +76,7 @@ function load_cart()
         }
     });
 }
+
 $(document).on('click', '#hapus-all', function () {
     Swal.fire({
         title: "Anda Yakin?",

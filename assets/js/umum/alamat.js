@@ -218,7 +218,6 @@ $(document).ready(function () {
         });
     });
 
-
     $(document).on('click', '.btn-hapus_alamat', function () { 
         id = $(this).attr('data-id');
         Swal.fire({

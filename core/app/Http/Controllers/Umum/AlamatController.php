@@ -196,4 +196,14 @@ class AlamatController extends Controller
             return response()->json($data);
         }
     }
+
+    public function json()
+    {
+        $user = auth()->user()->id;
+        $data = Alamat::where('user_id', $user)->get()->toArray();
+        return response()->json([
+            'fail' => false,
+            'data' => $data,
+        ]);
+    }
 }
