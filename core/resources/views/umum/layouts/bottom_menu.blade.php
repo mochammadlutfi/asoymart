@@ -1,4 +1,4 @@
-<nav class="d-block d-md-none">
+<nav class="d-block d-lg-none">
     <div class="bottomnav">
         @if(Route::current()->getName() === 'produk.detail')
             <div class="bottomnav__item w-20">

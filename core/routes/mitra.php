@@ -10,6 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::prefix('mitra')->name('mitra.')->namespace('Mitra\Auth')->group(function() {
     Route::get('/login','LoginController@showLoginForm')->name('login');
     Route::post('/login','LoginController@login')->name('loginPost');
@@ -42,6 +43,17 @@ Route::prefix('mitra')->name('mitra.')->namespace('Mitra')->group(function() {
         Route::get('/','PenjualanController@index')->name('order');
     });
 
+    Route::group(['prefix' => 'keuangan'], function () {
+
+        Route::group(['prefix' => 'rekening-bank'], function () {
+            Route::get('/','RekeningController@index')->name('rekening');
+            Route::post('/simpan', 'RekeningController@simpan')->name('rekening.simpan');
+            Route::get('/edit/{id}', 'RekeningController@edit')->name('rekening.edit');
+            Route::post('/update', 'RekeningController@update')->name('rekening.update');
+            Route::get('/hapus/{id}', 'RekeningController@hapus')->name('rekening.hapus');
+            Route::post('/bank', 'RekeningController@bank')->name('rekening.bank');
+        });
+    });
 
     Route::group(['prefix' => 'toko'], function () {
         Route::get('/','TokoController@index')->name('toko.profil');
@@ -55,4 +67,6 @@ Route::prefix('mitra')->name('mitra.')->namespace('Mitra')->group(function() {
             Route::get('/hapus/{id}', 'EtalaseTokoController@hapus')->name('etalase.hapus');
         });
     });
+
+
 });

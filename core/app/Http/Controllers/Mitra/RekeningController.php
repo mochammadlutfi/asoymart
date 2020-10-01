@@ -6,9 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
-use App\Models\Etalase;
+use App\Models\Rekening;
+use App\Models\Bank;
 use Yajra\DataTables\DataTables;
-class EtalaseTokoController extends Controller
+class RekeningController extends Controller
 {
     /**
      * Only Authenticated users for "admin" guard
@@ -29,16 +30,20 @@ class EtalaseTokoController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Etalase::where('user_id', auth()->guard('web')->user()->id)->orderBy('created_at', 'DESC')->get();
+            $data = Rekening::where('user_id', auth()->guard('web')->user()->id)->orderBy('created_at', 'DESC')->get();
             return Datatables::of($data)
             ->addIndexColumn()
+            ->addColumn('bank', function($row){
+
+                return $row->bank->name;
+            })
             ->addColumn('nama', function($row){
 
                     return $row->nama;
             })
-            ->addColumn('produk', function($row){
+            ->addColumn('rekening', function($row){
 
-                return '';
+                return $row->rekening_no;
             })
             ->addColumn('aksi', function($row){
 
@@ -50,18 +55,24 @@ class EtalaseTokoController extends Controller
             ->make(true);
         }
 
-        return view('mitra.toko.etalase');
+        return view('mitra.keuangan.rekening');
     }
 
     public function simpan(Request $request)
     {
 
         $rules = [
-            'nama' => 'required|max:30',
+            'nama' => 'required|max:150',
+            'rekening' => 'required|numeric|digits:13',
+            'bank' => 'required',
         ];
 
         $pesan = [
-            'nama.required' => 'Nama Etalase Wajib Diisi!',
+            'nama.required' => 'Atas Nama Rekening Wajib Diisi!',
+            'rekening.required' => 'No Rekening Wajib Diisi!',
+            'rekening.numeric' => 'No Rekening Harus Angka!',
+            'rekening.digits' => 'No Rekening Harus 13 Angka!',
+            'bank.required' => 'Bank Wajib Diisi!',
         ];
 
         $validator = Validator::make($request->all(), $rules, $pesan);
@@ -73,10 +84,11 @@ class EtalaseTokoController extends Controller
         }else{
             DB::beginTransaction();
             try{
-                $data = new Etalase();
+                $data = new Rekening();
                 $data->user_id = auth()->guard('web')->user()->id;
+                $data->bank_id = $request->bank;
                 $data->nama = $request->nama;
-                $data->urutan = 0;
+                $data->rekening_no = $request->rekening;
                 $data->save();
             }catch(\QueryException $e){
                 DB::rollback();
@@ -95,13 +107,18 @@ class EtalaseTokoController extends Controller
 
     public function update(Request $request)
     {
-        // dd($request->all());
         $rules = [
-            'nama' => 'required|max:30',
+            'nama' => 'required|max:150',
+            'rekening' => 'required|numeric|digits:13',
+            'bank' => 'required',
         ];
 
         $pesan = [
-            'nama.required' => 'Nama Etalase Wajib Diisi!',
+            'nama.required' => 'Atas Nama Rekening Wajib Diisi!',
+            'rekening.required' => 'No Rekening Wajib Diisi!',
+            'rekening.numeric' => 'No Rekening Harus Angka!',
+            'rekening.digits' => 'No Rekening Harus 13 Angka!',
+            'bank.required' => 'Bank Wajib Diisi!',
         ];
 
         $validator = Validator::make($request->all(), $rules, $pesan);
@@ -113,10 +130,11 @@ class EtalaseTokoController extends Controller
         }else{
             DB::beginTransaction();
             try{
-                $data = Etalase::find($request->id);
+                $data = Rekening::find($request->id);
                 $data->user_id = auth()->guard('web')->user()->id;
+                $data->bank_id = $request->bank;
                 $data->nama = $request->nama;
-                $data->urutan = 0;
+                $data->rekening_no = $request->rekening;
                 $data->save();
             }catch(\QueryException $e){
                 DB::rollback();
@@ -134,7 +152,7 @@ class EtalaseTokoController extends Controller
     }
 
     public function edit($id){
-        $data = Etalase::find($id);
+        $data = Rekening::find($id);
         if($data){
             return response()->json($data);
         }
@@ -142,7 +160,7 @@ class EtalaseTokoController extends Controller
 
     public function hapus($id)
     {
-        $data = Etalase::destroy($id);
+        $data = Rekening::destroy($id);
         if($data){
             return response()->json([
                 'fail' => false,
@@ -150,20 +168,18 @@ class EtalaseTokoController extends Controller
         }
     }
 
-    public function json(Request $request)
+    public function bank(Request $request)
     {
         if(!isset($request->searchTerm)){
-            $fetchData = Satuan::where('bisnis_id', Session::get('bisnis.bisnis_id'))
-            ->orwhere('bisnis_id', null)->orderBy('created_at', 'DESC')->get();
+            $fetchData = Bank::orderBy('created_at', 'DESC')->get();
           }else{
             $cari = $request->searchTerm;
-            $fetchData = Satuan::where('bisnis_id', Session::get('bisnis.bisnis_id'))->orwhere('bisnis_id', null)
-            ->where('nama','LIKE',  '%' . $cari .'%')->orderBy('created_at', 'DESC')->get();
+            $fetchData = Bank::where('name','LIKE',  '%' . $cari .'%')->orderBy('created_at', 'DESC')->get();
           }
 
           $data = array();
           foreach($fetchData as $row) {
-            $data[] = array("id" =>$row->id, "text"=>$row->nama);
+            $data[] = array("id" =>$row->id, "text"=>$row->name);
           }
 
           return response()->json($data);

@@ -50,7 +50,7 @@ class OrderController extends Controller
     {
         $order = Order::where('order.user_id', auth()->guard('web')->user()->id)->where('invoice_no', $invoice_no)->first();
         $produk = OrderDetail::where('order_id', $order->id)->with('bisnis:id,nama',)->orderBy('updated_at', 'DESC')->get();
-
+        // dd($order->alamat_kirim->penerima);
         return view('umum.user.invoice', compact('order', 'produk'));
     }
 

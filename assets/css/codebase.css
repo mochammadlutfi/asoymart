@@ -10944,6 +10944,7 @@ a.badge-secondary:focus {
     width: 100%;
     height: 100%;
     background-color: #fff;
+    border-right: 1px solid #eee!important;
     overflow-y: auto;
     transform: translateX(-100%) translateY(0) translateZ(0);
     -webkit-overflow-scrolling: touch;
@@ -10968,7 +10969,7 @@ a.badge-secondary:focus {
 
 @media (min-width:992px) {
     #sidebar {
-        width: 230px
+        width: 260px
     }
     .sidebar-o #sidebar {
         transform: translateX(0) translateY(0) translateZ(0)
@@ -11230,7 +11231,7 @@ a.badge-secondary:focus {
 @media (min-width:992px) {
     #page-container.side-scroll #sidebar .content-header,
     #page-container.side-scroll #sidebar .content-side {
-        width: 230px!important
+        width: 260px!important
     }
     #page-container.side-scroll #side-overlay .content-header,
     #page-container.side-scroll #side-overlay .content-side {
@@ -11986,6 +11987,10 @@ a.btn-block-option:focus {
     color: #000
 }
 
+.nav-main a:hover {
+    background-color: #F3F4F5;
+}
+
 .sidebar-inverse #sidebar .nav-main a.active,
 .sidebar-inverse #sidebar .nav-main a:focus,
 .sidebar-inverse #sidebar .nav-main a:hover {
@@ -12528,6 +12533,61 @@ fieldset[disabled] .form-material.floating>label {
 }
 
 .img-avatar.img-avatar-square {
+    border-radius: 0
+}
+
+.img-toko {
+    display: inline-block!important;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 2px solid #FFFFFF;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.12);
+}
+
+.img-toko.img-toko16 {
+    width: 16px;
+    height: 16px
+}
+
+.img-toko.img-toko20 {
+    width: 20px;
+    height: 20px
+}
+
+.img-toko.img-toko32 {
+    width: 32px;
+    height: 32px
+}
+
+.img-toko.img-toko48 {
+    width: 48px;
+    height: 48px
+}
+
+.img-toko.img-toko96 {
+    width: 96px;
+    height: 96px
+}
+
+.img-toko.img-toko128 {
+    width: 128px;
+    height: 128px
+}
+
+.img-toko-thumb {
+    margin: 5px;
+    box-shadow: 0 0 0 5px hsla(0, 0%, 100%, .4)
+}
+
+.img-toko.img-toko-rounded {
+    border-radius: 3px
+}
+
+.img-toko.img-toko-square {
     border-radius: 0
 }
 

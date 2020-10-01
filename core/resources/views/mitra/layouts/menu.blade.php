@@ -40,7 +40,7 @@
                 <a class="{{ Request::is('mitra/keuangan/penarikan-dana') ? 'active' : null }}" href="{{ route('mitra.produk') }}">Penarikan Dana</a>
             </li>
             <li>
-                <a class="{{ Request::is('mitra/keuangan/rekening-bank') ? 'active' : null }}" href="{{ route('mitra.produk') }}">Rekening Bank</a>
+                <a class="{{ Request::is('mitra/keuangan/rekening-bank') ? 'active' : null }}" href="{{ route('mitra.rekening') }}">Rekening Bank</a>
             </li>
         </ul>
     </li>

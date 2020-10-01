@@ -24,23 +24,16 @@
         </div>
         <!-- END Side Header -->
         @if(Auth::guard('web')->check())
-         <!-- Side User -->
-         <div class="content-side content-side-full content-side-user px-10 align-parent">
-
+         <!-- Toko -->
+         <div class="align-parent bg-body-light border-2x border-bottom content-side px-10">
             <!-- Visible only in normal mode -->
             <div class="sidebar-mini-hidden-b text-center">
-                <a class="img-link" href="be_pages_generic_profile.html">
-                    <img class="img-avatar" src="{{ asset('assets/img/placeholder/toko.png') }}" alt="">
-                </a>
-                <ul class="list-inline mt-10">
-                    <li class="list-inline-item">
-                        <a class="link-effect text-dual-primary-dark font-size-sm font-w600 text-uppercase" href="">{{ auth()->guard('web')->user()->anggota_id }}</a>
-                    </li>
-                </ul>
+                <img class="img-toko img-toko96" src="{{ get_toko_img(Auth::guard('web')->user()->bisnis->logo) }}" alt="">
+                <div class="font-size-lg font-w600 py-3 text-dual-primary-dark" href="#">{{ Auth::guard('web')->user()->bisnis->nama }}</div>
             </div>
             <!-- END Visible only in normal mode -->
         </div>
-        <!-- END Side User -->
+        <!-- END Toko -->
         @endif
         <!-- Side Navigation -->
         <div class="content-side content-side-full">

@@ -1,13 +1,17 @@
 <?php
 
+
 namespace App\Http\Controllers\Mitra\Auth;
 
-use Auth;
-use Session;
+use App\User;
+use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\ThrottlesLogins;
-
+use Illuminate\Routing\Controller;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Validate;
+use Illuminate\Support\Facades\Validator;
+use Auth;
 class LoginController extends Controller
 {
     /*
@@ -15,35 +19,21 @@ class LoginController extends Controller
     | Login Controller
     |--------------------------------------------------------------------------
     |
-    | This controller handles authenticating admin users for the application and
-    | redirecting them to your admin dashboard.
+    | This controller handles authenticating users for the application and
+    | redirecting them to your home screen. The controller uses a trait
+    | to conveniently provide its functionality to your applications.
     |
     */
 
+    use AuthenticatesUsers;
     /**
-     * This trait has all the login throttling functionality.
-     */
-    use ThrottlesLogins;
-
-    /**
-     * Max login attempts allowed.
-     */
-    public $maxAttempts = 5;
-
-    /**
-     * Number of minutes to lock the login.
-     */
-    public $decayMinutes = 3;
-
-    /**
-     * Only guests for "admin" guard are allowed except
-     * for logout.
+     * Create a new controller instance.
      *
      * @return void
      */
     public function __construct()
     {
-        $this->middleware('guest:mitra')->except('logout');
+        $this->middleware('guest')->except('logout');
     }
 
     /**
@@ -53,102 +43,57 @@ class LoginController extends Controller
      */
     public function showLoginForm()
     {
-        return view('mitra.auth.login',[
-            'title' => 'Mitra Login',
-            'loginRoute' => 'mitra.login',
-            'forgotPasswordRoute' => 'mitra.password.request',
-        ]);
+        return view('mitra.auth.login');
     }
 
     /**
-     * Login the admin.
+     * Create a new controller instance.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return void
      */
-    public function login(Request $request)
-    {
-        $this->validator($request);
+     public function login(Request $request)
+     {
+        $input = $request->all();
 
-        //check if the user has too many login attempts.
-        if ($this->hasTooManyLoginAttempts($request)){
-            //Fire the lockout event
-            $this->fireLockoutEvent($request);
-
-            //redirect the user back after lockout.
-            return $this->sendLockoutResponse($request);
-        }
-
-        //attempt login.
-        if(Auth::guard('mitra')->attempt($request->only('email','password'),$request->filled('remember'))){
-            //Authenticated, redirect to the intended route
-            //if available else admin dashboard.
-            return redirect()
-                ->intended(route('mitra.beranda'));
-        }
-
-        //keep track of login attempts from the user.
-        $this->incrementLoginAttempts($request);
-
-        //Authentication failed, redirect back with input.
-        return $this->loginFailed();
-    }
-
-    /**
-     * Logout the admin.
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function logout()
-    {
-        Auth::guard('mitra')->logout();
-        Session::flush();
-        return redirect()
-            ->route('mitra.login')
-            ->with('status','Mitra has been logged out!');
-    }
-
-    /**
-     * Validate the form data.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return
-     */
-    private function validator(Request $request)
-    {
-        //validation rules.
         $rules = [
-            'email'    => 'required|email|exists:mitra|min:5|max:191',
-            'password' => 'required|string|min:4|max:255',
+            'email' => 'required|exists:users,email|string',
+            'password' => 'required|string'
         ];
 
-        //custom validation error messages.
-        $messages = [
-            'email.exists' => 'Tidak Ditemukan Email',
+        $pesan = [
+            'email.required' => 'Alamat Email Wajib Diisi!',
+            'email.exists' => 'Alamat Email Belum Terdaftar!',
+            'password.required' => 'Password Wajib Diisi!',
         ];
+        $validator = Validator::make($request->all(), $rules, $pesan);
+        if ($validator->fails()){
+            return response()->json([
+                'fail' => true,
+                'msg' => 'Terdapat Kesalahan Di Form!',
+                'errors' => $validator->errors(),
+            ]);
+        }else{
+            $fieldType = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+            if(auth()->guard('web')->attempt($request->only('email','password')))
+            {
+                return response()->json([
+                    'fail' => false,
+                ]);
+            }else{
+                $gagal['password'] = array('Password salah!');
+                return response()->json([
+                    'fail' => true,
+                    'errors' => $gagal,
+                ]);
+            }
+        }
 
-        //validate the request.
-        $request->validate($rules,$messages);
+     }
+
+     public function logout()
+    {
+        Auth::guard('web')->logout();
+        return redirect('/');
     }
 
-    /**
-     * Redirect back after a failed login.
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    private function loginFailed(){
-        return redirect()
-            ->back()
-            ->withInput()
-            ->with('error','Login failed, please try again!');
-    }
-
-    /**
-     * Username used in ThrottlesLogins trait
-     *
-     * @return string
-     */
-    public function username(){
-        return 'email';
-    }
 }

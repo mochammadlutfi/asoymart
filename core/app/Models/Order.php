@@ -33,6 +33,13 @@ class Order extends Model
         return $this->belongsTo('App\Models\Mitra', 'dibuat_oleh', 'id');
     }
 
+
+    public function getAlamatKirimAttribute($value)
+    {
+        return json_decode(str_replace("'", "", $value));
+    }
+
+
     public function detail()
     {
         return $this->hasMany(\App\Models\OrderDetail::class);
@@ -43,8 +50,4 @@ class Order extends Model
         return $this->hasMany(\App\Models\Penjualan::class);
     }
 
-    public function supplier()
-    {
-        return $this->belongsTo(\App\Models\Supplier::class);
-    }
 }

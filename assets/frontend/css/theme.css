@@ -36084,6 +36084,9 @@ blockquote:not(.blockquote) p {
   .border-md-bottom-0 {
     border-bottom: 0 !important;
   }
+  .shadow-md-none {
+    box-shadow: none !important;
+  }
 }
 
 @media (min-width: 992px) {
@@ -36101,6 +36104,10 @@ blockquote:not(.blockquote) p {
   }
   .border-lg-bottom-0 {
     border-bottom: 0 !important;
+  }
+
+  .shadow-lg-none {
+    box-shadow: none !important;
   }
 }
 

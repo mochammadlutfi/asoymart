@@ -9,17 +9,19 @@
 </style>
 @endsection
 
-
 @section('content')
 <div class="content">
     <div class="content-heading pt-3 mb-3">
-        <a href="{{ route('mitra.produk.tambah') }}" class="btn btn-secondary float-right mr-5"><i class="si si-plus mr-1"></i>Tambah Produk</a>
+        <a href="{{ route('mitra.produk.tambah') }}" class="btn btn-primary float-right mr-5">
+            <i class="si si-plus mr-1"></i>
+            Tambah Produk
+        </a>
         Katalog Produk
     </div>
-    <div class="block">
-        <div class="block-content bg-body-light">
+    <div class="block block-shadow block-rounded">
+        <div class="block-content border-bottom border-3x">
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-6">
                     <div class="form-group">
                         <div class="input-group">
                             <div class="input-group-prepend">
@@ -31,14 +33,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <select class="form-control" id="field-kategori" name="kategori" placeholder="Pilih Kategori"  style="width: 100%"></select>
-                    </div>
-                </div>
             </div>
         </div>
-        <div class="block-content pb-15">
+        <div class="block-content pb-15 pt-0">
             <table class="table table-striped table-vcenter" id="list-produk">
                 <thead>
                     <tr>
