@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    
     $("#form-login").submit(function (e) {
         e.preventDefault();
         var formData = new FormData($('#form-login')[0]);

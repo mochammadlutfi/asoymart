@@ -1,19 +1,37 @@
 $(function () {
-    var table = $('#list-penjualan').DataTable({
+    var table = $('#list-order').DataTable({
         processing: true,
         serverSide: true,
         ajax: {
-          url: laroute.route('mitra.penjualan'),
+          url: laroute.route('mitra.order'),
           data: function (d) {
                 d.status = $('#status').val(),
                 d.search = $('input[type="search"]').val()
             }
         },
         columns: [
-            {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-            {data: 'name', name: 'name'},
-            {data: 'email', name: 'email'},
-            {data: 'action', name: 'action', orderable: false, searchable: false},
+            {
+                data: 'tgl_transaksi',
+                name: 'tgl_transaksi'
+            },
+            {
+                data: 'invoice_no',
+                name: 'invoice_no'
+            },
+            {
+                data: 'total_frm',
+                name: 'total_frm'
+            },
+            {
+                data: 'status',
+                name: 'status'
+            },
+            {
+                data: 'aksi',
+                name: 'aksi',
+                orderable: false,
+                searchable: false
+            },
         ]
     });
     $(".pencarian").keyup(function(){

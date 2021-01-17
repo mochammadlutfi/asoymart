@@ -26,7 +26,6 @@ class CheckoutController extends Controller
     {
 
         if ($request->isMethod('post')) {
-
             Session::put('cart', $request->c_id);
             $cart_id = $request->c_id;
         }else if($request->isMethod('get')){
@@ -37,7 +36,7 @@ class CheckoutController extends Controller
             }
         }
 
-        $cart = Cart::whereIn('id', $cart_id)->with('bisnis:id,nama')->orderBy('updated_at', 'DESC')->get();
+        $cart = Cart::whereIn('id', get_cart_id($cart_id))->with('bisnis:id,nama')->orderBy('updated_at', 'DESC')->get();
         $total_belanja = $cart->sum('sub_total');
 
         $cart = $cart->groupBy(function ($bisnis) {
@@ -65,37 +64,57 @@ class CheckoutController extends Controller
         try{
 
             $checkout = Session::get('checkout');
-
             $user_id = auth()->guard('web')->user()->id;
+            $cart = $request->session()->get('cart');
 
-            $order_data = array(
-                'status' => 'dipesan',
-                'bayar_status' => 'unpaid',
-                'user_id' => $user_id,
-                'invoice_no' => getInvoice(),
-                'final_total' => $checkout['total'],
-                'alamat_kirim' => json_encode($checkout['alamat']),
-                'tgl_transaksi' => Carbon::now()->toDateTimeString(),
-            );
-
-            $order = Order::create($order_data);
-            $produkCart = Cart::whereIn('id', $request->session()->get('cart'))->with('bisnis:id,nama')->orderBy('updated_at', 'DESC');
-            foreach($produkCart->get() as $item)
+            foreach($cart as $bisnis => $value)
             {
-                $orderItem = new OrderDetail();
-                $orderItem->order_id = $order->id;
-                $orderItem->bisnis_id = $item->bisnis_id;
-                $orderItem->produk_id = $item->produk_id;
-                $orderItem->variasi_id = $item->variasi_id;
-                $orderItem->harga = $item->harga;
-                $orderItem->qty = $item->qty;
-                $orderItem->sub_total = $item->sub_total;
-                $orderItem->save();
+                $order_data = array(
+                    'status' => 'dipesan',
+                    'bayar_status' => 'unpaid',
+                    'user_id' => $user_id,
+                    'invoice_no' => getInvoice(),
+                    'final_total' => $checkout['total'],
+                    'alamat_kirim' => json_encode($checkout['alamat']),
+                    'tgl_transaksi' => Carbon::now()->toDateTimeString(),
+                );
+                $order = Order::create($order_data);
+                foreach($value as $v)
+                {
+                    $item = Cart::find($v);
+                    $orderItem = new OrderDetail();
+                    $orderItem->order_id = $order->id;
+                    $orderItem->bisnis_id = $item->bisnis_id;
+                    $orderItem->produk_id = $item->produk_id;
+                    $orderItem->variasi_id = $item->variasi_id;
+                    $orderItem->harga = $item->harga;
+                    $orderItem->qty = $item->qty;
+                    $orderItem->sub_total = $item->sub_total;
+                    $orderItem->save();
+
+
+                    $item->delete();
+                }
+
             }
-
-            $produkCart->delete();
-
             Session::forget('cart');
+            // $produkCart = Cart::whereIn('id', $request->session()->get('cart'))->with('bisnis:id,nama')->orderBy('updated_at', 'DESC');
+            // foreach($produkCart->get() as $item)
+            // {
+            //     $orderItem = new OrderDetail();
+            //     $orderItem->order_id = $order->id;
+            //     $orderItem->bisnis_id = $item->bisnis_id;
+            //     $orderItem->produk_id = $item->produk_id;
+            //     $orderItem->variasi_id = $item->variasi_id;
+            //     $orderItem->harga = $item->harga;
+            //     $orderItem->qty = $item->qty;
+            //     $orderItem->sub_total = $item->sub_total;
+            //     $orderItem->save();
+            // }
+
+            // $produkCart->delete();
+
+            // Session::forget('cart');
 
         }catch(\QueryException $e){
             DB::rollback();

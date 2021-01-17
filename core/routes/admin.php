@@ -58,13 +58,14 @@ Route::prefix('/admin')->name('admin.')->namespace('Admin')->group(function(){
         Route::get('/hapus/{id}','PromoController@hapus')->name('promo.hapus');
     });
 
-    Route::group(['prefix' => 'kupon'], function () {
-        Route::get('/','KuponController@index')->name('kupon');
-        Route::get('/tambah','KuponController@tambah')->name('kupon.tambah');
-        Route::post('/simpan','KuponController@simpan')->name('kupon.simpan');
-        Route::get('/edit/{id}','KuponController@edit')->name('kupon.edit');
-        Route::post('/update','KuponController@update')->name('kupon.update');
-        Route::get('/hapus/{id}','KuponController@hapus')->name('kupon.hapus');
+    Route::group(['prefix' => 'voucher'], function () {
+        Route::get('/','VoucherController@index')->name('voucher');
+        Route::get('/tambah','VoucherController@tambah')->name('voucher.tambah');
+        Route::post('/simpan','VoucherController@simpan')->name('voucher.simpan');
+        Route::get('/edit/{id}','VoucherController@edit')->name('voucher.edit');
+        Route::post('/update','VoucherController@update')->name('voucher.update');
+        Route::get('/hapus/{id}','VoucherController@hapus')->name('voucher.hapus');
+        Route::post('/form','VoucherController@form_view')->name('voucher.form_view');
     });
 
     Route::group(['prefix' => 'kategori'], function () {

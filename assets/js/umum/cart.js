@@ -44,10 +44,11 @@ function updateCart()
             harga = $(this).find('input.harga').val();
             qty = parseInt($(this).find('input.input-number').val());
             cart_id = $(this).find('input.cart_id').val();
+            bisnis_id = $(this).find('input.bisnis_id').val();
             total += harga*qty;
             produk += qty;
             i += 1;
-            parent.append(`<input type="hidden" class="ck" name="c_id[`+i+`]" value="`+cart_id+`">`);
+            parent.append(`<input type="hidden" class="ck" name="c_id[`+bisnis_id+`][]" value="`+cart_id+`">`);
         }
     });
     if($('.product').find('input[type=checkbox]:checked').length > 0)

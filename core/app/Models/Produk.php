@@ -25,11 +25,11 @@ class Produk extends Model
     public $incrementing = false;
 
     protected $fillable = [
-        'nama', 'slug', 'kategori_id', 'has_variasi', 'bisnis_id', 'var1_nama', 'var2_nama', 'var1_value', 'var2_value'
+        'nama', 'slug', 'kategori_id', 'has_variasi', 'bisnis_id', 'var1_nama', 'var2_nama', 'var1_value', 'var2_value', 'harga'
     ];
 
     protected $appends = [
-        'fotoUtama'
+        'fotoUtama', 'harga', 'harga_format'
     ];
 
     public function kategori()
@@ -87,7 +87,7 @@ class Produk extends Model
         $get = $this->hasMany('App\Models\ProdukFoto', 'produk_id', 'id')->where('is_utama', 1)->first();
         if($get)
         {
-            return $get->path;
+            return asset('uploads/'.$get->path);
         }else{
             return null;
         }

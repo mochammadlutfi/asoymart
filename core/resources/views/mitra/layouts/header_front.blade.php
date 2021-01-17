@@ -28,7 +28,7 @@
                             </a>
                         </li>
                     </ul> --}}
-                    <a href="{{ route('mitra.daftar') }}" class="btn btn-outline-primary">Login</a>
+                    <a href="{{ route('mitra.login') }}" class="btn btn-outline-primary">Login</a>
                     <a href="{{ route('mitra.daftar') }}" class="btn btn-primary">Daftar</a>
                 </div>
             </div>

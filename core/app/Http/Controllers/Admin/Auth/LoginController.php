@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Auth;
 use Session;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 
 class LoginController extends Controller
@@ -20,28 +21,6 @@ class LoginController extends Controller
     | redirecting them to your admin dashboard.
     |
     */
-
-    /**
-     * This trait has all the login throttling functionality.
-     */
-    use ThrottlesLogins;
-
-    /**
-     * Max login attempts allowed.
-     */
-    public $maxAttempts = 5;
-
-    /**
-     * Number of minutes to lock the login.
-     */
-    public $decayMinutes = 3;
-
-    /**
-     * Only guests for "admin" guard are allowed except
-     * for logout.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('guest:admin')->except('logout');
@@ -54,11 +33,7 @@ class LoginController extends Controller
      */
     public function showLoginForm()
     {
-        return view('admin.auth.login',[
-            'title' => 'Admin Login',
-            'loginRoute' => 'admin.login',
-            'forgotPasswordRoute' => 'admin.password.request',
-        ]);
+        return view('admin.auth.login');
     }
 
     /**
@@ -69,31 +44,40 @@ class LoginController extends Controller
      */
     public function login(Request $request)
     {
-        $this->validator($request);
+        $input = $request->all();
 
-        //check if the user has too many login attempts.
-        if ($this->hasTooManyLoginAttempts($request)){
-            //Fire the lockout event
-            $this->fireLockoutEvent($request);
+        $rules = [
+            'email' => 'required|exists:admins,email|string',
+            'password' => 'required|string'
+        ];
 
-            //redirect the user back after lockout.
-            return $this->sendLockoutResponse($request);
+        $pesan = [
+            'email.required' => 'Alamat Email Wajib Diisi!',
+            'email.exists' => 'Alamat Email Belum Terdaftar!',
+            'password.required' => 'Password Wajib Diisi!',
+        ];
+        $validator = Validator::make($request->all(), $rules, $pesan);
+        if ($validator->fails()){
+            return response()->json([
+                'fail' => true,
+                'msg' => 'Terdapat Kesalahan Di Form!',
+                'errors' => $validator->errors(),
+            ]);
+        }else{
+            $fieldType = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+            if(auth()->guard('admin')->attempt($request->only('email','password')))
+            {
+                return response()->json([
+                    'fail' => false,
+                ]);
+            }else{
+                $gagal['password'] = array('Password salah!');
+                return response()->json([
+                    'fail' => true,
+                    'errors' => $gagal,
+                ]);
+            }
         }
-
-        //attempt login.
-        if(Auth::guard('admin')->attempt($request->only('email','password'),$request->filled('remember'))){
-            //Authenticated, redirect to the intended route
-            //if available else admin dashboard.
-            return redirect()
-                ->intended(route('admin.beranda'))
-                ->with('status','You are Logged in as Admin!');
-        }
-
-        //keep track of login attempts from the user.
-        $this->incrementLoginAttempts($request);
-
-        //Authentication failed, redirect back with input.
-        return $this->loginFailed();
     }
 
     /**
@@ -109,28 +93,6 @@ class LoginController extends Controller
             ->with('status','Admin has been logged out!');
     }
 
-    /**
-     * Validate the form data.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return
-     */
-    private function validator(Request $request)
-    {
-        //validation rules.
-        $rules = [
-            'email'    => 'required|email|exists:admins|min:5|max:191',
-            'password' => 'required|string|min:4|max:255',
-        ];
-
-        //custom validation error messages.
-        $messages = [
-            'email.exists' => 'These credentials do not match our records.',
-        ];
-
-        //validate the request.
-        $request->validate($rules,$messages);
-    }
 
     /**
      * Redirect back after a failed login.
@@ -144,13 +106,5 @@ class LoginController extends Controller
             ->with('error','Login failed, please try again!');
     }
 
-    /**
-     * Username used in ThrottlesLogins trait
-     *
-     * @return string
-     */
-    public function username(){
-        return 'email';
-    }
 }
 

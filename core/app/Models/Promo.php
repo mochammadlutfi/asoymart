@@ -56,7 +56,7 @@ class Promo extends Model
 
     public function getImageAttribute($value)
     {
-        return 'uploads/'.$this->attributes['image'];
+        return asset('uploads/'.$this->attributes['image']);
     }
 
     /**

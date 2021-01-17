@@ -3,7 +3,7 @@
 @section('styles')
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/js/plugins/bootstrap-daterangepicker/daterangepicker.css') }}" />
 <style>
-    #list-penjualan_filter {
+    #list-order_filter {
         display: none;
     }
 </style>
@@ -19,10 +19,11 @@
         @include('mitra.penjualan.include.menu_tabs')
         <div class="block-content tab-content">
             <div class="tab-pane active" id="btabs-alt-static-home" role="tabpanel">
-                <table class="table table-striped table-vcenter" id="list-penjualan">
+                <table class="table table-striped table-vcenter" id="list-order">
                     <thead>
                         <tr>
-                            <th class="font-weight-bold" width="40%">PRODUK</th>
+                            <th class="font-weight-bold">TANGGAL</th>
+                            <th class="font-weight-bold">NO. INVOICE</th>
                             <th class="font-weight-bold">JUMLAH TAGIHAN</th>
                             <th class="font-weight-bold">STATUS</th>
                             <th>TINDAKAN</th>
@@ -38,10 +39,8 @@
 {{-- <script src="{{ asset('assets/js/plugins/bootstrap-daterangepicker/moment.min.js') }}"></script> --}}
 <script src="{{ asset('assets/js/plugins/moment/moment-with-locales.min.js') }}"></script>
 <script src="{{ asset('assets/js/plugins/bootstrap-daterangepicker/daterangepicker.min.js') }}"></script>
-<script src="{{ asset('assets/js/mitra/penjualan/penjualan.js') }}"></script>
+<script src="{{ asset('assets/js/mitra/order/order.js') }}"></script>
 <script>
-    // var url = new URL(laroute.url('/', []));
-
     function GFG_Fun(status) {
         window.history.replaceState(null, null, "?status="+status);
     }

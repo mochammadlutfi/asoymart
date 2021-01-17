@@ -24611,3 +24611,14 @@ select.is-valid + .select2-container .select2-selection--single {
     opacity: 0.8;
 }
 
+.date-range-picker .separator-line{
+    position: relative;
+    margin: 0 8px;
+}
+.date-range-picker .separator .separator-line{
+    position: relative;
+    width: 16px;
+    height: 1px;
+    background-color: #bababa;
+    top: 50%;
+}

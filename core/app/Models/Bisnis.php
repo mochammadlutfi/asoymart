@@ -24,4 +24,21 @@ class Bisnis extends Model
     {
         return $this->hasOne('App\Models\Outlet', 'bisnis_id')->oldest();
     }
+
+    public function getLogoAttribute($value)
+    {
+        if($this->attributes['logo'] !== null)
+        {
+            return asset('uploads/'.$this->attributes['logo']);
+        }else{
+            return asset('assets/img/placeholder/toko.png');
+        }
+    }
+
+    public function produk()
+    {
+        return $this->hasMany('App\Models\Produk');
+    }
+
+    
 }

@@ -16,3 +16,23 @@ use Illuminate\Http\Request;
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
+
+Route::namespace('Umum\API')->group(function(){
+    Route::get('/slides','SlideController@index');
+
+    Route::group(['prefix' => 'kategori'], function () {
+        Route::get('/','KategoriController@index');
+        Route::get('/{id}','KategoriController@detail');
+        Route::get('/produk/{id}','KategoriController@produk');
+        Route::get('/toko/{id}','KategoriController@toko');
+    });
+
+    Route::get('produk/{id}','ProdukController@detail');
+
+    // Route::get('toko/','@index');
+    Route::group(['prefix' => 'toko'], function () {
+        Route::get('/','TokoController@index');
+        Route::get('/{id}','TokoController@detail');
+        Route::get('/produk/{id}','TokoController@produk');
+    });
+});

@@ -36,3 +36,28 @@ if (!function_exists('get_cartContent')) {
         return $cart;
     }
 }
+
+
+if (!function_exists('get_cart_id')) {
+
+    /**
+     * Mendapatkan Total Keranjang Belanja Pengguna
+     *
+     * @param
+     * cart = array data
+     * @return
+     */
+    function get_cart_id($cart)
+    {
+        $cart_id = array();
+        foreach($cart as $bisnis => $value)
+        {
+            foreach($value as $v)
+            {
+                $cart_id[] = $v;
+            }
+        }
+
+        return $cart_id;
+    }
+}

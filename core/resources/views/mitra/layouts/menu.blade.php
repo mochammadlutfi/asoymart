@@ -14,7 +14,9 @@
         </ul>
     </li>
     <li>
-        <a class="{{ Request::is('mitra/penjualan', 'mitra/penjualan/*') ? 'active' : null }}" href="{{ route('mitra.order') }}?status=terbaru"><i class="si si-bag"></i>Penjualan</span></a>
+        <a class="{{ Request::is('mitra/pesanan', 'mitra/pesanan/*') ? 'active' : null }}" href="{{ route('mitra.order') }}?status=terbaru">
+            <i class="si si-bag"></i>Pesanan</span>
+        </a>
     </li>
     <li>
         <a class="{{ Request::is('mitra/chat', 'mitra/chat/*') ? 'active' : null }}" href="{{ route('mitra.beranda') }}"><i class="si si-bubble"></i>Chat</span></a>
@@ -29,6 +31,11 @@
                 <a class="{{ Request::is('mitra/keluhan', 'mitra/keluhan/*') ? 'active' : null }}" href="{{ route('mitra.produk') }}">Keluhan</a>
             </li>
         </ul>
+    </li>
+    <li>
+        <a class="{{ Request::is('mitra/promosi', 'mitra/promosi/*') ? 'active' : null }}" href="{{ route('mitra.promosi') }}">
+            <i class="fa fa-bullhorn"></i>Promosi</span>
+        </a>
     </li>
     <li class="{{ Request::is('mitra/keuangan/*','mitra/keuangan') ? 'open' : null }}">
         <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-wallet"></i>Keuangan</span></a>

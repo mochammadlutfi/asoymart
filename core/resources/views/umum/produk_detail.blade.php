@@ -16,7 +16,6 @@
                 <div class="col-md-4 mb-1">
                     <div id="sliderSyncingNav" class="js-slick-carousel u-slick mb-2"
                         data-infinite="true"
-                        data-arrows-classes="d-none d-lg-inline-block u-slick__arrow-classic u-slick__arrow-centered--y rounded-circle"
                         data-nav-for="#sliderSyncingThumb">
                         @foreach($Produkfoto as $foto)
                         <div class="js-slide">
@@ -40,7 +39,7 @@
                 <div class="col-md-7 mb-md-6 mb-lg-0">
                     <div class="mb-2 product-body">
                         <div class="border-bottom mb-lg-3 pb-md-1 pb-lg-3">
-                            <h2 class="font-size-30-lg font-size-16 font-weight-bold text-lh-1dot2 ">{{ $produk->nama }}</h2>
+                            <h2 class="font-size-24-lg font-size-14-down-lg font-weight-bold">{{ $produk->nama }}</h2>
                             <div class="mb-2 d-none d-lg-block">
                                 <a class="d-inline-flex align-items-center small font-size-15 text-lh-1" href="#">
                                     <div class="text-warning mr-2">

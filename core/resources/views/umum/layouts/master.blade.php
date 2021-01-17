@@ -87,6 +87,7 @@
         {{-- <script src="{{ asset('assets/js/plugins/bootstrap-select/dist/js/bootstrap-select.min.js') }}"></script> --}}
         <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.18/dist/js/bootstrap-select.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/accounting.js/0.4.1/accounting.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script>
 
         <!-- JS Electro -->
         <script src="{{ asset('assets/frontend/js/hs.core.js') }}"></script>

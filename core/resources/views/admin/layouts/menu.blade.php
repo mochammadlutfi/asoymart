@@ -44,14 +44,14 @@
             </li>
         </ul>
     </li>
-    <li class="{{ Request::is('admin/kupon/*') ? 'open' : null }}">
-        <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="fa fa-ticket-alt"></i><span class="sidebar-mini-hide">Kupon</span></a>
+    <li class="{{ Request::is('admin/voucher/*') ? 'open' : null }}">
+        <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="fa fa-ticket-alt"></i><span class="sidebar-mini-hide">Voucher</span></a>
         <ul>
             <li>
-                <a class="{{ Request::is('admin/kupon/tambah') ? 'active' : null }}" href="{{ route('admin.kupon.tambah') }}">Tambah Kupon</a>
+                <a class="{{ Request::is('admin/voucher/tambah') ? 'active' : null }}" href="{{ route('admin.voucher.tambah') }}">Tambah Voucher</a>
             </li>
             <li>
-                <a class="{{ Request::is('admin/kupon') ? 'active' : null }}" href="{{ route('admin.kupon') }}">Daftar Kupon</a>
+                <a class="{{ Request::is('admin/voucher') ? 'active' : null }}" href="{{ route('admin.voucher') }}">Daftar Voucher</a>
             </li>
         </ul>
     </li>

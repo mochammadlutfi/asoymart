@@ -10,7 +10,7 @@
                     </button>
                 </div>
                 <div class="modal-body pt-0">
-                <form id="form-modallogin" onsubmit="return false">
+                <form id="loginModalFrm" onsubmit="return false">
                     @csrf
                     <h5 class="modal-title">Selamat datang kembali! Silahkan login.</h5>
                     <p>Belum punya akun? <a href="{{ route('register') }}">Daftar</a> disini!</p>
@@ -29,7 +29,10 @@
                         <div class="invalid-feedback" id="error-password"></div>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary btn-block font-weight-bold">Masuk</button>
+                        <button type="submit" class="btn btn-primary btn-block font-weight-bold" disabled>
+                            <i class="fa fa-signin"></i>
+                            Masuk
+                        </button>
                     </div>
                 </form>
             </div>

@@ -54,7 +54,7 @@ class AlamatController extends Controller
                 return 'i';
             })
             ->addColumn('aksi', function($row){
-                    $btn = '<center><button  type="button" class="btn btn-outline-primary btn-sm mr-1 btn-edit_alamat" data-id="'. $row->id .'"><i class="fa fa-edit mr-1"></i>Edit</button>';
+                    $btn = '<center><button  type="button" class="btn btn-outline-primary btn-sm mr-1 btn-edit_alamat" onclick="edit('. $row->id .');"><i class="fa fa-edit mr-1"></i>Edit</button>';
                     $btn .= '<button type="button"class="btn btn-danger btn-sm btn-hapus_alamat" data-id="'. $row->id .'"><i class="fa fa-trash mr-1"></i>Hapus</button></center>';
                     return $btn;
             })

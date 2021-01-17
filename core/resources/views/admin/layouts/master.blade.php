@@ -59,6 +59,7 @@
         </div>
         <script src="{{ asset('assets/js/laroute.js') }}"></script>
         <script src="{{ asset('assets/js/codebase.app.js') }}"></script>
+        <script src="{{ asset('assets/js/plugins/jquery-validation/jquery.validate.min.js') }}"></script>
         <script src="{{ asset('assets/js/plugins/datatables/jquery.dataTables.min.js') }}"></script>
         <script src="{{ asset('assets/js/plugins/datatables/jquery.dataTables.min.js') }}"></script>
         <script src="{{ asset('assets/js/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>

@@ -1,4 +1,99 @@
 $(document).ready(function () {
+    $("#loginModalFrm").validate({
+        onfocusout: function(element) {
+            $(element).valid()
+            if ($(element).valid()) {
+                $('#loginModalFrm').find('button:submit').prop('disabled', false);  
+            } else {
+                $('#loginModalFrm').find('button:submit').prop('disabled', 'disabled');
+            }
+        },    
+        errorElement: "div",
+        errorPlacement: function (e, n) {
+            jQuery(n).parents(".form-group").find('div.invalid-feedback').html(e);
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).addClass('is-invalid');
+        }
+        ,unhighlight: function (element, errorClass, validClass) {
+            $(element).removeClass('is-invalid');
+        },
+        success: function (e) {
+            $(e).addClass('is-valid');
+            jQuery(e).closest(".form-group").removeClass("is-invalid").addClass("is-valid");
+            jQuery(e).closest(".form-group").removeClass("is-invalid"), jQuery(e).remove();
+        },
+        rules: {
+            email: {
+                required: true,
+                email: true
+            },
+            password: {
+                required: true,
+                minlength:6
+            },
+        },
+        messages: {
+            email: {
+                required: "Alamat Email Wajib Diisi!",
+                email: "Format Alamat Email Salah!"
+            },
+            password: {
+                required: 'Password Wajib Diisi!',
+                minlength: 'Password Kurang Dari 6 Karakter!'
+            },
+        },
+        submitHandler: function (form) {
+            var fomr = $('form#loginModalFrm')[0];
+            var formData = new FormData(fomr);
+            $.ajax({
+                type: 'POST',
+                url: laroute.route('login'),
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function(){
+                    Swal.fire({
+                        title: 'Tunggu Sebentar...',
+                        text: ' ',
+                        imageUrl: laroute.url('assets/img/loading.gif', ['']),
+                        showConfirmButton: false,
+                        allowOutsideClick: false,
+                    });
+                },
+                success: function (response) {
+                    if (response.fail == false) {
+                        Swal.fire({
+                            title: "Berhasil",
+                            text: "Login Ke Akun Anda Berhasil!",
+                            timer: 3000,
+                            showConfirmButton: false,
+                            icon: 'success'
+                        });
+                        window.setTimeout(function () {
+                            location.reload();
+                        }, 1500);
+                    } else {
+                        Swal.fire({
+                            title: "Gagal",
+                            text: "Login Ke Akun Anda Gagal!",
+                            timer: 3000,
+                            showConfirmButton: false,
+                            icon: 'error'
+                        });
+                        for (control in response.errors) {
+                            $('#field-' + control).addClass('is-invalid');
+                            $('#error-' + control).html(response.errors[control]);
+                        }
+                    }
+                }
+            });
+            return false;
+        }
+    });
+    
+    $("img.lazyload").lazyload();
 });
 
 // Product Detail

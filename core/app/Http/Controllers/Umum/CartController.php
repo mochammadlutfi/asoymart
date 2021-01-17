@@ -26,6 +26,7 @@ class CartController extends Controller
         $cart = $cart->groupBy(function ($bisnis) {
             return $bisnis->bisnis_id.'-'.$bisnis->bisnis->nama;
         })->all();
+
         return response()->json([
             'fail' => false,
             'html' => view('umum.cart.include.data-cart', compact('cart'))->render(),

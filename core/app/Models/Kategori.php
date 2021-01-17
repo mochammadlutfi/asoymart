@@ -24,6 +24,9 @@ class Kategori extends Model
     protected $fillable = [
         'nama', 'slug', 'parent_id', 'icon', 'cover',
     ];
+    protected $appends = [
+        'image_url',
+    ];
 
     public function sub_kategori(){
 
@@ -51,6 +54,11 @@ class Kategori extends Model
         {
             return 'uploads/'.$value;
         }
+    }
+
+    public function getImageUrlAttribute($value)
+    {
+        return asset('uploads/'.$this->attributes['thumbnail']);
     }
 
     public function getCreatedAtAttribute($value)

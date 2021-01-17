@@ -61,6 +61,7 @@
                         </div>
                         <div class="product__price">
                             <input type="hidden" class="cart_id" value="{{ $p->id }}">
+                            <input type="hidden" class="bisnis_id" value="{{ $sel_id }}">
                             <input type="hidden" class="harga" value="{{ number_format($p->harga,0,',','') }}">
                             <div class="product__price--after">
                                 Rp{{ number_format($p->harga,0,',','.') }}

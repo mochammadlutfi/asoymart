@@ -66,7 +66,7 @@
                                 <div class="product-item__body pb-2">
                                     <a href="{{ route('produk.detail', ['bisnis' => $baru->bisnis->link_toko, 'produk' => $baru->slug]) }}"
                                         class="d-block text-center">
-                                        <img class="img-fluid" src="{{ get_produk_img($baru->fotoUtama) }}"
+                                        <img class="lazyload img-fluid" src="{{ get_produk_img($baru->fotoUtama) }}"
                                             alt="Image Description">
                                     </a>
                                     <div class="px-2 mt-2">

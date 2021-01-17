@@ -39,8 +39,12 @@ Route::prefix('mitra')->name('mitra.')->namespace('Mitra')->group(function() {
         Route::post('/get_variasi','VariasiController@get_variasi')->name('variasi_get');
     });
 
-    Route::group(['prefix' => 'penjualan'], function () {
-        Route::get('/','PenjualanController@index')->name('order');
+    Route::group(['prefix' => 'pesanan'], function () {
+        Route::get('/','OrderController@index')->name('order');
+    });
+
+    Route::group(['prefix' => 'promosi'], function () {
+        Route::get('/','PromosiController@index')->name('promosi');
     });
 
     Route::group(['prefix' => 'keuangan'], function () {

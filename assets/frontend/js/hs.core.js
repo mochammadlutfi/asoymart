@@ -172,5 +172,5 @@
   };
 
   $.HSCore.init();
-
+  
 })(jQuery);
