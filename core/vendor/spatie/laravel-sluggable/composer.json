@@ -16,13 +16,14 @@
         }
     ],
     "require": {
-        "php" : "^7.4",
-        "illuminate/database": "^7.0",
-        "illuminate/support": "^7.0"
+        "php": "^7.4|^8.0",
+        "illuminate/database": "^7.0|^8.0",
+        "illuminate/support": "^7.0.5|^8.0"
     },
     "require-dev": {
-        "orchestra/testbench": "^5.0",
-        "spatie/laravel-translatable": "^4.3"
+        "orchestra/testbench": "^5.0|^6.0",
+        "spatie/laravel-translatable": "^4.3",
+        "friendsofphp/php-cs-fixer": "^2.16"
     },
     "autoload": {
         "psr-4": {
@@ -35,7 +36,8 @@
         }
     },
     "scripts": {
-        "test": "phpunit"
+        "test": "phpunit",
+        "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes"
     },
     "minimum-stability": "dev",
     "prefer-stable": true

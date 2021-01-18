@@ -2,9 +2,7 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/laravel-sluggable.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-sluggable)
 [![MIT Licensed](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/spatie/laravel-sluggable/run-tests?label=tests)
-[![Quality Score](https://img.shields.io/scrutinizer/g/spatie/laravel-sluggable.svg?style=flat-square)](https://scrutinizer-ci.com/g/spatie/laravel-sluggable)
-[![StyleCI](https://styleci.io/repos/48512561/shield?branch=master)](https://styleci.io/repos/48512561)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/spatie/laravel-sluggable/run-tests?label=tests)](https://github.com/spatie/laravel-sluggable/actions)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/laravel-sluggable.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-sluggable)
 
 This package provides a trait that will generate a unique slug when saving any Eloquent model.
@@ -14,7 +12,7 @@ $model = new EloquentModel();
 $model->name = 'activerecord is awesome';
 $model->save();
 
-echo $model->slug; // ouputs "activerecord-is-awesome"
+echo $model->slug; // outputs "activerecord-is-awesome"
 ```
 
 The slugs are generated with Laravels `Str::slug` method, whereby spaces are converted to '-'.
@@ -23,9 +21,7 @@ Spatie is a webdesign agency based in Antwerp, Belgium. You'll find an overview 
 
 ## Support us
 
-Learn how to create a package like this one, by watching our premium video course:
-
-[![Laravel Package training](https://spatie.be/github/package-training.jpg)](https://laravelpackage.training)
+[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/laravel-sluggable.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/laravel-sluggable)
 
 We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
 
@@ -233,7 +229,7 @@ public function getSlugOptions() : SlugOptions
 This can be helpful for creating permalinks that don't change until you explicitly want it to.
 
 ```php
-$model = EloquentModel:create(['name' => 'my name']); //slug is now "my-name";
+$model = EloquentModel::create(['name' => 'my name']); //slug is now "my-name";
 $model->save();
 
 $model->name = 'changed name';
@@ -241,6 +237,19 @@ $model->save(); //slug stays "my-name"
 ```
 
 If you want to explicitly update the slug on the model you can call `generateSlug()` on your model at any time to make the slug according to your other options. Don't forget to `save()` the model to persist the update to your database.
+
+
+You can prevent slugs from being overwritten.
+
+```php
+public function getSlugOptions() : SlugOptions
+{
+    return SlugOptions::create()
+        ->generateSlugsFrom('name')
+        ->saveSlugsTo('slug')
+        ->preventOverwrite();
+}
+```
 
 ### Integration with laravel-translatable
 

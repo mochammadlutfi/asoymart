@@ -24,7 +24,6 @@
         "rennokki/laravel-eloquent-query-cache": "^2.4",
         "spatie/laravel-permission": "^3.16",
         "spatie/laravel-sluggable": "^2.5",
-        "spatie/laravel-webhook-client": "^2.7",
         "te7a-houdini/laroute": "^2.0",
         "typicms/nestablecollection": "^1.1",
         "yajra/laravel-datatables-oracle": "~9.0"
