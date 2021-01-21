@@ -18,6 +18,12 @@ use Illuminate\Http\Request;
 // });
 
 Route::namespace('Umum\API')->group(function(){
+    Route::post('login', 'UserController@login');
+    Route::post('register', 'UserController@register');
+    Route::post('send_reset_link_email', 'UserController@sendResetLinkEmail');
+    Route::get('user', 'UserController@user');
+    Route::get('logout', 'UserController@logout');
+
     Route::get('/slides','SlideController@index');
 
     Route::group(['prefix' => 'kategori'], function () {

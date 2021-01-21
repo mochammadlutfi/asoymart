@@ -22,7 +22,7 @@ class Controller extends BaseController
         return Response::json([
             "data" =>  $result,
             "message" => $message,
-        ], 201);
+        ], 200);
     }
 
     /**
@@ -32,6 +32,6 @@ class Controller extends BaseController
      */
     public function sendError($error, $code = 404)
     {
-        return Response::json(ResponseUtil::makeError($error), $code);
+        return Response::json($error, $code);
     }
 }
